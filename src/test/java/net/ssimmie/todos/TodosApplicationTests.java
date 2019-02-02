@@ -1,16 +1,20 @@
 package net.ssimmie.todos;
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
+import static org.assertj.core.api.Assertions.assertThat;
 
-@RunWith(SpringRunner.class)
-@SpringBootTest
+import org.junit.Test;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
 public class TodosApplicationTests {
 
   @Test
-  public void contextLoads() {
+  public void shouldBeAnnotatedWithSpringBootApplication() {
+    assertThat(TodosApplication.class.getAnnotationsByType(SpringBootApplication.class))
+        .isNotNull();
   }
 
+  @Test
+  public void shouldBeAbleToStartTheApplication() {
+    TodosApplication.main(new String[]{"--server.port=0", "--debug"});
+  }
 }
