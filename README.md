@@ -9,3 +9,7 @@ AWS ECS Fargate
 ## Build Environment
 
 AWS CodeBuild
+
+## Deployment
+
+AWS ECS Blue/Green
