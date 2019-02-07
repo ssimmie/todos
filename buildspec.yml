@@ -3,7 +3,7 @@ version: 0.2
 phases:
   pre_build:
     commands:
-      - $(aws ecr get-login --no-include-email --region eu-west-1)
+      - $(aws ecr get-login --no-include-email --region ${AWS_REGION})
   build:
     commands:
       - ./gradlew clean dockerClean build docker dockerTag dockerPush
