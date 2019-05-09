@@ -1,4 +1,4 @@
-FROM openjdk:8-jdk-alpine
+FROM gcr.io/distroless/java:11
 VOLUME /tmp
 ARG DEPENDENCY=build/dependency
 COPY ${DEPENDENCY}/BOOT-INF/lib /app/lib
