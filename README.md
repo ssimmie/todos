@@ -4,6 +4,7 @@ Todos API
 
 ## Runtime
 
+Google Distroless
 AWS ECS Fargate 
 
 ## Build Environment
