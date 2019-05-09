@@ -1,6 +1,6 @@
 buildscript {
     ext {
-        springBootVersion = '2.1.1.RELEASE'
+        springBootVersion = '2.1.4.RELEASE'
         jacocoVersion = '0.8.3'
     }
     repositories {
@@ -13,7 +13,7 @@ buildscript {
     }
 }
 plugins {
-    id 'com.palantir.docker' version '0.20.1'
+    id 'com.palantir.docker' version '0.22.1'
 }
 
 apply plugin: 'java'
@@ -24,8 +24,8 @@ apply plugin: 'jacoco'
 
 group = 'net.ssimmie'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = 1.8
-targetCompatibility = 1.8
+sourceCompatibility = JavaVersion.VERSION_11
+targetCompatibility = JavaVersion.VERSION_11
 
 repositories {
     mavenLocal()
