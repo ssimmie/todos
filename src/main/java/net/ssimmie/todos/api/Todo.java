@@ -4,8 +4,8 @@ public class Todo {
 
   private final String title;
 
-  public Todo(final String title) {
-    this.title = title;
+  public Todo(final String stitle) {
+    this.title = stitle;
   }
 
   public String getTitle() {
