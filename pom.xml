@@ -14,6 +14,7 @@
   <version>0.0.1-SNAPSHOT</version>
   <packaging>pom</packaging>
   <description>Todos product</description>
+  <url>https://github.com/ssimmie/todos</url>
   <distributionManagement>
     <repository>
       <id>github</id>
@@ -21,18 +22,22 @@
       <url>https://maven.pkg.github.com/ssimmie/todos</url>
     </repository>
     <site>
-    <url>https://github.com/ssimmie/todos</url>
+      <url>${project.url}</url>
     </site>
   </distributionManagement>
+  <issueManagement>
+    <system>GitHub</system>
+    <url>${project.url}/issues</url>
+  </issueManagement>
   <scm>
-    <url>https://github.com/ssimmie/todos</url>
+    <url>${project.url}</url>
     <connection>scm:git:git@github.com:ssimmie/todos.git</connection>
     <developerConnection>scm:git:git@github.com:ssimmie/todos.git</developerConnection>
   </scm>
   <licenses>
     <license>
       <name>MIT License</name>
-      <url>https://github.com/ssimmie/todos/blob/master/LICENSE</url>
+      <url>${project.url}/blob/master/LICENSE</url>
       <distribution>repo</distribution>
     </license>
   </licenses>
@@ -106,6 +111,44 @@
           </execution>
         </executions>
       </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-pmd-plugin</artifactId>
+        <version>3.13.0</version>
+        <configuration>
+          <linkXref>true</linkXref>
+          <sourceEncoding>utf-8</sourceEncoding>
+        </configuration>
+        <executions>
+          <execution>
+            <goals>
+              <goal>check</goal>
+              <goal>cpd-check</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
     </plugins>
   </build>
+  <reporting>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jxr-plugin</artifactId>
+        <version>3.0.0</version>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-pmd-plugin</artifactId>
+        <reportSets>
+          <reportSet>
+            <reports>
+              <report>pmd</report>
+              <report>cpd</report>
+            </reports>
+          </reportSet>
+        </reportSets>
+      </plugin>
+    </plugins>
+  </reporting>
 </project>
