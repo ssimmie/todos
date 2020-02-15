@@ -1,18 +1,17 @@
 package net.ssimmie.todos;
 
 import static net.ssimmie.todos.TodosApplication.main;
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.fail;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-public class TodosApplicationTests {
+class TodosApplicationTests {
 
   @Test
   public void shouldBeAnnotatedWithSpringBootApplication() {
-    assertThat(TodosApplication.class.getAnnotationsByType(SpringBootApplication.class))
-        .isNotNull();
+    assertNotNull(TodosApplication.class.getAnnotationsByType(SpringBootApplication.class));
   }
 
   @Test
@@ -23,5 +22,4 @@ public class TodosApplicationTests {
       fail("Application startup failed");
     }
   }
-
 }
