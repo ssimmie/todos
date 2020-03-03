@@ -57,6 +57,13 @@
     <module>application</module>
   </modules>
   <build>
+    <extensions>
+      <extension>
+        <groupId>net.ssimmie.todos</groupId>
+        <artifactId>build-tools</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+      </extension>
+    </extensions>
     <plugins>
       <plugin>
         <groupId>com.coveo</groupId>
@@ -171,16 +178,25 @@
         </executions>
       </plugin>
       <plugin>
+        <groupId>com.github.spotbugs</groupId>
+        <artifactId>spotbugs-maven-plugin</artifactId>
+        <version>3.1.12.2</version>
+        <configuration>
+          <effort>Max</effort>
+          <threshold>Low</threshold>
+        </configuration>
+        <executions>
+          <execution>
+            <goals>
+              <goal>check</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-checkstyle-plugin</artifactId>
         <version>3.1.1</version>
-        <dependencies>
-          <dependency>
-            <groupId>net.ssimmie.todos</groupId>
-            <artifactId>build-tools</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-          </dependency>
-        </dependencies>
         <configuration>
           <configLocation>todos/checkstyle.xml</configLocation>
         </configuration>
@@ -216,6 +232,14 @@
             </reports>
           </reportSet>
         </reportSets>
+      </plugin>
+      <plugin>
+        <groupId>com.github.spotbugs</groupId>
+        <artifactId>spotbugs-maven-plugin</artifactId>
+        <configuration>
+          <effort>Max</effort>
+          <threshold>Low</threshold>
+        </configuration>
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
