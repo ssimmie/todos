@@ -17,7 +17,7 @@ class TodosApplicationTests {
   @Test
   public void shouldBeAbleToStartTheApplication() {
     try {
-      main(new String[]{"--spring.main.banner-mode=off", "--server.port=0", "--debug"});
+      main(new String[] {"--spring.main.banner-mode=off", "--server.port=0", "--debug"});
     } catch (Exception e) {
       fail("Application startup failed");
     }
