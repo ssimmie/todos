@@ -116,7 +116,6 @@
         <artifactId>maven-pmd-plugin</artifactId>
         <version>3.13.0</version>
         <configuration>
-          <linkXref>true</linkXref>
           <sourceEncoding>utf-8</sourceEncoding>
         </configuration>
         <executions>
@@ -128,6 +127,11 @@
           </execution>
         </executions>
       </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jxr-plugin</artifactId>
+        <version>3.0.0</version>
+      </plugin>
     </plugins>
   </build>
   <reporting>
@@ -135,7 +139,6 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-jxr-plugin</artifactId>
-        <version>3.0.0</version>
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
