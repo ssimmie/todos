@@ -11,7 +11,7 @@
     <groupId>net.ssimmie.todos</groupId>
     <artifactId>application</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>todos</name>
+    <name>application</name>
     <description>Todos application</description>
     <dependencies>
         <dependency>
