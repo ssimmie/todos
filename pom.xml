@@ -97,6 +97,32 @@
         </executions>
       </plugin>
       <plugin>
+        <groupId>eu.stamp-project</groupId>
+        <artifactId>pitmp-maven-plugin</artifactId>
+        <version>1.3.7</version>
+        <configuration>
+          <targetModules>
+            <targetModule>application</targetModule>
+          </targetModules>
+          <skip>false</skip>
+          <failWhenNoMutations>false</failWhenNoMutations>
+        </configuration>
+        <dependencies>
+          <dependency>
+            <groupId>org.pitest</groupId>
+            <artifactId>pitest-junit5-plugin</artifactId>
+            <version>0.12</version>
+          </dependency>
+        </dependencies>
+        <executions>
+          <execution>
+            <goals>
+              <goal>run</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
         <groupId>org.owasp</groupId>
         <artifactId>dependency-check-maven</artifactId>
         <version>5.3.0</version>
