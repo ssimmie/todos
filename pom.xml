@@ -53,6 +53,7 @@
     <downloadJavadocs>true</downloadJavadocs>
   </properties>
   <modules>
+    <module>build-tools</module>
     <module>application</module>
   </modules>
   <build>
@@ -171,6 +172,28 @@
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-checkstyle-plugin</artifactId>
+        <version>3.1.1</version>
+        <dependencies>
+          <dependency>
+            <groupId>net.ssimmie.todos</groupId>
+            <artifactId>build-tools</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+          </dependency>
+        </dependencies>
+        <configuration>
+          <configLocation>todos/checkstyle.xml</configLocation>
+        </configuration>
+        <executions>
+          <execution>
+            <goals>
+              <goal>check</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-jxr-plugin</artifactId>
         <version>3.0.0</version>
       </plugin>
@@ -190,6 +213,20 @@
             <reports>
               <report>pmd</report>
               <report>cpd</report>
+            </reports>
+          </reportSet>
+        </reportSets>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-checkstyle-plugin</artifactId>
+        <configuration>
+          <configLocation>todos/checkstyle.xml</configLocation>
+        </configuration>
+        <reportSets>
+          <reportSet>
+            <reports>
+              <report>checkstyle</report>
             </reports>
           </reportSet>
         </reportSets>
