@@ -55,6 +55,7 @@
   <modules>
     <module>build-tools</module>
     <module>application</module>
+    <module>domain</module>
   </modules>
   <build>
     <plugins>
@@ -119,6 +120,7 @@
         <version>1.3.7</version>
         <configuration>
           <targetModules>
+            <targetModule>domain</targetModule>
             <targetModule>application</targetModule>
           </targetModules>
           <skip>false</skip>
