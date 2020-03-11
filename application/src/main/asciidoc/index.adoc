@@ -1,0 +1,3 @@
+= Todos Application API Documentation
+
+include::resources.adoc[]
