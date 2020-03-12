@@ -14,12 +14,31 @@
   <version>0.0.1-SNAPSHOT</version>
   <packaging>pom</packaging>
   <description>Todos product</description>
-  <url>https://github.com/ssimmie/todos</url>
+  <properties>
+    <github.user>ssimmie</github.user>
+    <github.repo>todos</github.repo>
+    <java.version>11</java.version>
+    <downloadSources>true</downloadSources>
+    <downloadJavadocs>true</downloadJavadocs>
+    <archunit.version>0.13.1</archunit.version>
+    <asciidoctor-maven-plugin.version>1.5.8</asciidoctor-maven-plugin.version>
+    <fmt-maven-plugin.version>2.9</fmt-maven-plugin.version>
+    <jacoco-maven-plugin.version>0.8.5</jacoco-maven-plugin.version>
+    <pitmp-maven-plugin.version>1.3.7</pitmp-maven-plugin.version>
+    <pitest-junit5-plugin.version>0.12</pitest-junit5-plugin.version>
+    <maven-failsafe-plugin.version>2.22.2</maven-failsafe-plugin.version>
+    <dependency-check-maven.version>5.3.0</dependency-check-maven.version>
+    <maven-pmd-plugin.version>3.13.0</maven-pmd-plugin.version>
+    <spotbugs-maven-plugin.version>3.1.12.2</spotbugs-maven-plugin.version>
+    <maven-checkstyle-plugin.version>3.1.1</maven-checkstyle-plugin.version>
+    <maven-jxr-plugin.version>3.0.0</maven-jxr-plugin.version>
+  </properties>
+  <url>https://github.com/${github.user}/${github.repo}</url>
   <distributionManagement>
     <repository>
       <id>github</id>
       <name>GitHub Apache Maven Packages</name>
-      <url>https://maven.pkg.github.com/ssimmie/todos</url>
+      <url>https://maven.pkg.github.com/${github.user}/${github.repo}</url>
     </repository>
     <site>
       <url>${project.url}</url>
@@ -31,8 +50,8 @@
   </issueManagement>
   <scm>
     <url>${project.url}</url>
-    <connection>scm:git:git@github.com:ssimmie/todos.git</connection>
-    <developerConnection>scm:git:git@github.com:ssimmie/todos.git</developerConnection>
+    <connection>scm:git:git@github.com:${github.user}/${github.repo}.git</connection>
+    <developerConnection>scm:git:git@github.com:${github.user}/${github.repo}.git</developerConnection>
   </scm>
   <licenses>
     <license>
@@ -43,15 +62,10 @@
   </licenses>
   <developers>
     <developer>
-      <name>ssimmie</name>
-      <url>https://github.com/ssimmie</url>
+      <name>${github.user}</name>
+      <url>https://github.com/${github.user}</url>
     </developer>
   </developers>
-  <properties>
-    <java.version>11</java.version>
-    <downloadSources>true</downloadSources>
-    <downloadJavadocs>true</downloadJavadocs>
-  </properties>
   <modules>
     <module>build-tools</module>
     <module>application</module>
@@ -60,19 +74,33 @@
   <dependencyManagement>
     <dependencies>
       <dependency>
+        <groupId>org.springframework.restdocs</groupId>
+        <artifactId>spring-restdocs-asciidoctor</artifactId>
+        <version>${spring-restdocs-asciidoctor.version}</version>
+      </dependency>
+      <dependency>
         <groupId>com.tngtech.archunit</groupId>
         <artifactId>archunit-junit5</artifactId>
-        <version>0.13.1</version>
+        <version>${archunit.version}</version>
         <scope>test</scope>
       </dependency>
     </dependencies>
   </dependencyManagement>
   <build>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.asciidoctor</groupId>
+          <artifactId>asciidoctor-maven-plugin</artifactId>
+          <version>${asciidoctor-maven-plugin.version}</version>
+        </plugin>
+      </plugins>
+    </pluginManagement>
     <plugins>
       <plugin>
         <groupId>com.coveo</groupId>
         <artifactId>fmt-maven-plugin</artifactId>
-        <version>2.9</version>
+        <version>${fmt-maven-plugin.version}</version>
         <configuration>
           <filesNamePattern>.*\.java</filesNamePattern>
           <style>google</style>
@@ -88,7 +116,7 @@
       <plugin>
         <groupId>org.jacoco</groupId>
         <artifactId>jacoco-maven-plugin</artifactId>
-        <version>0.8.5</version>
+        <version>${jacoco-maven-plugin.version}</version>
         <executions>
           <execution>
             <id>default-prepare-agent</id>
@@ -127,7 +155,7 @@
       <plugin>
         <groupId>eu.stamp-project</groupId>
         <artifactId>pitmp-maven-plugin</artifactId>
-        <version>1.3.7</version>
+        <version>${pitmp-maven-plugin.version}</version>
         <configuration>
           <targetModules>
             <targetModule>domain</targetModule>
@@ -140,7 +168,7 @@
           <dependency>
             <groupId>org.pitest</groupId>
             <artifactId>pitest-junit5-plugin</artifactId>
-            <version>0.12</version>
+            <version>${pitest-junit5-plugin.version}</version>
           </dependency>
         </dependencies>
         <executions>
@@ -153,7 +181,7 @@
       </plugin>
       <plugin>
         <artifactId>maven-failsafe-plugin</artifactId>
-        <version>2.22.2</version>
+        <version>${maven-failsafe-plugin.version}</version>
         <configuration>
           <includes>
             <include>**/*IT.java</include>
@@ -172,7 +200,7 @@
       <plugin>
         <groupId>org.owasp</groupId>
         <artifactId>dependency-check-maven</artifactId>
-        <version>5.3.0</version>
+        <version>${dependency-check-maven.version}</version>
         <configuration>
           <failBuildOnCVSS>8</failBuildOnCVSS>
         </configuration>
@@ -187,7 +215,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-pmd-plugin</artifactId>
-        <version>3.13.0</version>
+        <version>${maven-pmd-plugin.version}</version>
         <configuration>
           <sourceEncoding>utf-8</sourceEncoding>
         </configuration>
@@ -203,7 +231,7 @@
       <plugin>
         <groupId>com.github.spotbugs</groupId>
         <artifactId>spotbugs-maven-plugin</artifactId>
-        <version>3.1.12.2</version>
+        <version>${spotbugs-maven-plugin.version}</version>
         <configuration>
           <effort>Max</effort>
           <threshold>Low</threshold>
@@ -219,12 +247,12 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-checkstyle-plugin</artifactId>
-        <version>3.1.1</version>
+        <version>${maven-checkstyle-plugin.version}</version>
         <dependencies>
           <dependency>
             <groupId>net.ssimmie.todos</groupId>
             <artifactId>build-tools</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+            <version>${project.version}</version>
           </dependency>
         </dependencies>
         <configuration>
@@ -241,7 +269,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-jxr-plugin</artifactId>
-        <version>3.0.0</version>
+        <version>${maven-jxr-plugin.version}</version>
       </plugin>
     </plugins>
   </build>
