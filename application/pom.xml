@@ -13,6 +13,9 @@
   <name>application</name>
   <description>Todos application</description>
   <version>0.0.1-SNAPSHOT</version>
+  <properties>
+    <spring-restdocs-asciidoctor.version>2.0.4.RELEASE</spring-restdocs-asciidoctor.version>
+  </properties>
   <dependencies>
     <dependency>
       <artifactId>domain</artifactId>
@@ -52,6 +55,11 @@
       <artifactId>spring-restdocs-webtestclient</artifactId>
       <scope>test</scope>
     </dependency>
+    <dependency>
+      <groupId>com.tngtech.archunit</groupId>
+      <artifactId>archunit-junit5</artifactId>
+      <scope>test</scope>
+    </dependency>
   </dependencies>
   <build>
     <plugins>
@@ -62,7 +70,6 @@
       <plugin>
         <groupId>org.asciidoctor</groupId>
         <artifactId>asciidoctor-maven-plugin</artifactId>
-        <version>1.5.8</version>
         <executions>
           <execution>
             <id>generate-docs</id>
@@ -80,7 +87,7 @@
           <dependency>
             <groupId>org.springframework.restdocs</groupId>
             <artifactId>spring-restdocs-asciidoctor</artifactId>
-            <version>2.0.4.RELEASE</version>
+            <version>${spring-restdocs-asciidoctor.version}</version>
           </dependency>
         </dependencies>
       </plugin>
