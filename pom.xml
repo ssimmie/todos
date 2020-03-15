@@ -31,6 +31,7 @@
     <maven-pmd-plugin.version>3.13.0</maven-pmd-plugin.version>
     <spotbugs-maven-plugin.version>3.1.12.2</spotbugs-maven-plugin.version>
     <maven-checkstyle-plugin.version>3.1.1</maven-checkstyle-plugin.version>
+    <build-tools.version>1.0.0</build-tools.version>
     <maven-jxr-plugin.version>3.0.0</maven-jxr-plugin.version>
   </properties>
   <url>https://github.com/${github.user}/${github.repo}</url>
@@ -67,7 +68,6 @@
     </developer>
   </developers>
   <modules>
-    <module>build-tools</module>
     <module>application</module>
     <module>domain</module>
   </modules>
@@ -250,13 +250,13 @@
         <version>${maven-checkstyle-plugin.version}</version>
         <dependencies>
           <dependency>
-            <groupId>net.ssimmie.todos</groupId>
+            <groupId>net.ssimmie</groupId>
             <artifactId>build-tools</artifactId>
-            <version>${project.version}</version>
+            <version>${build-tools.version}</version>
           </dependency>
         </dependencies>
         <configuration>
-          <configLocation>todos/checkstyle.xml</configLocation>
+          <configLocation>ssimmie/checkstyle.xml</configLocation>
         </configuration>
         <executions>
           <execution>
