@@ -18,7 +18,7 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 11
-          server-password: ${{secrets.PAT}}
+          server-password: ${{secrets.serverpass}}
 
       - name: cache .m2
         uses: actions/cache@v1
@@ -28,14 +28,7 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-maven-
 
-      - name: maven build
-        run: ./mvnw -B package
-
-      - name: upload artifact
-        uses: actions/upload-artifact@v1
-        with:
-          name: artifacts
-          path: target
-
       - name: maven deploy
         run: ./mvnw -B deploy
+        env:
+          GITHUB_TOKEN: ${{secrets.serverpass}}

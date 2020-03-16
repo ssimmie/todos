@@ -31,7 +31,7 @@
     <maven-pmd-plugin.version>3.13.0</maven-pmd-plugin.version>
     <spotbugs-maven-plugin.version>3.1.12.2</spotbugs-maven-plugin.version>
     <maven-checkstyle-plugin.version>3.1.1</maven-checkstyle-plugin.version>
-    <build-tools.version>1.0.0</build-tools.version>
+    <build-tools.version>20200316.109e88f</build-tools.version>
     <maven-jxr-plugin.version>3.0.0</maven-jxr-plugin.version>
   </properties>
   <url>https://github.com/${github.user}/${github.repo}</url>
@@ -39,7 +39,7 @@
     <repository>
       <id>github</id>
       <name>GitHub Apache Maven Packages</name>
-      <url>https://maven.pkg.github.com/${github.user}/${github.repo}</url>
+      <url>https://maven.pkg.github.com/ssimmie/maven-repository</url>
     </repository>
     <site>
       <url>${project.url}</url>
@@ -57,16 +57,51 @@
   <repositories>
     <repository>
       <id>central</id>
+      <name>Maven Central</name>
       <url>https://repo1.maven.org/maven2</url>
-      <releases><enabled>true</enabled></releases>
-      <snapshots><enabled>true</enabled></snapshots>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
     </repository>
     <repository>
       <id>github</id>
-      <name>GitHub OWNER Apache Maven Packages</name>
-      <url>https://maven.pkg.github.com/ssimmie/build-tools</url>
+      <name>GitHub Apache Maven Packages</name>
+      <url>https://maven.pkg.github.com/ssimmie/maven-repository</url>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
     </repository>
-  </repositories>  
+  </repositories>
+  <pluginRepositories>
+    <pluginRepository>
+        <id>central</id>
+        <name>Maven Central</name>
+        <url>https://repo1.maven.org/maven2</url>
+        <releases>
+          <enabled>true</enabled>
+        </releases>
+        <snapshots>
+          <enabled>false</enabled>
+        </snapshots>
+    </pluginRepository>
+    <pluginRepository>
+        <id>github</id>
+        <name>GitHub Apache Maven Packages</name>
+        <url>https://maven.pkg.github.com/ssimmie/maven-repository</url>
+        <releases>
+          <enabled>true</enabled>
+        </releases>
+        <snapshots>
+          <enabled>true</enabled>
+        </snapshots>
+    </pluginRepository>
+  </pluginRepositories>
   <licenses>
     <license>
       <name>MIT License</name>
@@ -86,6 +121,11 @@
   </modules>
   <dependencyManagement>
     <dependencies>
+      <dependency>
+        <groupId>net.ssimmie</groupId>
+        <artifactId>build-tools</artifactId>
+        <version>${build-tools.version}</version>
+      </dependency>
       <dependency>
         <groupId>org.springframework.restdocs</groupId>
         <artifactId>spring-restdocs-asciidoctor</artifactId>
