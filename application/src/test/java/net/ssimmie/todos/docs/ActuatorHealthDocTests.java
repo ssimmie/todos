@@ -1,4 +1,4 @@
-package net.ssimmie.todos;
+package net.ssimmie.todos.docs;
 
 import static org.springframework.boot.test.context.SpringBootTest.WebEnvironment.RANDOM_PORT;
 import static org.springframework.http.MediaType.APPLICATION_JSON;
@@ -19,7 +19,7 @@ import org.springframework.test.web.reactive.server.WebTestClient;
 
 @SpringBootTest(webEnvironment = RANDOM_PORT)
 @ExtendWith({RestDocumentationExtension.class, SpringExtension.class})
-public class ActuatorHealthIT {
+public class ActuatorHealthDocTests {
 
   private WebTestClient webTestClient;
 
