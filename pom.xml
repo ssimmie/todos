@@ -54,6 +54,19 @@
     <connection>scm:git:git@github.com:${github.user}/${github.repo}.git</connection>
     <developerConnection>scm:git:git@github.com:${github.user}/${github.repo}.git</developerConnection>
   </scm>
+  <repositories>
+    <repository>
+      <id>central</id>
+      <url>https://repo1.maven.org/maven2</url>
+      <releases><enabled>true</enabled></releases>
+      <snapshots><enabled>true</enabled></snapshots>
+    </repository>
+    <repository>
+      <id>github</id>
+      <name>GitHub OWNER Apache Maven Packages</name>
+      <url>https://maven.pkg.github.com/ssimmie/build-tools</url>
+    </repository>
+  </repositories>  
   <licenses>
     <license>
       <name>MIT License</name>
