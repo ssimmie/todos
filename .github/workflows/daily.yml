@@ -10,12 +10,22 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
-      - name: Set up JDK 11
+      - name: fetch head
+        uses: actions/checkout@v2
+
+      - name: setup jdk
         uses: actions/setup-java@v1
         with:
           java-version: 11
-      - name: Grant execute permission for mvnw
-        run: chmod +x mvnw
-      - name: Build with Maven
-        run: ./mvnw install
+          server-password: ${{secrets.PAT}}
+
+      - name: cache .m2
+        uses: actions/cache@v1
+        with:
+          path: ~/.m2
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-maven-
+
+      - name: maven build
+        run: ./mvnw -B verify
