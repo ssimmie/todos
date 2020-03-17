@@ -17,7 +17,9 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 11
-
+          server-id: github
+          settings-path: ${{ github.workspace }}/config/.m2/
+          
       - name: cache .m2
         uses: actions/cache@v1
         with:
@@ -27,6 +29,6 @@ jobs:
             ${{ runner.os }}-maven-
 
       - name: maven build
-        run: ./mvnw -B -U verify
+        run: ./mvnw -B -U verify -s $GITHUB_WORKSPACE/config/.m2/settings.xml
         env:
           GITHUB_TOKEN: ${{secrets.serverpass}}
