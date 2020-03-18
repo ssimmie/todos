@@ -29,9 +29,6 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-maven-
 
-      - name: docker login
-        run: cat ~/GH_TOKEN.txt | docker login -u ssimmie --password-stdin
-
       - name: maven deploy
         run: ./mvnw -B -U clean install deploy -s $GITHUB_WORKSPACE/config/.m2/settings.xml
         env:
