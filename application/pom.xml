@@ -126,6 +126,7 @@
           </execution>
         </executions>
         <configuration>
+          <skipDockerInfo>true</skipDockerInfo>
           <repository>docker.pkg.github.com/ssimmie/maven-repository/todos-${project.artifactId}</repository>
           <tag>${project.version}</tag>
           <buildArgs>
