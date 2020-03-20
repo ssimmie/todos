@@ -40,5 +40,10 @@
       <username>ssimmie</username>
       <password>${env.GITHUB_TOKEN}</password>
     </server>
+    <server>
+      <id>docker.pkg.github.com</id>
+      <username>ssimmie</username>
+      <password>${env.GITHUB_TOKEN}</password>
+    </server>
   </servers>
 </settings>
