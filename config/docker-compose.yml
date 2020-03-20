@@ -1,0 +1,52 @@
+version: '3'
+
+volumes:
+  prometheus_data: {}
+  grafana_data: {}
+
+networks:
+  web-tier:
+  backend-tier:
+
+services:
+  todos:
+    image: "docker.pkg.github.com/ssimmie/maven-repository/todos-application"
+    ports:
+      - 8181:8181
+    networks:
+      - web-tier
+      - backend-tier
+
+  prometheus:
+    image: "prom/prometheus"
+    depends_on:
+      - todos
+    volumes:
+      - ./prometheus/:/etc/prometheus/
+      - prometheus_data:/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--web.console.libraries=/usr/share/prometheus/console_libraries'
+      - '--web.console.templates=/usr/share/prometheus/consoles'
+    ports:
+      - 9090:9090
+    networks:
+      - backend-tier
+    restart: always
+
+  grafana:
+    image: "grafana/grafana"
+    user: "104"
+    depends_on:
+      - prometheus
+    ports:
+      - 3000:3000
+    volumes:
+      - grafana_data:/var/lib/grafana
+      - ./grafana/provisioning/:/etc/grafana/provisioning/
+    env_file:
+      - ./grafana/config.monitoring
+    networks:
+      - backend-tier
+      - web-tier
