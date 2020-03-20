@@ -30,6 +30,6 @@ jobs:
             ${{ runner.os }}-maven-
 
       - name: maven deploy
-        run: ./mvnw -B -U clean install deploy -s $GITHUB_WORKSPACE/.mvn/settings.xml
+        run: ./mvnw -B -U clean install deploy -s $GITHUB_WORKSPACE/.mvn/settings.xml -Ddockerfile.username=ssimmie -Ddockerfile.password=${{secrets.serverpass}}
         env:
           GITHUB_TOKEN: ${{secrets.serverpass}}
