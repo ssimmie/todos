@@ -6,7 +6,7 @@ Todos API
 
 ### Running locally
 
-```docker-compose -f config/docker-compose.yml up```
+```./mvnw install && docker-compose -f config/docker-compose.yml up```
 
 * [Todos Application Actuator](http://localhost:8181/actuator)
 * [Todos Application API Docs](http://localhost:8181/docs/index.html)
