@@ -19,7 +19,7 @@ jobs:
         with:
           java-version: 11
           server-id: github
-          settings-path: ${{ github.workspace }}/config/.m2/
+          settings-path: ${{ github.workspace }}/.mvn/
 
       - name: cache .m2
         uses: actions/cache@v1
@@ -30,6 +30,6 @@ jobs:
             ${{ runner.os }}-maven-
 
       - name: maven deploy
-        run: ./mvnw -B -U clean install deploy -s $GITHUB_WORKSPACE/config/.m2/settings.xml
+        run: ./mvnw -B -U clean install deploy -s $GITHUB_WORKSPACE/.mvn/settings.xml
         env:
           GITHUB_TOKEN: ${{secrets.serverpass}}

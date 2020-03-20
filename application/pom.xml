@@ -129,6 +129,7 @@
           <skipDockerInfo>true</skipDockerInfo>
           <repository>docker.pkg.github.com/ssimmie/maven-repository/todos-${project.artifactId}</repository>
           <tag>${project.version}</tag>
+          <useMavenSettingsForAuth>true</useMavenSettingsForAuth>
           <buildArgs>
             <JAR_FILE>target/${project.build.finalName}.jar</JAR_FILE>
           </buildArgs>
