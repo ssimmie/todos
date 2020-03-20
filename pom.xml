@@ -118,6 +118,7 @@
   <modules>
     <module>application</module>
     <module>domain</module>
+    <module>performance-benchmark</module>
   </modules>
   <dependencyManagement>
     <dependencies>
