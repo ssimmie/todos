@@ -14,8 +14,9 @@
     <name>performance-benchmark</name>
     <description>Benchmark Performance Tests for Todos Application</description>
     <properties>
-        <gatling-maven-plugin.version>3.0.5</gatling-maven-plugin.version>
         <gatling-charts-highcharts.version>3.3.1</gatling-charts-highcharts.version>
+        <docker-compose-maven-plugin.version>3.0.0</docker-compose-maven-plugin.version>
+        <gatling-maven-plugin.version>3.0.5</gatling-maven-plugin.version>
     </properties>
     <dependencies>
         <dependency>
@@ -33,6 +34,35 @@
     <build>
         <testSourceDirectory>src/test/scala</testSourceDirectory>
         <plugins>
+            <plugin>
+                <groupId>com.dkanejs.maven.plugins</groupId>
+                <artifactId>docker-compose-maven-plugin</artifactId>
+                <version>${docker-compose-maven-plugin.version}</version>
+                <executions>
+                    <execution>
+                        <id>up</id>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>up</goal>
+                        </goals>
+                        <configuration>
+                            <composeFile>${project.basedir}/../config/docker-compose.yml</composeFile>
+                            <detachedMode>true</detachedMode>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>down</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>down</goal>
+                        </goals>
+                        <configuration>
+                            <composeFile>${project.basedir}/../config/docker-compose.yml</composeFile>
+                            <removeVolumes>true</removeVolumes>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
             <plugin>
                 <groupId>net.alchim31.maven</groupId>
                 <artifactId>scala-maven-plugin</artifactId>
