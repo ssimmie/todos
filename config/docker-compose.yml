@@ -10,7 +10,7 @@ networks:
 
 services:
   todos:
-    image: "docker.pkg.github.com/ssimmie/maven-repository/todos-application"
+    image: "docker.pkg.github.com/ssimmie/artifact-repository/todos-application"
     ports:
       - 8181:8181
     networks:
