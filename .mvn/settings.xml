@@ -22,7 +22,7 @@
         <repository>
           <id>github</id>
           <name>GitHub ssimmie Apache Maven Packages</name>
-          <url>https://maven.pkg.github.com/ssimmie/maven-repository</url>
+          <url>https://maven.pkg.github.com/ssimmie/artifact-repository</url>
           <releases>
             <enabled>true</enabled>
           </releases>
