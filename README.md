@@ -3,6 +3,7 @@
 Todos API
 
 ![ci-build](https://github.com/ssimmie/todos/workflows/ci-build/badge.svg?branch=master)
+[![license](http://img.shields.io/badge/license-MIT-brightgreen.svg)](https://github.com/ssimmie/todos/blob/master/LICENSE)
 
 ### Running locally
 
