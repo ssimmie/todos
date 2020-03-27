@@ -7,6 +7,7 @@ import static org.springframework.restdocs.webtestclient.WebTestClientRestDocume
 import static org.springframework.test.web.reactive.server.WebTestClient.bindToApplicationContext;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,8 @@ import org.springframework.restdocs.RestDocumentationExtension;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.reactive.server.WebTestClient;
 
+@Tag("slow")
+@Tag("docs")
 @SpringBootTest(webEnvironment = RANDOM_PORT)
 @ExtendWith({RestDocumentationExtension.class, SpringExtension.class})
 public class ActuatorHealthDocTests {
