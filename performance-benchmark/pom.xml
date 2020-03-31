@@ -42,7 +42,7 @@
                 <executions>
                     <execution>
                         <id>up</id>
-                        <phase>validate</phase>
+                        <phase>pre-integration-test</phase>
                         <goals>
                             <goal>up</goal>
                         </goals>
@@ -53,7 +53,7 @@
                     </execution>
                     <execution>
                         <id>down</id>
-                        <phase>verify</phase>
+                        <phase>post-integration-test</phase>
                         <goals>
                             <goal>down</goal>
                         </goals>
@@ -95,6 +95,7 @@
                 <version>${gatling-maven-plugin.version}</version>
                 <executions>
                     <execution>
+                        <phase>integration-test</phase>
                         <goals>
                             <goal>test</goal>
                         </goals>
