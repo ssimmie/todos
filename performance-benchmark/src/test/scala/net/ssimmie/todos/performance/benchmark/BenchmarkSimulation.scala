@@ -17,7 +17,7 @@ class BenchmarkSimulation extends Simulation {
     .exec(HealthCheckAction.healthcheck)
 
   setUp(
-    loadBalancers.inject(constantUsersPerSec(10) during (2 minutes))
+    loadBalancers.inject(constantUsersPerSec(10) during (30 seconds))
   ).protocols(
     httpProtocol
   ).assertions(
