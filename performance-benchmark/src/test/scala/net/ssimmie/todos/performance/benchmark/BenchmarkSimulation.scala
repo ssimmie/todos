@@ -10,6 +10,7 @@ import scala.concurrent.duration._
 class BenchmarkSimulation extends Simulation {
 
   val httpProtocol: HttpProtocolBuilder = http
+    .warmUp("http://localhost:8181/actuator")
     .baseUrl("http://localhost:8181")
     .acceptHeader("application/json")
 
@@ -17,12 +18,12 @@ class BenchmarkSimulation extends Simulation {
     .exec(HealthCheckAction.healthcheck)
 
   setUp(
-    loadBalancers.inject(constantUsersPerSec(10) during (2 minutes))
+    loadBalancers.inject(constantUsersPerSec(10) during (1 minutes))
   ).protocols(
     httpProtocol
   ).assertions(
-    global.responseTime.percentile3.lte(10),
-    global.responseTime.percentile4.lt(20),
+    global.responseTime.percentile3.lte(15),
+    global.responseTime.percentile4.lt(50),
     global.successfulRequests.percent.is(100)
   )
 }
