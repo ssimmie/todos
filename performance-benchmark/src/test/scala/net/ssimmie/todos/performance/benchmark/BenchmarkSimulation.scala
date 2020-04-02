@@ -22,8 +22,8 @@ class BenchmarkSimulation extends Simulation {
   ).protocols(
     httpProtocol
   ).assertions(
-    global.responseTime.percentile3.lte(10),
-    global.responseTime.percentile4.lt(20),
+    global.responseTime.percentile3.lte(15),
+    global.responseTime.percentile4.lt(50),
     global.successfulRequests.percent.is(100)
   )
 }
