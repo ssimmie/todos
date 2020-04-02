@@ -17,12 +17,12 @@ class BenchmarkSimulation extends Simulation {
     .exec(HealthCheckAction.healthcheck)
 
   setUp(
-    loadBalancers.inject(constantUsersPerSec(10) during (30 seconds))
+    loadBalancers.inject(constantUsersPerSec(10) during (2 minutes))
   ).protocols(
     httpProtocol
   ).assertions(
-    global.responseTime.percentile3.lte(10),
-    global.responseTime.percentile4.lt(20),
+    global.responseTime.percentile3.lte(15),
+    global.responseTime.percentile4.lt(50),
     global.successfulRequests.percent.is(100)
   )
 }
