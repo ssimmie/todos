@@ -123,6 +123,16 @@
         </executions>
       </plugin>
       <plugin>
+        <artifactId>maven-surefire-plugin</artifactId>
+          <configuration>
+            <properties>
+              <configurationParameters>
+                cucumber.plugin=pretty,html:target/cucumber-reports,json:target/cucumber-reports/acceptance-tests.json,junit:target/cucumber-reports/acceptance-tests.xml
+              </configurationParameters>
+            </properties>
+          </configuration>
+      </plugin>
+      <plugin>
         <groupId>com.spotify</groupId>
         <artifactId>dockerfile-maven-plugin</artifactId>
         <version>${dockerfile-maven-version}</version>
