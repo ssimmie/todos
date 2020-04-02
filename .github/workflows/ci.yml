@@ -33,3 +33,8 @@ jobs:
         run: ./mvnw -B -U clean deploy -s $GITHUB_WORKSPACE/.mvn/settings.xml -Ddockerfile.username=ssimmie -Ddockerfile.password=${{secrets.serverpass}}
         env:
           GITHUB_TOKEN: ${{secrets.serverpass}}
+
+      - uses: actions/upload-artifact@v2-preview
+        with:
+          name: todos-build-artifacts
+          path: ${{ github.workspace }}/**/target/**
