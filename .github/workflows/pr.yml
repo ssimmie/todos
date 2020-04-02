@@ -29,3 +29,8 @@ jobs:
         run: ./mvnw -B -U verify -s $GITHUB_WORKSPACE/.mvn/settings.xml
         env:
           GITHUB_TOKEN: ${{secrets.serverpass}}
+
+      - uses: actions/upload-artifact@v2-preview
+        with:
+          name: todos-build-artifacts
+          path: ${{ github.workspace }}/**/target/**
