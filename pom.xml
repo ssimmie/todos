@@ -21,6 +21,7 @@
     <downloadSources>true</downloadSources>
     <downloadJavadocs>true</downloadJavadocs>
     <archunit.version>0.13.1</archunit.version>
+    <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
     <asciidoctor-maven-plugin.version>1.6.0</asciidoctor-maven-plugin.version>
     <fmt-maven-plugin.version>2.9</fmt-maven-plugin.version>
     <jacoco-maven-plugin.version>0.8.5</jacoco-maven-plugin.version>
@@ -29,7 +30,7 @@
     <maven-surefire-plugin.version>2.22.2</maven-surefire-plugin.version>
     <cluecumber-report-plugin.version>2.3.4</cluecumber-report-plugin.version>
     <maven-failsafe-plugin.version>2.22.2</maven-failsafe-plugin.version>
-    <dependency-check-maven.version>5.3.1</dependency-check-maven.version>
+    <dependency-check-maven.version>5.3.2</dependency-check-maven.version>
     <maven-pmd-plugin.version>3.13.0</maven-pmd-plugin.version>
     <spotbugs-maven-plugin.version>4.0.0</spotbugs-maven-plugin.version>
     <maven-checkstyle-plugin.version>3.1.1</maven-checkstyle-plugin.version>
@@ -173,6 +174,42 @@
       </plugins>
     </pluginManagement>
     <plugins>
+      <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <version>${maven-compiler-plugin.version}</version>
+          <executions>
+              <execution>
+                  <id>compile</id>
+                  <phase>compile</phase>
+                  <goals>
+                      <goal>compile</goal>
+                  </goals>
+              </execution>
+              <execution>
+                  <id>testCompile</id>
+                  <phase>test-compile</phase>
+                  <goals>
+                      <goal>testCompile</goal>
+                  </goals>
+              </execution>
+          </executions>
+          <configuration>
+              <compilerArgument>-Xlint:all</compilerArgument>
+              <compilerArgs>
+                 <arg>-Xlint:all</arg>
+                 <arg>-XDcompilePolicy=simple</arg>
+                 <arg>-Xplugin:ErrorProne</arg>
+              </compilerArgs>
+              <annotationProcessorPaths>
+                <path>
+                  <groupId>com.google.errorprone</groupId>
+                  <artifactId>error_prone_core</artifactId>
+                  <version>2.3.4</version>
+                </path>
+              </annotationProcessorPaths>
+          </configuration>
+      </plugin>
       <plugin>
         <artifactId>maven-surefire-plugin</artifactId>
         <configuration>
