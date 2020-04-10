@@ -30,6 +30,17 @@ jobs:
         env:
           GITHUB_TOKEN: ${{secrets.serverpass}}
 
+      - name: 'Sending SMS Notification'
+        uses: twilio-labs/actions-sms@v1
+        with:
+          fromPhoneNumber: '+1(256)3054846'
+          toPhoneNumber: '+447413428082'
+          message: 'PR build completed'
+        env:
+          TWILIO_ACCOUNT_SID: ${{ secrets.TWILIO_ACCOUNT_SID }}
+          TWILIO_API_KEY: ${{ secrets.TWILIO_API_KEY }}
+          TWILIO_API_SECRET: ${{ secrets.TWILIO_API_SECRET }}
+
       - uses: actions/upload-artifact@v2-preview
         with:
           name: todos-build-artifacts
