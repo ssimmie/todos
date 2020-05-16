@@ -1,4 +1,4 @@
-package net.ssimmie.todos.acceptance;
+package net.ssimmie.todos.application;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.springframework.boot.SpringApplication.run;

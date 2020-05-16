@@ -23,6 +23,7 @@
     <archunit.version>0.13.1</archunit.version>
     <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
     <asciidoctor-maven-plugin.version>1.6.0</asciidoctor-maven-plugin.version>
+    <build-helper-maven-plugin.version>3.1.0</build-helper-maven-plugin.version>
     <fmt-maven-plugin.version>2.9</fmt-maven-plugin.version>
     <jacoco-maven-plugin.version>0.8.5</jacoco-maven-plugin.version>
     <pitmp-maven-plugin.version>1.3.7</pitmp-maven-plugin.version>
@@ -172,6 +173,11 @@
           <artifactId>asciidoctor-maven-plugin</artifactId>
           <version>${asciidoctor-maven-plugin.version}</version>
         </plugin>
+        <plugin>
+          <artifactId>build-helper-maven-plugin</artifactId>
+          <groupId>org.codehaus.mojo</groupId>
+          <version>${build-helper-maven-plugin.version}</version>
+        </plugin>
       </plugins>
     </pluginManagement>
     <plugins>
@@ -210,16 +216,6 @@
                 </path>
               </annotationProcessorPaths>
           </configuration>
-      </plugin>
-      <plugin>
-        <artifactId>maven-surefire-plugin</artifactId>
-        <configuration>
-          <properties>
-            <configurationParameters>
-              cucumber.plugin=pretty,json:target/cucumber-reports/acceptance-tests.json,junit:target/cucumber-reports/acceptance-tests.xml
-            </configurationParameters>
-          </properties>
-        </configuration>
       </plugin>
       <plugin>
         <groupId>com.trivago.rta</groupId>
@@ -326,9 +322,13 @@
         <version>${maven-failsafe-plugin.version}</version>
         <configuration>
           <includes>
-            <include>**/*IT.java</include>
-            <include>**/*AT.java</include>
+            <include>**/AcceptanceCriteria.java</include>
           </includes>
+          <properties>
+            <configurationParameters>
+              cucumber.plugin=pretty,json:target/cucumber-reports/acceptance-tests.json,junit:target/cucumber-reports/acceptance-tests.xml
+            </configurationParameters>
+          </properties>
         </configuration>
         <executions>
           <execution>
