@@ -13,7 +13,7 @@ import org.junit.jupiter.api.Tag;
 public class ArchitectureTests {
 
   @ArchTest
-  public static final ArchRule shouldRespectLayeredArchitecture =
+  public static final ArchRule SHOULD_RESPECT_LAYERED_ARCHITECTURE =
       layeredArchitecture()
           .layer("Controller")
           .definedBy("net.ssimmie.todos")
