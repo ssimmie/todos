@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Tag;
 @Tag("architecture")
 @Tag("slow")
 @AnalyzeClasses(packages = "net.ssimmie.todos")
-public class ArchitectureTests {
+public class ArchitectureTest {
 
   @ArchTest
   public static final ArchRule SHOULD_RESPECT_LAYERED_ARCHITECTURE =
