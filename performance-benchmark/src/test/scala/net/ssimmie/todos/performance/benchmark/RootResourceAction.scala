@@ -11,7 +11,7 @@ object RootResourceAction {
   val queryRoot: ChainBuilder = exec(http("Query API root")
     .get("/")
     .header(ContentType, ApplicationJson)
-    .header(Accept, ApplicationJson)
+    .header(Accept, "application/hal+json")
     .check(status.is(200))
     .check(jsonPath("$._links.self.href").is("http://localhost:8181/")))
 }
