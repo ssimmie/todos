@@ -13,5 +13,5 @@ object RootResourceAction {
     .header(ContentType, ApplicationJson)
     .header(Accept, ApplicationJson)
     .check(status.is(200))
-    .check(jsonPath("$._link").is("UP")))
+    .check(jsonPath("$._links.self.href").is("http://localhost:8181/")))
 }
