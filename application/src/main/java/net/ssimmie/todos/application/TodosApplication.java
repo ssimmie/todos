@@ -1,4 +1,4 @@
-package net.ssimmie.todos;
+package net.ssimmie.todos.application;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

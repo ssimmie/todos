@@ -14,8 +14,9 @@ class BenchmarkSimulation extends Simulation {
     .baseUrl("http://localhost:8181")
     .acceptHeader("application/json")
 
-  val loadBalancers: ScenarioBuilder = scenario("Todos Actuator")
+  val loadBalancers: ScenarioBuilder = scenario("Todos Core Journey")
     .exec(HealthCheckAction.healthcheck)
+    .exec(RootResourceAction.queryRoot)
 
   setUp(
     loadBalancers.inject(constantUsersPerSec(10) during (1 minutes))
