@@ -1,4 +1,4 @@
-package net.ssimmie.todos;
+package net.ssimmie.todos.application;
 
 import static com.tngtech.archunit.library.Architectures.layeredArchitecture;
 
@@ -8,15 +8,14 @@ import com.tngtech.archunit.lang.ArchRule;
 import org.junit.jupiter.api.Tag;
 
 @Tag("architecture")
-@Tag("slow")
 @AnalyzeClasses(packages = "net.ssimmie.todos")
-public class ArchitectureTests {
+public class ArchitectureTest {
 
   @ArchTest
   public static final ArchRule SHOULD_RESPECT_LAYERED_ARCHITECTURE =
       layeredArchitecture()
           .layer("Controller")
-          .definedBy("net.ssimmie.todos")
+          .definedBy("net.ssimmie.todos.application.api")
           .layer("Domain")
           .definedBy("net.ssimmie.todos.domain")
           .whereLayer("Controller")

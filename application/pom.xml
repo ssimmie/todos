@@ -36,6 +36,16 @@
       <groupId>org.springframework.boot</groupId>
     </dependency>
     <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-hateoas</artifactId>
+      <exclusions>
+        <exclusion>
+          <groupId>org.springframework.boot</groupId>
+          <artifactId>spring-boot-starter-web</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
       <artifactId>spring-boot-starter-test</artifactId>
       <exclusions>
         <exclusion>
