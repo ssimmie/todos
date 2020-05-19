@@ -1,3 +1,7 @@
 == Todos Healthcheck Resource
 
 operation::healthcheck[]
+
+== Todos Root Resource
+
+operation::root[]
