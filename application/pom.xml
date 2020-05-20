@@ -24,11 +24,6 @@
       <version>0.0.1-SNAPSHOT</version>
     </dependency>
     <dependency>
-      <groupId>io.projectreactor.tools</groupId>
-      <artifactId>blockhound</artifactId>
-      <version>1.0.3.RELEASE</version>
-    </dependency>
-    <dependency>
       <artifactId>spring-boot-starter-actuator</artifactId>
       <groupId>org.springframework.boot</groupId>
     </dependency>
