@@ -16,6 +16,7 @@
   <properties>
     <spring-restdocs-asciidoctor.version>2.0.4.RELEASE</spring-restdocs-asciidoctor.version>
     <dockerfile-maven-version>1.4.13</dockerfile-maven-version>
+    <htmlunit.version>2.40.0</htmlunit.version>
   </properties>
   <dependencies>
     <dependency>
@@ -41,11 +42,7 @@
       <exclusions>
         <exclusion>
           <groupId>org.springframework.boot</groupId>
-          <artifactId>spring-boot-starter-webmvc</artifactId>
-        </exclusion>
-        <exclusion>
-          <groupId>org.springframework.boot</groupId>
-          <artifactId>spring-boot-starter-tomcat</artifactId>
+          <artifactId>spring-boot-starter-web</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -83,6 +80,12 @@
     <dependency>
       <groupId>io.cucumber</groupId>
       <artifactId>cucumber-junit-platform-engine</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>net.sourceforge.htmlunit</groupId>
+      <artifactId>htmlunit</artifactId>
+      <version>${htmlunit.version}</version>
       <scope>test</scope>
     </dependency>
   </dependencies>

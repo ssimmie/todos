@@ -1,17 +1,25 @@
 package net.ssimmie.todos.application;
 
 import static net.ssimmie.todos.application.TodosApplication.main;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.fail;
+import static org.springframework.hateoas.config.EnableHypermediaSupport.HypermediaType.HAL;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.hateoas.config.EnableHypermediaSupport;
 
 class TodosApplicationTest {
 
   @Test
   public void shouldBeAnnotatedWithSpringBootApplication() {
-    assertNotNull(TodosApplication.class.getAnnotationsByType(SpringBootApplication.class));
+    assertThat(TodosApplication.class).hasAnnotation(SpringBootApplication.class);
+  }
+
+  @Test
+  public void shouldBeAnnotatedWithEnableHypermediaSupportForHal() {
+    assertThat(TodosApplication.class.getAnnotation(EnableHypermediaSupport.class).type())
+        .containsExactly(HAL);
   }
 
   @Test
