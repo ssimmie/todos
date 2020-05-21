@@ -16,7 +16,22 @@
   <properties>
     <spring-restdocs-asciidoctor.version>2.0.4.RELEASE</spring-restdocs-asciidoctor.version>
     <dockerfile-maven-version>1.4.13</dockerfile-maven-version>
+    <htmlunit.version>2.40.0</htmlunit.version>
+    <blockhound-junit-platform.version>1.0.3.RELEASE</blockhound-junit-platform.version>
   </properties>
+  <profiles>
+    <profile>
+      <id>blockhound</id>
+      <dependencies>
+        <dependency>
+          <groupId>io.projectreactor.tools</groupId>
+          <artifactId>blockhound-junit-platform</artifactId>
+          <version>${blockhound-junit-platform.version}</version>
+          <scope>test</scope>
+        </dependency>
+      </dependencies>
+    </profile>
+  </profiles>
   <dependencies>
     <dependency>
       <artifactId>domain</artifactId>
@@ -81,6 +96,12 @@
       <artifactId>cucumber-junit-platform-engine</artifactId>
       <scope>test</scope>
     </dependency>
+    <dependency>
+      <groupId>net.sourceforge.htmlunit</groupId>
+      <artifactId>htmlunit</artifactId>
+      <version>${htmlunit.version}</version>
+      <scope>test</scope>
+    </dependency>
   </dependencies>
   <build>
     <plugins>
@@ -124,8 +145,8 @@
             </goals>
             <configuration>
               <sources>
+                <source>src/integration/java</source>
                 <source>src/acceptance/java</source>
-                <source>src/asciidoc/java</source>
               </sources>
             </configuration>
           </execution>

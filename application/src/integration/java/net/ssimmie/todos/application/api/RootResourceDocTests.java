@@ -1,7 +1,5 @@
-package net.ssimmie.todos.application;
+package net.ssimmie.todos.application.api;
 
-import static org.springframework.boot.test.context.SpringBootTest.WebEnvironment.RANDOM_PORT;
-import static org.springframework.http.MediaType.APPLICATION_JSON;
 import static org.springframework.restdocs.webtestclient.WebTestClientRestDocumentation.document;
 import static org.springframework.restdocs.webtestclient.WebTestClientRestDocumentation.documentationConfiguration;
 import static org.springframework.test.web.reactive.server.WebTestClient.bindToApplicationContext;
@@ -11,18 +9,18 @@ import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.autoconfigure.web.reactive.WebFluxTest;
 import org.springframework.context.ApplicationContext;
+import org.springframework.hateoas.MediaTypes;
 import org.springframework.restdocs.RestDocumentationContextProvider;
 import org.springframework.restdocs.RestDocumentationExtension;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.reactive.server.WebTestClient;
 
-@Tag("slow")
 @Tag("docs")
-@SpringBootTest(webEnvironment = RANDOM_PORT)
+@WebFluxTest(controllers = RootResource.class)
 @ExtendWith({RestDocumentationExtension.class, SpringExtension.class})
-public class ActuatorHealthDocTests {
+public class RootResourceDocTests {
 
   private WebTestClient webTestClient;
 
@@ -41,16 +39,14 @@ public class ActuatorHealthDocTests {
   public void shouldReportStatusUpWhenHealthy(@Autowired final WebTestClient webClient) {
     this.webTestClient
         .get()
-        .uri("/actuator/health")
-        .accept(APPLICATION_JSON)
+        .uri("/")
+        .accept(MediaTypes.HAL_JSON)
         .exchange()
         .expectStatus()
         .isOk()
         .expectBody()
-        .jsonPath("$.status")
-        .isNotEmpty()
-        .jsonPath("$.status")
-        .isEqualTo("UP")
-        .consumeWith(document("healthcheck"));
+        .jsonPath("$._links.self.href")
+        .isEqualTo("http://localhost:8080/")
+        .consumeWith(document("root"));
   }
 }
