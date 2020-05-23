@@ -124,6 +124,7 @@
   <modules>
     <module>application</module>
     <module>domain</module>
+    <module>acceptance-tests</module>
     <module>performance-benchmark</module>
   </modules>
   <dependencyManagement>

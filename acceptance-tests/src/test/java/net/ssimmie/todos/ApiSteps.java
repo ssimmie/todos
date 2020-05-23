@@ -1,8 +1,7 @@
-package net.ssimmie.todos.application;
+package net.ssimmie.todos;
 
 import static java.util.Objects.requireNonNull;
-import static net.ssimmie.todos.application.StepDefinitions.applicationContext;
-import static net.ssimmie.todos.application.StepDefinitions.restClient;
+import static net.ssimmie.todos.BaseSteps.restClient;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.springframework.http.HttpStatus.OK;
@@ -16,18 +15,14 @@ public class ApiSteps {
 
   private ResponseEntity<RepresentationModel> rootResourceRepresentation;
 
-  @When("an api client queries the application's root resource")
+  @When("the api client queries the application's root resource")
   public void anApiClientQueriesTheApplicationSRootResource() {
     rootResourceRepresentation = restClient.getForEntity("/", RepresentationModel.class);
   }
 
   @Then("the services available resources should be returned")
   public void theServicesAvailableResourcesShouldBeReturned() {
-    try {
-      assertEquals(OK, rootResourceRepresentation.getStatusCode());
-      assertTrue(requireNonNull(rootResourceRepresentation.getBody()).hasLink("self"));
-    } finally {
-      applicationContext.close();
-    }
+    assertEquals(OK, rootResourceRepresentation.getStatusCode());
+    assertTrue(requireNonNull(rootResourceRepresentation.getBody()).hasLink("self"));
   }
 }
