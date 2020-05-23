@@ -1,8 +1,7 @@
-package net.ssimmie.todos.application;
+package net.ssimmie.todos;
 
-import static net.ssimmie.todos.application.StepDefinitions.applicationContext;
-import static net.ssimmie.todos.application.StepDefinitions.restClient;
-import static net.ssimmie.todos.application.StepDefinitions.serverUri;
+import static net.ssimmie.todos.BaseSteps.restClient;
+import static net.ssimmie.todos.BaseSteps.serverUri;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -14,8 +13,8 @@ import java.io.IOException;
 
 public class DocumentationSteps {
 
-  @When("an api client requests the application's documentation site")
-  public void anApiClientRequestsTheApplicationSDocumentationSite() {
+  @When("the api client requests the application's documentation site")
+  public void theApiClientRequestsTheApplicationSDocumentationSite() {
     restClient.getForEntity("/docs/index.html", String.class);
   }
 
@@ -28,8 +27,6 @@ public class DocumentationSteps {
       final String pageAsXml = page.asXml();
       assertTrue(pageAsXml.contains("Todos Healthcheck Resource"));
       assertTrue(pageAsXml.contains("Todos Root Resource"));
-    } finally {
-      applicationContext.close();
     }
   }
 }
