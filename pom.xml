@@ -324,6 +324,9 @@
         <configuration>
           <includes>
             <include>**/AcceptanceCriteria.java</include>
+            <include>**/IT*.java</include>
+            <include>**/*IT.java</include>
+            <include>**/*ITCase.java</include>
           </includes>
           <properties>
             <configurationParameters>

@@ -26,7 +26,9 @@ public class DocumentationSteps {
 
       final String pageAsXml = page.asXml();
       assertTrue(pageAsXml.contains("Todos Healthcheck Resource"));
+      assertTrue(pageAsXml.contains("{\"status\":\"UP\"}"));
       assertTrue(pageAsXml.contains("Todos Root Resource"));
+      assertTrue(pageAsXml.contains("\"href\":\"http://localhost:8080/\""));
     }
   }
 }
