@@ -21,6 +21,7 @@
     <downloadSources>true</downloadSources>
     <downloadJavadocs>true</downloadJavadocs>
     <archunit.version>0.13.1</archunit.version>
+    <await-maven-plugin.version>1.2</await-maven-plugin.version>
     <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
     <asciidoctor-maven-plugin.version>1.6.0</asciidoctor-maven-plugin.version>
     <build-helper-maven-plugin.version>3.1.0</build-helper-maven-plugin.version>
@@ -178,6 +179,11 @@
           <artifactId>build-helper-maven-plugin</artifactId>
           <groupId>org.codehaus.mojo</groupId>
           <version>${build-helper-maven-plugin.version}</version>
+        </plugin>
+        <plugin>
+          <artifactId>await-maven-plugin</artifactId>
+          <groupId>com.github.slem1</groupId>
+          <version>${await-maven-plugin.version}</version>
         </plugin>
       </plugins>
     </pluginManagement>

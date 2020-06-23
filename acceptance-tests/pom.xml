@@ -77,6 +77,30 @@
                     </execution>
                 </executions>
             </plugin>
+            <plugin>
+                <artifactId>await-maven-plugin</artifactId>
+                <groupId>com.github.slem1</groupId>
+                <executions>
+                    <execution>
+                        <phase>pre-integration-test</phase>
+                        <goals>
+                            <goal>Await</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <poll>
+                        <attempts>10</attempts>
+                        <sleep>1000</sleep>
+                    </poll>
+                    <httpConnections>
+                        <httpConnection>
+                            <url>http://localhost:8181/actuator/health</url>
+                            <statusCode>200</statusCode>
+                        </httpConnection>
+                    </httpConnections>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 </project>
