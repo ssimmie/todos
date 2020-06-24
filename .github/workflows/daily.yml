@@ -21,9 +21,9 @@ jobs:
           settings-path: ${{ github.workspace }}/.mvn/
           
       - name: cache .m2
-        uses: actions/cache@v1
+        uses: actions/cache@v2
         with:
-          path: ~/.m2
+          path: ~/.m2/repository
           key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
           restore-keys: |
             ${{ runner.os }}-maven-
