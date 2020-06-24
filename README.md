@@ -15,3 +15,8 @@ Todos API
 * [Prometheus UI](http://localhost:9090)
 * [Grafana](http://localhost:3000)
 * [Grafana Micrometer Dashboard](http://localhost:3000/d/9IsnyquWz/jvm-micrometer?orgId=1&refresh=5s)
+
+
+### Development Process
+
+See the [ALM](https://ssimmie.github.io/application-lifecycle-management/) guidelines
