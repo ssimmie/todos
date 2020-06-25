@@ -20,3 +20,8 @@ Todos API
 ### Development Process
 
 See the [ALM](https://ssimmie.github.io/application-lifecycle-management/) guidelines
+
+#### Continuous Integration Stage Gates
+
+* Compile without warning
+
