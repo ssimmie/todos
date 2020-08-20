@@ -1,18 +1,22 @@
 package net.ssimmie.todos.application.api;
 
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.hateoas.RepresentationModel;
 import reactor.core.publisher.Mono;
+import reactor.test.StepVerifier;
 
 public class RootResourceTest {
 
   @Test
-  public void should() {
+  public void shouldReturnSelfLink() {
     final RootResource rootResource = new RootResource();
 
-    final Mono<RepresentationModel<?>> mono = rootResource.get();
-    assertNotNull(mono);
+    final Mono<RepresentationModel<?>> rootResourceMono = rootResource.get();
+
+    StepVerifier.create(rootResourceMono).
+        assertNext(root -> assertTrue(root.hasLink("self")))
+        .verifyComplete();
   }
 }
