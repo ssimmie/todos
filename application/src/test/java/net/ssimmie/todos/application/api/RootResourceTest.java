@@ -13,10 +13,10 @@ public class RootResourceTest {
   public void shouldReturnSelfLink() {
     final RootResource rootResource = new RootResource();
 
-    final Mono<RepresentationModel<?>> rootResourceMono = rootResource.get();
+    final Mono<RepresentationModel<?>> rootResourceRepresentationMono = rootResource.get();
 
-    StepVerifier.create(rootResourceMono).
-        assertNext(root -> assertTrue(root.hasLink("self")))
+    StepVerifier.create(rootResourceRepresentationMono)
+        .assertNext(root -> assertTrue(root.hasLink("self")))
         .verifyComplete();
   }
 }
