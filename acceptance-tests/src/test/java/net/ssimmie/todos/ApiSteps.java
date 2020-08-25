@@ -19,5 +19,6 @@ public class ApiSteps {
   @Then("the services available resources should be returned")
   public void theServicesAvailableResourcesShouldBeReturned() {
     assertThat(rootResourceRepresentation).hasLink("self", "http://localhost:8181/");
+    assertThat(rootResourceRepresentation).hasLink("tasks", "http://localhost:8181/tasks");
   }
 }
