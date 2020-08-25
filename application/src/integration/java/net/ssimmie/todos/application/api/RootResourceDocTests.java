@@ -36,7 +36,8 @@ public class RootResourceDocTests {
   }
 
   @Test
-  public void shouldReportStatusUpWhenHealthy(@Autowired final WebTestClient webClient) {
+  public void shouldProvideEntryPointToAvailableTopLevelResources(
+      @Autowired final WebTestClient webClient) {
     this.webTestClient
         .get()
         .uri("/")
@@ -47,6 +48,8 @@ public class RootResourceDocTests {
         .expectBody()
         .jsonPath("$._links.self.href")
         .isEqualTo("http://localhost:8080/")
+        .jsonPath("$._links.tasks.href")
+        .isEqualTo("http://localhost:8080/tasks")
         .consumeWith(document("root"));
   }
 }

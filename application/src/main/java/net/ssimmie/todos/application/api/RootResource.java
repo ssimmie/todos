@@ -18,14 +18,16 @@ class RootResource {
   @GetMapping
   Mono<RepresentationModel<?>> get() {
     final Class<RootResource> rootResource = RootResource.class;
-    final Class<TasksResource> tasksResourceClass = TasksResource.class;
+    final Class<TasksResource> tasksResource = TasksResource.class;
 
-    final Mono<Link> linkMono = linkTo(methodOn(rootResource).get())
-        .withSelfRel().toMono();
+    final Mono<Link> selfLink = linkTo(methodOn(rootResource).get())
+        .withSelfRel()
+        .toMono();
 
-    final Mono<Link> tasksMono = linkTo(methodOn(tasksResourceClass).get())
-        .withRel("tasks").toMono();
+    final Mono<Link> tasksLink = linkTo(methodOn(tasksResource).get())
+        .withRel("tasks")
+        .toMono();
 
-    return Flux.concat(linkMono, tasksMono).collectList().map(RepresentationModel::new);
+    return Flux.concat(selfLink, tasksLink).collectList().map(RepresentationModel::new);
   }
 }
