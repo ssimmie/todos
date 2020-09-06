@@ -16,7 +16,7 @@ final class SpringHateoasAssertions<T> {
     this.representationModel = representationModel;
   }
 
-  static <T> SpringHateoasAssertions<T> assertThat(
+  static <T> SpringHateoasAssertions<T> assertResource(
       final RepresentationModel<? super T> representationModel) {
     return new SpringHateoasAssertions<T>(representationModel);
   }

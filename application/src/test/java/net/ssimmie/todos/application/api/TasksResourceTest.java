@@ -2,10 +2,13 @@ package net.ssimmie.todos.application.api;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.springframework.http.HttpStatus.CREATED;
 
 import org.junit.jupiter.api.Test;
+import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.Link;
 import org.springframework.hateoas.RepresentationModel;
+import org.springframework.http.ResponseEntity;
 import reactor.core.publisher.Mono;
 import reactor.test.StepVerifier;
 
@@ -23,6 +26,24 @@ public class TasksResourceTest {
               assertTrue(tasks.hasLink("self"));
               assertThat(tasks.getLink("self")).map(Link::getHref).hasValue("/tasks");
             })
+        .verifyComplete();
+  }
+
+  @Test
+  public void shouldCreateTask() {
+    final String expectedTodo = "derp";
+    final TasksResource tasksResource = new TasksResource();
+
+    final Task thing = new Task();
+    thing.setTodo(expectedTodo);
+    final Mono<ResponseEntity<EntityModel<Task>>> responseEntityMono = tasksResource.create(thing);
+
+    assertThat(thing.getTodo()).isEqualTo(expectedTodo);
+
+    StepVerifier.create(responseEntityMono)
+        .assertNext(
+            entityModelResponseEntity ->
+                assertThat(entityModelResponseEntity.getStatusCode()).isEqualTo(CREATED))
         .verifyComplete();
   }
 }
