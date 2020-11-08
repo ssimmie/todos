@@ -1,5 +1,8 @@
 package net.ssimmie.todos.application.api;
 
+import static org.springframework.restdocs.hypermedia.HypermediaDocumentation.halLinks;
+import static org.springframework.restdocs.hypermedia.HypermediaDocumentation.linkWithRel;
+import static org.springframework.restdocs.hypermedia.HypermediaDocumentation.links;
 import static org.springframework.restdocs.webtestclient.WebTestClientRestDocumentation.document;
 import static org.springframework.restdocs.webtestclient.WebTestClientRestDocumentation.documentationConfiguration;
 import static org.springframework.test.web.reactive.server.WebTestClient.bindToApplicationContext;
@@ -48,6 +51,8 @@ public class RootResourceDocTests {
         .isEqualTo("http://localhost:8080/")
         .jsonPath("$._links.tasks.href")
         .isEqualTo("http://localhost:8080/tasks")
-        .consumeWith(document("root"));
+        .consumeWith(document("root", links(halLinks(),
+            linkWithRel("self").description("Link to the root resource"),
+            linkWithRel("tasks").description("Link to the tasks resource"))));
   }
 }

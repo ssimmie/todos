@@ -2,6 +2,9 @@ package net.ssimmie.todos.application.api;
 
 import static org.springframework.hateoas.MediaTypes.HAL_JSON;
 import static org.springframework.http.MediaType.APPLICATION_JSON;
+import static org.springframework.restdocs.hypermedia.HypermediaDocumentation.halLinks;
+import static org.springframework.restdocs.hypermedia.HypermediaDocumentation.linkWithRel;
+import static org.springframework.restdocs.hypermedia.HypermediaDocumentation.links;
 import static org.springframework.restdocs.webtestclient.WebTestClientRestDocumentation.document;
 import static org.springframework.restdocs.webtestclient.WebTestClientRestDocumentation.documentationConfiguration;
 import static org.springframework.test.web.reactive.server.WebTestClient.bindToApplicationContext;
@@ -47,7 +50,8 @@ public class TasksResourceDocTests {
         .expectBody()
         .jsonPath("$._links.self.href")
         .isEqualTo("http://localhost:8080/tasks")
-        .consumeWith(document("get-tasks"));
+        .consumeWith(document("get-tasks",
+            links(halLinks(), linkWithRel("self").description("Link to the tasks resource"))));
   }
 
   @Test
@@ -66,6 +70,7 @@ public class TasksResourceDocTests {
         .isEqualTo("derp")
         .jsonPath("$._links.self.href")
         .isEqualTo("http://localhost:8080/tasks")
-        .consumeWith(document("create-task"));
+        .consumeWith(document("create-task",
+            links(halLinks(), linkWithRel("self").description("Link to the tasks resource"))));
   }
 }
