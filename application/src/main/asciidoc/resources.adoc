@@ -5,3 +5,7 @@ operation::healthcheck[]
 == Todos Root Resource
 
 operation::root[]
+
+== Todos Tasks Resource
+
+operation::tasks[]
