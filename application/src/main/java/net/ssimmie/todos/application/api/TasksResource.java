@@ -4,8 +4,7 @@ import static org.springframework.hateoas.server.reactive.WebFluxLinkBuilder.lin
 import static org.springframework.hateoas.server.reactive.WebFluxLinkBuilder.methodOn;
 import static org.springframework.http.ResponseEntity.created;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import java.util.function.Function;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.RepresentationModel;
 import org.springframework.http.ResponseEntity;
@@ -20,8 +19,6 @@ import reactor.core.publisher.Mono;
 @RequestMapping("/tasks")
 public class TasksResource {
 
-  private static final Logger logger = LoggerFactory.getLogger(TasksResource.class);
-
   @GetMapping
   Mono<RepresentationModel<?>> get() {
     final Class<TasksResource> tasksResourceClass = TasksResource.class;
@@ -34,15 +31,14 @@ public class TasksResource {
 
   @PostMapping
   Mono<ResponseEntity<EntityModel<Task>>> create(@RequestBody final Task task) {
-    logger.info("Creating task");
-
     return linkTo(methodOn(TasksResource.class).get())
         .withSelfRel()
         .toMono()
         .map(link -> EntityModel.of(task, link))
-        .map(
-            taskEntityModel ->
-                created(taskEntityModel.getLink("self").orElseThrow().toUri())
-                    .body(taskEntityModel));
+        .map(toCreatedEntity());
+  }
+
+  private Function<EntityModel<Task>, ResponseEntity<EntityModel<Task>>> toCreatedEntity() {
+    return e -> created(e.getLink("self").orElseThrow().toUri()).body(e);
   }
 }
