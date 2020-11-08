@@ -1,5 +1,6 @@
 package net.ssimmie.todos.application.api;
 
+import static java.util.Objects.requireNonNull;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.springframework.http.HttpStatus.CREATED;
@@ -38,12 +39,14 @@ public class TasksResourceTest {
     thing.setTodo(expectedTodo);
     final Mono<ResponseEntity<EntityModel<Task>>> responseEntityMono = tasksResource.create(thing);
 
-    assertThat(thing.getTodo()).isEqualTo(expectedTodo);
-
     StepVerifier.create(responseEntityMono)
-        .assertNext(
-            entityModelResponseEntity ->
-                assertThat(entityModelResponseEntity.getStatusCode()).isEqualTo(CREATED))
+        .assertNext(r -> {
+          assertThat(r.getStatusCode()).isEqualTo(CREATED);
+          assertThat(r.getHeaders().getLocation()).hasPath("/tasks");
+
+          final Task actualTask = requireNonNull(r.getBody()).getContent();
+          assertThat(requireNonNull(actualTask).getTodo()).isEqualTo(expectedTodo);
+        })
         .verifyComplete();
   }
 }
