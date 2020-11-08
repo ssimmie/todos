@@ -10,7 +10,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.reactive.WebFluxTest;
 import org.springframework.context.ApplicationContext;
 import org.springframework.restdocs.RestDocumentationContextProvider;
@@ -37,9 +36,8 @@ public class TasksResourceDocTests {
   }
 
   @Test
-  public void shouldListAllTasks(
-      @Autowired final WebTestClient webClient) {
-    webTestClient
+  public void shouldListAllTasks() {
+    this.webTestClient
         .get()
         .uri("/tasks")
         .accept(HAL_JSON)
@@ -49,15 +47,14 @@ public class TasksResourceDocTests {
         .expectBody()
         .jsonPath("$._links.self.href")
         .isEqualTo("http://localhost:8080/tasks")
-        .consumeWith(document("tasks"));
+        .consumeWith(document("get-tasks"));
   }
 
   @Test
-  public void shouldCreateTask(
-      @Autowired final WebTestClient webClient) {
+  public void shouldCreateTask() {
     final Task expectedTask = new Task();
     expectedTask.setTodo("derp");
-    webTestClient
+    this.webTestClient
         .post()
         .uri("/tasks")
         .contentType(APPLICATION_JSON)
@@ -69,6 +66,6 @@ public class TasksResourceDocTests {
         .isEqualTo("derp")
         .jsonPath("$._links.self.href")
         .isEqualTo("http://localhost:8080/tasks")
-        .consumeWith(document("tasks"));
+        .consumeWith(document("create-task"));
   }
 }

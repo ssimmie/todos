@@ -8,4 +8,7 @@ operation::root[]
 
 == Todos Tasks Resource
 
-operation::tasks[]
+operation::get-tasks[]
+
+operation::create-task[]
+
