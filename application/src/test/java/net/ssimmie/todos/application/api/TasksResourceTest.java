@@ -40,13 +40,14 @@ public class TasksResourceTest {
     final Mono<ResponseEntity<EntityModel<Task>>> responseEntityMono = tasksResource.create(thing);
 
     StepVerifier.create(responseEntityMono)
-        .assertNext(r -> {
-          assertThat(r.getStatusCode()).isEqualTo(CREATED);
-          assertThat(r.getHeaders().getLocation()).hasPath("/tasks");
+        .assertNext(
+            r -> {
+              assertThat(r.getStatusCode()).isEqualTo(CREATED);
+              assertThat(r.getHeaders().getLocation()).hasPath("/tasks");
 
-          final Task actualTask = requireNonNull(r.getBody()).getContent();
-          assertThat(requireNonNull(actualTask).getTodo()).isEqualTo(expectedTodo);
-        })
+              final Task actualTask = requireNonNull(r.getBody()).getContent();
+              assertThat(requireNonNull(actualTask).getTodo()).isEqualTo(expectedTodo);
+            })
         .verifyComplete();
   }
 }
