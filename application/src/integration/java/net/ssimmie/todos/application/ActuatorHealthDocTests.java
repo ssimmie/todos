@@ -10,7 +10,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.ApplicationContext;
 import org.springframework.restdocs.RestDocumentationContextProvider;
@@ -37,7 +36,7 @@ public class ActuatorHealthDocTests {
   }
 
   @Test
-  public void shouldReportStatusUpWhenHealthy(@Autowired final WebTestClient webClient) {
+  public void shouldReportStatusUpWhenHealthy() {
     this.webTestClient
         .get()
         .uri("/actuator/health")

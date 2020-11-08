@@ -8,7 +8,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.reactive.WebFluxTest;
 import org.springframework.context.ApplicationContext;
 import org.springframework.hateoas.MediaTypes;
@@ -36,8 +35,7 @@ public class RootResourceDocTests {
   }
 
   @Test
-  public void shouldProvideEntryPointToAvailableTopLevelResources(
-      @Autowired final WebTestClient webClient) {
+  public void shouldProvideEntryPointToAvailableTopLevelResources() {
     this.webTestClient
         .get()
         .uri("/")
