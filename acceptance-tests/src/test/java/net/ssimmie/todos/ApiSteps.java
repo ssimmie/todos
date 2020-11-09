@@ -16,7 +16,6 @@ public class ApiSteps {
 
   private static final String EXPECTED_TODO = "acceptanceTest";
   private RepresentationModel<RootResourceRepresentation> rootResourceRepresentation;
-  private RepresentationModel<TasksResourceRepresentation> tasksResourceRepresentation;
   private ResponseEntity<TaskResourceRepresentation> newTask;
 
   @When("the api client queries the application's root resource")
