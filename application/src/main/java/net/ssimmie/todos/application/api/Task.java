@@ -5,6 +5,7 @@ public class Task {
   private String todo;
 
   public Task() {
+    super();
   }
 
   public String getTodo() {
