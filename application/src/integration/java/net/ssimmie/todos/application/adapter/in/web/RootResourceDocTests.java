@@ -1,7 +1,5 @@
-package net.ssimmie.todos.application.api;
+package net.ssimmie.todos.application.adapter.in.web;
 
-import static org.springframework.hateoas.MediaTypes.HAL_JSON;
-import static org.springframework.http.MediaType.APPLICATION_JSON;
 import static org.springframework.restdocs.hypermedia.HypermediaDocumentation.halLinks;
 import static org.springframework.restdocs.hypermedia.HypermediaDocumentation.linkWithRel;
 import static org.springframework.restdocs.hypermedia.HypermediaDocumentation.links;
@@ -15,15 +13,16 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.boot.test.autoconfigure.web.reactive.WebFluxTest;
 import org.springframework.context.ApplicationContext;
+import org.springframework.hateoas.MediaTypes;
 import org.springframework.restdocs.RestDocumentationContextProvider;
 import org.springframework.restdocs.RestDocumentationExtension;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.reactive.server.WebTestClient;
 
 @Tag("docs")
-@WebFluxTest(controllers = TasksResource.class)
+@WebFluxTest(controllers = RootResource.class)
 @ExtendWith({RestDocumentationExtension.class, SpringExtension.class})
-public class TasksResourceDocTests {
+public class RootResourceDocTests {
 
   private WebTestClient webTestClient;
 
@@ -39,38 +38,21 @@ public class TasksResourceDocTests {
   }
 
   @Test
-  public void shouldListAllTasks() {
+  public void shouldProvideEntryPointToAvailableTopLevelResources() {
     this.webTestClient
         .get()
-        .uri("/tasks")
-        .accept(HAL_JSON)
+        .uri("/")
+        .accept(MediaTypes.HAL_JSON)
         .exchange()
         .expectStatus()
         .isOk()
         .expectBody()
         .jsonPath("$._links.self.href")
+        .isEqualTo("http://localhost:8080/")
+        .jsonPath("$._links.tasks.href")
         .isEqualTo("http://localhost:8080/tasks")
-        .consumeWith(document("get-tasks",
-            links(halLinks(), linkWithRel("self").description("Link to the tasks resource"))));
-  }
-
-  @Test
-  public void shouldCreateTask() {
-    final Task expectedTask = new Task();
-    expectedTask.setTodo("derp");
-    this.webTestClient
-        .post()
-        .uri("/tasks")
-        .contentType(APPLICATION_JSON)
-        .accept(HAL_JSON)
-        .bodyValue(expectedTask)
-        .exchange()
-        .expectBody()
-        .jsonPath("$.todo")
-        .isEqualTo("derp")
-        .jsonPath("$._links.self.href")
-        .isEqualTo("http://localhost:8080/tasks")
-        .consumeWith(document("create-task",
-            links(halLinks(), linkWithRel("self").description("Link to the tasks resource"))));
+        .consumeWith(document("root", links(halLinks(),
+            linkWithRel("self").description("Link to the root resource"),
+            linkWithRel("tasks").description("Link to the tasks resource"))));
   }
 }

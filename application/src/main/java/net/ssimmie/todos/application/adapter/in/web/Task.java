@@ -1,4 +1,4 @@
-package net.ssimmie.todos.application.api;
+package net.ssimmie.todos.application.adapter.in.web;
 
 public class Task {
 

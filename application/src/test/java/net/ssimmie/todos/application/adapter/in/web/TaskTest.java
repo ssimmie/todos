@@ -1,4 +1,4 @@
-package net.ssimmie.todos.application.api;
+package net.ssimmie.todos.application.adapter.in.web;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

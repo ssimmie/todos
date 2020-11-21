@@ -1,4 +1,4 @@
-package net.ssimmie.todos.application.api;
+package net.ssimmie.todos.application.adapter.in.web;
 
 import static org.springframework.hateoas.server.reactive.WebFluxLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.reactive.WebFluxLinkBuilder.methodOn;
