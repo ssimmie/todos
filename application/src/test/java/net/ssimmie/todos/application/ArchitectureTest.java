@@ -16,10 +16,14 @@ public class ArchitectureTest {
       layeredArchitecture()
           .layer("Controller")
           .definedBy("net.ssimmie.todos.application.adapter.in.web")
+          .layer("Service")
+          .definedBy("net.ssimmie.todos.application.service")
+          .layer("Inbound Ports")
+          .definedBy("net.ssimmie.todos.application.port.in")
           .layer("Domain")
           .definedBy("net.ssimmie.todos.domain")
           .whereLayer("Controller")
           .mayNotBeAccessedByAnyLayer()
           .whereLayer("Domain")
-          .mayOnlyBeAccessedByLayers("Controller");
+          .mayOnlyBeAccessedByLayers("Controller", "Service", "Inbound Ports");
 }
