@@ -23,6 +23,21 @@ public class RootResourceTest {
   }
 
   @Test
+  public void shouldReturnChecklistsLink() {
+    final RootResource rootResource = new RootResource();
+
+    final Mono<RepresentationModel<?>> rootResourceRepresentationMono = new RootResource().get();
+
+    StepVerifier.create(rootResourceRepresentationMono)
+        .assertNext(
+            root -> {
+              assertTrue(root.hasLink("checklists"));
+              assertThat(root.getLink("checklists")).map(Link::getHref).hasValue("/checklists");
+            })
+        .verifyComplete();
+  }
+
+  @Test
   public void shouldReturnTasksLink() {
     final RootResource rootResource = new RootResource();
 

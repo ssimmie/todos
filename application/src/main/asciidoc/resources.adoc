@@ -6,6 +6,16 @@ operation::healthcheck[]
 
 operation::root[]
 
+== Todos Checklists Resource
+
+Query Checklists
+
+operation::get-checklists[]
+
+Create a new Checklist
+
+operation::create-checklists[]
+
 == Todos Tasks Resource
 
 Query Tasks

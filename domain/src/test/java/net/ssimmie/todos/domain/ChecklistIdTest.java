@@ -1,36 +1,36 @@
 package net.ssimmie.todos.domain;
 
 import static java.util.UUID.randomUUID;
-import static net.ssimmie.todos.domain.CheckListId.newCheckListId;
+import static net.ssimmie.todos.domain.ChecklistId.newChecklistId;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.UUID;
 import nl.jqno.equalsverifier.EqualsVerifier;
 import org.junit.jupiter.api.Test;
 
-class CheckListIdTest {
+class ChecklistIdTest {
 
   @Test
   public void shouldBeValueType() {
     final UUID uuid = randomUUID();
     final UUID differentUuid = randomUUID();
 
-    final CheckListId anId = newCheckListId(uuid);
-    final CheckListId sameId = newCheckListId(uuid);
-    final CheckListId differentId = newCheckListId(differentUuid);
+    final ChecklistId anId = newChecklistId(uuid);
+    final ChecklistId sameId = newChecklistId(uuid);
+    final ChecklistId differentId = newChecklistId(differentUuid);
 
     assertThat(anId).isEqualTo(sameId).isNotEqualTo(differentId);
   }
 
   @Test
   public void shouldRespectEqualsContract() {
-    EqualsVerifier.forClass(CheckListId.class).verify();
+    EqualsVerifier.forClass(ChecklistId.class).verify();
   }
 
   @Test
   public void shouldNotMutateValue() {
     final UUID expectedId = randomUUID();
-    final CheckListId checkListId = CheckListId.newCheckListId(expectedId);
+    final ChecklistId checkListId = newChecklistId(expectedId);
 
     assertThat(checkListId.getValue()).isEqualTo(expectedId);
   }

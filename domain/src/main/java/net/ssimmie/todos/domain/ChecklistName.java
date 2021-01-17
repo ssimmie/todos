@@ -1,18 +1,21 @@
 package net.ssimmie.todos.domain;
 
 import java.util.Objects;
-import java.util.UUID;
 
-public final class CheckListId {
+public final class ChecklistName {
 
-  private final UUID value;
+  private final String value;
 
-  private CheckListId(final UUID value) {
+  private ChecklistName(final String value) {
     this.value = value;
   }
 
-  public static CheckListId newCheckListId(final UUID value) {
-    return new CheckListId(value);
+  public static ChecklistName newChecklistName(final String value) {
+    return new ChecklistName(value);
+  }
+
+  public String getValue() {
+    return value;
   }
 
   @Override
@@ -23,16 +26,12 @@ public final class CheckListId {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    final CheckListId that = (CheckListId) o;
+    final ChecklistName that = (ChecklistName) o;
     return Objects.equals(value, that.value);
   }
 
   @Override
   public int hashCode() {
     return Objects.hash(value);
-  }
-
-  public UUID getValue() {
-    return value;
   }
 }

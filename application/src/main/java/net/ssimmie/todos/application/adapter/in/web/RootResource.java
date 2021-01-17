@@ -17,11 +17,17 @@ class RootResource {
 
   @GetMapping
   Mono<RepresentationModel<?>> get() {
-    return Flux.concat(selfLink(), tasksLink()).collectList().map(RepresentationModel::new);
+    return Flux.concat(selfLink(), checklistsLink(), tasksLink())
+        .collectList()
+        .map(RepresentationModel::new);
   }
 
   private Mono<Link> selfLink() {
     return linkTo(methodOn(RootResource.class).get()).withSelfRel().toMono();
+  }
+
+  private Mono<Link> checklistsLink() {
+    return linkTo(methodOn(ChecklistsResource.class).get()).withRel("checklists").toMono();
   }
 
   private Mono<Link> tasksLink() {
