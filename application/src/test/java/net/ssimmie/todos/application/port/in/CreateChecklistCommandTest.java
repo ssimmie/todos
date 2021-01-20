@@ -14,7 +14,7 @@ class CreateChecklistCommandTest {
     final String expectedName = "named";
     assertThat(newCreateChecklistCommand(expectedName))
         .isNotNull()
-        .extracting("getChecklistName")
+        .extracting("checklistName")
         .isEqualTo(expectedName);
   }
 
