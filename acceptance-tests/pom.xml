@@ -13,10 +13,6 @@
     <version>0.0.1-SNAPSHOT</version>
     <name>acceptance-tests</name>
     <description>Acceptance Tests for Todos Application</description>
-    <properties>
-        <htmlunit.version>2.40.0</htmlunit.version>
-        <docker-compose-maven-plugin.version>3.0.0</docker-compose-maven-plugin.version>
-    </properties>
     <dependencies>
         <dependency>
             <groupId>net.ssimmie.todos</groupId>
@@ -40,12 +36,16 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>net.sourceforge.htmlunit</groupId>
-            <artifactId>htmlunit</artifactId>
-            <version>${htmlunit.version}</version>
+            <artifactId>jsoup</artifactId>
+            <groupId>org.jsoup</groupId>
+            <version>${jsoup.version}</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
+    <properties>
+        <jsoup.version>1.13.1</jsoup.version>
+        <docker-compose-maven-plugin.version>3.0.0</docker-compose-maven-plugin.version>
+    </properties>
     <build>
         <plugins>
             <plugin>
