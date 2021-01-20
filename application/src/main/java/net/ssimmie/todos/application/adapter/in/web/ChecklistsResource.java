@@ -44,19 +44,16 @@ public class ChecklistsResource {
     return linkTo(methodOn(ChecklistsResource.class).get())
         .withSelfRel()
         .toMono()
-        .flatMap(
-            link ->
-                Mono.just(
-                    EntityModel.of(
-                        toChecklistResourceRepresentation(
-                            createChecklistUseCase.createChecklist(
-                                newCreateChecklistCommand(checklist.getName()))),
-                        link)))
-        .map(toCreatedEntity());
+        .flatMap(link -> Mono.just(EntityModel.of(createChecklist(checklist), link)))
+        .map(toCreated());
   }
 
-  private Function<EntityModel<Checklist>, ResponseEntity<EntityModel<Checklist>>>
-  toCreatedEntity() {
+  private Checklist createChecklist(final Checklist checklist) {
+    return toChecklistResourceRepresentation(
+        createChecklistUseCase.createChecklist(newCreateChecklistCommand(checklist.getName())));
+  }
+
+  private Function<EntityModel<Checklist>, ResponseEntity<EntityModel<Checklist>>> toCreated() {
     return e -> ResponseEntity.created(e.getLink("self").orElseThrow().toUri()).body(e);
   }
 }
