@@ -344,6 +344,7 @@
           <properties>
             <configurationParameters>
               cucumber.plugin=pretty,json:target/cucumber-reports/acceptance-tests.json,junit:target/cucumber-reports/acceptance-tests.xml
+              cucumber.publish.quiet=true
             </configurationParameters>
           </properties>
         </configuration>
