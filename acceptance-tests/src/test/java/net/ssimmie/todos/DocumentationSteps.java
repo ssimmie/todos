@@ -31,9 +31,11 @@ public class DocumentationSteps {
   }
 
   private void assertHealthcheckDocumented(final Element apiDocBody) {
-    assertEquals("{\"status\":\"UP\"}", apiDocBody
-        .select("#content > div:nth-child(5) > div > div:nth-child(6) > div > div > pre > code")
-        .text());
+    assertEquals(
+        "{\"status\":\"UP\"}",
+        apiDocBody
+            .select("#content > div:nth-child(5) > div > div:nth-child(6) > div > div > pre > code")
+            .text());
   }
 
   private void assertRootResourceDocumented(final Element apiDocBody) {
@@ -45,25 +47,30 @@ public class DocumentationSteps {
   }
 
   private void assertChecklistsResourceDocumented(final Element apiDocBody) {
-    assertEquals("{\"_links\":{\"self\":{\"href\":\"http://localhost:8080/checklists\"}}}",
+    assertEquals(
+        "{\"_links\":{\"self\":{\"href\":\"http://localhost:8080/checklists\"}}}",
         apiDocBody
             .select("#content > div:nth-child(7) > div > div:nth-child(8) > div > div > pre > code")
             .text());
     assertEquals(
         "{\"name\":\"derp\",\"_links\":{\"self\":{\"href\":\"http://localhost:8080/checklists\"}}}",
-        apiDocBody.select(
-            "#content > div:nth-child(7) > div > div:nth-child(16) > div > div > pre > code")
+        apiDocBody
+            .select(
+                "#content > div:nth-child(7) > div > div:nth-child(16) > div > div > pre > code")
             .text());
   }
 
   private void assertTaskResourceDocumented(final Element apiDocBody) {
-    assertEquals("{\"_links\":{\"self\":{\"href\":\"http://localhost:8080/tasks\"}}}", apiDocBody
-        .select("#content > div:nth-child(8) > div > div:nth-child(8) > div > div > pre > code")
-        .text());
+    assertEquals(
+        "{\"_links\":{\"self\":{\"href\":\"http://localhost:8080/tasks\"}}}",
+        apiDocBody
+            .select("#content > div:nth-child(8) > div > div:nth-child(8) > div > div > pre > code")
+            .text());
     assertEquals(
         "{\"todo\":\"derp\",\"_links\":{\"self\":{\"href\":\"http://localhost:8080/tasks\"}}}",
-        apiDocBody.select(
-            "#content > div:nth-child(8) > div > div:nth-child(16) > div > div > pre > code")
+        apiDocBody
+            .select(
+                "#content > div:nth-child(8) > div > div:nth-child(16) > div > div > pre > code")
             .text());
   }
 }
