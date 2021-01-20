@@ -20,7 +20,7 @@
     <java.version>11</java.version>
     <downloadSources>true</downloadSources>
     <downloadJavadocs>true</downloadJavadocs>
-    <archunit.version>0.14.1</archunit.version>
+    <archunit.version>0.15.0</archunit.version>
     <await-maven-plugin.version>1.2</await-maven-plugin.version>
     <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
     <asciidoctor-maven-plugin.version>1.6.0</asciidoctor-maven-plugin.version>
