@@ -14,7 +14,7 @@
   <description>Todos application</description>
   <version>0.0.1-SNAPSHOT</version>
   <properties>
-    <spring-restdocs-asciidoctor.version>2.0.4.RELEASE</spring-restdocs-asciidoctor.version>
+    <spring-restdocs-asciidoctor.version>2.0.5.RELEASE</spring-restdocs-asciidoctor.version>
     <dockerfile-maven-version>1.4.13</dockerfile-maven-version>
     <blockhound-junit-platform.version>1.0.3.RELEASE</blockhound-junit-platform.version>
   </properties>
