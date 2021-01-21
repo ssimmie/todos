@@ -4,6 +4,7 @@ Todos API
 
 ![ci-build](https://github.com/ssimmie/todos/workflows/ci-build/badge.svg?branch=master)
 ![daily-build](https://github.com/ssimmie/todos/workflows/daily-build/badge.svg)
+![coverage](https://img.shields.io/badge/coverage-100%25-brightgreen)
 [![license](http://img.shields.io/badge/license-MIT-brightgreen.svg)](https://github.com/ssimmie/todos/blob/master/LICENSE)
 
 ### Running locally
