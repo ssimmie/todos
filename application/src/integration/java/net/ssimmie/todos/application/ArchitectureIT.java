@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Tag;
 
 @Tag("architecture")
 @AnalyzeClasses(packages = "net.ssimmie.todos")
-public class ArchitectureTest {
+public class ArchitectureIT {
 
   @ArchTest
   public static final ArchRule SHOULD_RESPECT_CLEAN_ARCHITECTURE =
@@ -20,10 +20,15 @@ public class ArchitectureTest {
           .definedBy("net.ssimmie.todos.application.service")
           .layer("Inbound Ports")
           .definedBy("net.ssimmie.todos.application.port.in")
+          .layer("Outbound Ports")
+          .definedBy("net.ssimmie.todos.application.port.out")
+          .layer("Persistence Adapter")
+          .definedBy("net.ssimmie.todos.application.adapter.out.persistence")
           .layer("Domain")
           .definedBy("net.ssimmie.todos.domain")
           .whereLayer("Controller")
           .mayNotBeAccessedByAnyLayer()
           .whereLayer("Domain")
-          .mayOnlyBeAccessedByLayers("Controller", "Service", "Inbound Ports");
+          .mayOnlyBeAccessedByLayers(
+              "Controller", "Service", "Inbound Ports", "Outbound Ports", "Persistence Adapter");
 }
