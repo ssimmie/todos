@@ -178,6 +178,11 @@
     <pluginManagement>
       <plugins>
         <plugin>
+          <artifactId>fmt-maven-plugin</artifactId>
+          <groupId>com.coveo</groupId>
+          <version>${fmt-maven-plugin.version}</version>
+        </plugin>
+        <plugin>
           <groupId>org.asciidoctor</groupId>
           <artifactId>asciidoctor-maven-plugin</artifactId>
           <version>${asciidoctor-maven-plugin.version}</version>
@@ -248,22 +253,6 @@
           <sourceJsonReportDirectory>${project.build.directory}/cucumber-reports</sourceJsonReportDirectory>
           <generatedHtmlReportDirectory>${project.build.directory}/cucumber-reports</generatedHtmlReportDirectory>
         </configuration>
-      </plugin>
-      <plugin>
-        <groupId>com.coveo</groupId>
-        <artifactId>fmt-maven-plugin</artifactId>
-        <version>${fmt-maven-plugin.version}</version>
-        <configuration>
-          <filesNamePattern>.*\.java</filesNamePattern>
-          <style>google</style>
-        </configuration>
-        <executions>
-          <execution>
-            <goals>
-              <goal>format</goal>
-            </goals>
-          </execution>
-        </executions>
       </plugin>
       <plugin>
         <groupId>org.jacoco</groupId>

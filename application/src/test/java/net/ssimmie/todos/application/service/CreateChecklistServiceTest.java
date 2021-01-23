@@ -9,9 +9,11 @@ class CreateChecklistServiceTest {
 
   @Test
   public void shouldCreateNewNamedChecklist() {
-    final var validCommand = newCreateChecklistCommand("checklist");
+    final var expectedChecklistName = "checklist";
+    final var createChecklistService = new CreateChecklistService(checklist -> checklist);
+    final var validCommand = newCreateChecklistCommand(expectedChecklistName);
 
-    final var createChecklistService = new CreateChecklistService();
-    assertThat(createChecklistService.createChecklist(validCommand)).isNotNull();
+    assertThat(createChecklistService.createChecklist(validCommand).getName().getValue())
+        .isEqualTo(expectedChecklistName);
   }
 }
