@@ -1,23 +1,13 @@
 ## Todos
 
+Playground for me to try out various libraries, tools, and techniques.
+
 ![ci-build](https://github.com/ssimmie/todos/workflows/ci-build/badge.svg?branch=master)
 ![daily-build](https://github.com/ssimmie/todos/workflows/daily-build/badge.svg)
 ![coverage](https://img.shields.io/badge/coverage-100%25-brightgreen)
 [![license](http://img.shields.io/badge/license-MIT-brightgreen.svg)](https://github.com/ssimmie/todos/blob/master/LICENSE)
 
-### Running locally
-
-```./mvnw install && docker-compose -f config/docker-compose.yml up```
-
-* [Todos Application Actuator](http://localhost:8181/actuator)
-* [Todos Application API Docs](http://localhost:8181/docs/index.html)
-* [Prometheus UI](http://localhost:9090)
-* [Grafana](http://localhost:3000)
-* [Grafana Micrometer Dashboard](http://localhost:3000/d/9IsnyquWz/jvm-micrometer?orgId=1&refresh=5s)
-
 ## Development Approach 
-
-See the [ALM](https://ssimmie.github.io/application-lifecycle-management/) guidelines
 
 - [x] Minimal developer pre-requisites; [Maven Wrapper](https://maven.apache.org/plugins/maven-wrapper-plugin/)
 - [x] Verify source format matches Google Style; [FMT](https://github.com/coveooss/fmt-maven-plugin)
