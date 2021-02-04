@@ -74,6 +74,7 @@
       <artifactId>cassandra-unit-spring</artifactId>
       <groupId>org.cassandraunit</groupId>
       <version>${cassandra-unit-spring.version}</version>
+      <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>com.tngtech.archunit</groupId>
