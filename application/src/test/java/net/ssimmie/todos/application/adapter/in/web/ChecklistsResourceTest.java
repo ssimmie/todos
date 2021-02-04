@@ -20,7 +20,7 @@ public class ChecklistsResourceTest {
   @Test
   public void shouldReturnSelfLink() {
     final ChecklistsResource checklistsResource =
-        new ChecklistsResource(c -> namedEmptyChecklist(c.getChecklistName()));
+        new ChecklistsResource(c -> Mono.just(namedEmptyChecklist(c.getChecklistName())));
 
     final Mono<RepresentationModel<?>> checklistsResourceRepresentationMono =
         checklistsResource.get();
@@ -38,7 +38,7 @@ public class ChecklistsResourceTest {
   public void shouldCreateChecklist() {
     final String expectedChecklist = "derp";
     final ChecklistsResource checklistsResource =
-        new ChecklistsResource(c -> namedEmptyChecklist(c.getChecklistName()));
+        new ChecklistsResource(c -> Mono.just(namedEmptyChecklist(c.getChecklistName())));
 
     final Checklist checklist = new Checklist();
     checklist.setName(expectedChecklist);
@@ -60,7 +60,7 @@ public class ChecklistsResourceTest {
   @Test
   public void shouldRejectUnnamedChecklist() {
     final ChecklistsResource checklistsResource =
-        new ChecklistsResource(c -> namedEmptyChecklist(c.getChecklistName()));
+        new ChecklistsResource(c -> Mono.just(namedEmptyChecklist(c.getChecklistName())));
 
     final Checklist checklist = new Checklist();
     final Mono<ResponseEntity<EntityModel<Checklist>>> responseEntityMono =

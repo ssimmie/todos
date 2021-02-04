@@ -6,6 +6,9 @@ import static org.springframework.restdocs.webtestclient.WebTestClientRestDocume
 import static org.springframework.restdocs.webtestclient.WebTestClientRestDocumentation.documentationConfiguration;
 import static org.springframework.test.web.reactive.server.WebTestClient.bindToApplicationContext;
 
+import org.cassandraunit.spring.CassandraDataSet;
+import org.cassandraunit.spring.CassandraUnitDependencyInjectionTestExecutionListener;
+import org.cassandraunit.spring.EmbeddedCassandra;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -13,10 +16,20 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.ApplicationContext;
 import org.springframework.restdocs.RestDocumentationContextProvider;
 import org.springframework.restdocs.RestDocumentationExtension;
+import org.springframework.test.context.TestExecutionListeners;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
+import org.springframework.test.context.support.DependencyInjectionTestExecutionListener;
 import org.springframework.test.web.reactive.server.WebTestClient;
 
-@SpringBootTest(webEnvironment = RANDOM_PORT)
+@CassandraDataSet(value = "create-keyspace.cql")
+@EmbeddedCassandra(configuration = "test.yaml")
+@TestExecutionListeners({CassandraUnitDependencyInjectionTestExecutionListener.class,
+    DependencyInjectionTestExecutionListener.class})
+@SpringBootTest(webEnvironment = RANDOM_PORT, properties = {
+    "spring.data.cassandra.local-datacenter=datacenter1",
+    "spring.data.cassandra.keyspace-name=todos",
+    "spring.data.cassandra.schema-action=create_if_not_exists"
+})
 @ExtendWith({RestDocumentationExtension.class, SpringExtension.class})
 public class ActuatorHealthDocTests {
 

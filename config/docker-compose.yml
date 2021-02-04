@@ -16,6 +16,19 @@ services:
     networks:
       - web-tier
       - backend-tier
+    depends_on:
+      - cassandra
+
+  cassandra:
+    image: cassandra:3
+    ports:
+    - "9160:9160"
+    - "9042:9042"
+    volumes:
+    - cassandra-persistence:/var/lib/cassandra
+    networks:
+      - web-tier
+      - backend-tier
 
   prometheus:
     image: "prom/prometheus"

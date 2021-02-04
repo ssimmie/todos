@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
   <include resource="org/springframework/boot/logging/logback/base.xml"/>
+  <logger level="ERROR" name="org.cassandraunit"/>
+  <logger level="ERROR" name="org.apache.cassandra"/>
   <logger level="ERROR" name="org.springframework"/>
+  <logger level="ERROR" name="com.datastax"/>
   <logger level="ERROR" name="com.tngtech"/>
 </configuration>

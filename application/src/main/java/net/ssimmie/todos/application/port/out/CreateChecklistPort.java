@@ -1,8 +1,9 @@
 package net.ssimmie.todos.application.port.out;
 
 import net.ssimmie.todos.domain.Checklist;
+import reactor.core.publisher.Mono;
 
 public interface CreateChecklistPort {
 
-  Checklist insertChecklist(final Checklist checklist);
+  Mono<Checklist> insertChecklist(final Checklist checklist);
 }

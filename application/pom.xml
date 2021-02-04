@@ -13,24 +13,6 @@
   <name>application</name>
   <description>Todos application</description>
   <version>0.0.1-SNAPSHOT</version>
-  <properties>
-    <spring-restdocs-asciidoctor.version>2.0.5.RELEASE</spring-restdocs-asciidoctor.version>
-    <dockerfile-maven-version>1.4.13</dockerfile-maven-version>
-    <blockhound-junit-platform.version>1.0.3.RELEASE</blockhound-junit-platform.version>
-  </properties>
-  <profiles>
-    <profile>
-      <id>blockhound</id>
-      <dependencies>
-        <dependency>
-          <groupId>io.projectreactor.tools</groupId>
-          <artifactId>blockhound-junit-platform</artifactId>
-          <version>${blockhound-junit-platform.version}</version>
-          <scope>test</scope>
-        </dependency>
-      </dependencies>
-    </profile>
-  </profiles>
   <dependencies>
     <dependency>
       <artifactId>domain</artifactId>
@@ -64,6 +46,11 @@
       <artifactId>spring-boot-starter-validation</artifactId>
     </dependency>
     <dependency>
+      <artifactId>spring-boot-starter-data-cassandra-reactive</artifactId>
+      <groupId>org.springframework.boot</groupId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-test</artifactId>
       <exclusions>
         <exclusion>
@@ -71,7 +58,6 @@
           <groupId>org.junit.vintage</groupId>
         </exclusion>
       </exclusions>
-      <groupId>org.springframework.boot</groupId>
       <scope>test</scope>
     </dependency>
     <dependency>
@@ -85,11 +71,35 @@
       <scope>test</scope>
     </dependency>
     <dependency>
+      <artifactId>cassandra-unit-spring</artifactId>
+      <groupId>org.cassandraunit</groupId>
+      <version>${cassandra-unit-spring.version}</version>
+    </dependency>
+    <dependency>
       <groupId>com.tngtech.archunit</groupId>
       <artifactId>archunit-junit5</artifactId>
       <scope>test</scope>
     </dependency>
   </dependencies>
+  <profiles>
+    <profile>
+      <id>blockhound</id>
+      <dependencies>
+        <dependency>
+          <groupId>io.projectreactor.tools</groupId>
+          <artifactId>blockhound-junit-platform</artifactId>
+          <version>${blockhound-junit-platform.version}</version>
+          <scope>test</scope>
+        </dependency>
+      </dependencies>
+    </profile>
+  </profiles>
+  <properties>
+    <spring-restdocs-asciidoctor.version>2.0.5.RELEASE</spring-restdocs-asciidoctor.version>
+    <dockerfile-maven-version>1.4.13</dockerfile-maven-version>
+    <blockhound-junit-platform.version>1.0.3.RELEASE</blockhound-junit-platform.version>
+    <cassandra-unit-spring.version>4.3.1.0</cassandra-unit-spring.version>
+  </properties>
   <build>
     <plugins>
       <plugin>
