@@ -1,6 +1,5 @@
 package net.ssimmie.todos.application.adapter.in.web;
 
-import static net.ssimmie.todos.application.adapter.in.web.Checklist.toChecklistResourceRepresentation;
 import static net.ssimmie.todos.application.port.in.CreateChecklistCommand.newCreateChecklistCommand;
 import static org.springframework.hateoas.server.reactive.WebFluxLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.reactive.WebFluxLinkBuilder.methodOn;
@@ -9,6 +8,7 @@ import java.util.function.Function;
 import net.ssimmie.todos.application.port.in.CreateChecklistUseCase;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.EntityModel;
+import org.springframework.hateoas.Link;
 import org.springframework.hateoas.RepresentationModel;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -40,17 +40,18 @@ public class ChecklistsResource {
 
   @PostMapping
   Mono<ResponseEntity<EntityModel<Checklist>>> create(@RequestBody final Checklist checklist) {
-
     return linkTo(methodOn(ChecklistsResource.class).get())
         .withSelfRel()
         .toMono()
-        .flatMap(link -> Mono.just(EntityModel.of(createChecklist(checklist), link)))
+        .flatMap(link -> createChecklist(checklist, link))
         .map(toCreated());
   }
 
-  private Checklist createChecklist(final Checklist checklist) {
-    return toChecklistResourceRepresentation(
-        createChecklistUseCase.createChecklist(newCreateChecklistCommand(checklist.getName())));
+  private Mono<EntityModel<Checklist>> createChecklist(final Checklist checklist, final Link link) {
+    return createChecklistUseCase
+        .createChecklist(newCreateChecklistCommand(checklist.getName()))
+        .map(Checklist::toChecklistResourceRepresentation)
+        .map(c -> EntityModel.of(c, link));
   }
 
   private Function<EntityModel<Checklist>, ResponseEntity<EntityModel<Checklist>>> toCreated() {

@@ -77,8 +77,8 @@
                 </executions>
                 <configuration>
                     <poll>
-                        <attempts>10</attempts>
-                        <sleep>1000</sleep>
+                        <attempts>20</attempts>
+                        <sleep>3000</sleep>
                     </poll>
                     <httpConnections>
                         <httpConnection>

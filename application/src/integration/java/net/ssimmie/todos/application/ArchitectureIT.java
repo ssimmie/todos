@@ -5,9 +5,7 @@ import static com.tngtech.archunit.library.Architectures.layeredArchitecture;
 import com.tngtech.archunit.junit.AnalyzeClasses;
 import com.tngtech.archunit.junit.ArchTest;
 import com.tngtech.archunit.lang.ArchRule;
-import org.junit.jupiter.api.Tag;
 
-@Tag("architecture")
 @AnalyzeClasses(packages = "net.ssimmie.todos")
 public class ArchitectureIT {
 

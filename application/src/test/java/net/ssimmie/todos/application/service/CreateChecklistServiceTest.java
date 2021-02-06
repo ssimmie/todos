@@ -4,16 +4,19 @@ import static net.ssimmie.todos.application.port.in.CreateChecklistCommand.newCr
 import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.jupiter.api.Test;
+import reactor.core.publisher.Mono;
+import reactor.test.StepVerifier;
 
 class CreateChecklistServiceTest {
 
   @Test
   public void shouldCreateNewNamedChecklist() {
     final var expectedChecklistName = "checklist";
-    final var createChecklistService = new CreateChecklistService(checklist -> checklist);
+    final var createChecklistService = new CreateChecklistService(Mono::just);
     final var validCommand = newCreateChecklistCommand(expectedChecklistName);
 
-    assertThat(createChecklistService.createChecklist(validCommand).getName().getValue())
-        .isEqualTo(expectedChecklistName);
+    StepVerifier.create(createChecklistService.createChecklist(validCommand))
+        .assertNext(c -> assertThat(c.getName().getValue()).isEqualTo(expectedChecklistName))
+        .verifyComplete();
   }
 }

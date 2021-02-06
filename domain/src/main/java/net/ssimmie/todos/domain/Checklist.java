@@ -7,6 +7,7 @@ import static net.ssimmie.todos.domain.ChecklistName.newChecklistName;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 public class Checklist {
 
@@ -18,6 +19,10 @@ public class Checklist {
     this.id = id;
     this.name = name;
     this.todos = todos;
+  }
+
+  public static Checklist knownNamedEmptyChecklist(final UUID id, final String name) {
+    return new Checklist(newChecklistId(id), newChecklistName(name), emptyList());
   }
 
   public static Checklist namedEmptyChecklist(final String name) {

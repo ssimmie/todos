@@ -15,36 +15,36 @@
     <description>Acceptance Tests for Todos Application</description>
     <dependencies>
         <dependency>
-            <groupId>net.ssimmie.todos</groupId>
             <artifactId>application</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+            <groupId>net.ssimmie.todos</groupId>
             <scope>provided</scope>
+            <version>0.0.1-SNAPSHOT</version>
         </dependency>
         <dependency>
-            <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
+            <groupId>org.junit.jupiter</groupId>
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>io.cucumber</groupId>
             <artifactId>cucumber-java</artifactId>
+            <groupId>io.cucumber</groupId>
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>io.cucumber</groupId>
             <artifactId>cucumber-junit-platform-engine</artifactId>
+            <groupId>io.cucumber</groupId>
             <scope>test</scope>
         </dependency>
         <dependency>
             <artifactId>jsoup</artifactId>
             <groupId>org.jsoup</groupId>
-            <version>${jsoup.version}</version>
             <scope>test</scope>
+            <version>${jsoup.version}</version>
         </dependency>
     </dependencies>
     <properties>
-        <jsoup.version>1.13.1</jsoup.version>
         <docker-compose-maven-plugin.version>3.0.0</docker-compose-maven-plugin.version>
+        <jsoup.version>1.13.1</jsoup.version>
     </properties>
     <build>
         <plugins>
@@ -90,8 +90,8 @@
                 </executions>
                 <configuration>
                     <poll>
-                        <attempts>10</attempts>
-                        <sleep>1000</sleep>
+                        <attempts>20</attempts>
+                        <sleep>3000</sleep>
                     </poll>
                     <httpConnections>
                         <httpConnection>

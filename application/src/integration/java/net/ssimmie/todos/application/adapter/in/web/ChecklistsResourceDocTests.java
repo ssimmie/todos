@@ -13,8 +13,8 @@ import static org.springframework.restdocs.webtestclient.WebTestClientRestDocume
 import static org.springframework.test.web.reactive.server.WebTestClient.bindToApplicationContext;
 
 import net.ssimmie.todos.application.port.in.CreateChecklistUseCase;
+import org.cassandraunit.spring.EmbeddedCassandra;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.boot.test.autoconfigure.web.reactive.WebFluxTest;
@@ -24,8 +24,9 @@ import org.springframework.restdocs.RestDocumentationContextProvider;
 import org.springframework.restdocs.RestDocumentationExtension;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.reactive.server.WebTestClient;
+import reactor.core.publisher.Mono;
 
-@Tag("docs")
+@EmbeddedCassandra
 @WebFluxTest(controllers = ChecklistsResource.class)
 @ExtendWith({RestDocumentationExtension.class, SpringExtension.class})
 public class ChecklistsResourceDocTests {
@@ -67,7 +68,7 @@ public class ChecklistsResourceDocTests {
     final Checklist expectedChecklist = new Checklist();
     expectedChecklist.setName("derp");
     when(createChecklistUseCase.createChecklist(any()))
-        .thenReturn(namedEmptyChecklist(expectedChecklist.getName()));
+        .thenReturn(Mono.just(namedEmptyChecklist(expectedChecklist.getName())));
 
     this.webTestClient
         .post()

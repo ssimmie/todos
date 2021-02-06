@@ -13,5 +13,6 @@ object RootResourceAction {
     .header(ContentType, ApplicationJson)
     .header(Accept, "application/hal+json")
     .check(status.is(200))
-    .check(jsonPath("$._links.self.href").is("http://localhost:8181/")))
+    .check(jsonPath("$._links.self.href").is("http://localhost:8181/"))
+    .check(jsonPath("$._links.checklists.href").saveAs("checklistsUrl")))
 }
