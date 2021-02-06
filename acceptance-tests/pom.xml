@@ -13,6 +13,39 @@
     <version>0.0.1-SNAPSHOT</version>
     <name>acceptance-tests</name>
     <description>Acceptance Tests for Todos Application</description>
+    <dependencies>
+        <dependency>
+            <artifactId>application</artifactId>
+            <groupId>net.ssimmie.todos</groupId>
+            <scope>provided</scope>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <artifactId>junit-jupiter</artifactId>
+            <groupId>org.junit.jupiter</groupId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <artifactId>cucumber-java</artifactId>
+            <groupId>io.cucumber</groupId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <artifactId>cucumber-junit-platform-engine</artifactId>
+            <groupId>io.cucumber</groupId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <artifactId>jsoup</artifactId>
+            <groupId>org.jsoup</groupId>
+            <scope>test</scope>
+            <version>${jsoup.version}</version>
+        </dependency>
+    </dependencies>
+    <properties>
+        <docker-compose-maven-plugin.version>3.0.0</docker-compose-maven-plugin.version>
+        <jsoup.version>1.13.1</jsoup.version>
+    </properties>
     <build>
         <plugins>
             <plugin>
@@ -70,37 +103,4 @@
             </plugin>
         </plugins>
     </build>
-    <dependencies>
-        <dependency>
-            <groupId>net.ssimmie.todos</groupId>
-            <artifactId>application</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>io.cucumber</groupId>
-            <artifactId>cucumber-java</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>io.cucumber</groupId>
-            <artifactId>cucumber-junit-platform-engine</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <artifactId>jsoup</artifactId>
-            <groupId>org.jsoup</groupId>
-            <version>${jsoup.version}</version>
-            <scope>test</scope>
-        </dependency>
-    </dependencies>
-    <properties>
-        <docker-compose-maven-plugin.version>3.0.0</docker-compose-maven-plugin.version>
-        <jsoup.version>1.13.1</jsoup.version>
-    </properties>
 </project>
