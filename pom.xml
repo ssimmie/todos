@@ -364,6 +364,7 @@
         <version>${dependency-check-maven.version}</version>
         <configuration>
           <failBuildOnCVSS>8</failBuildOnCVSS>
+          <assemblyAnalyzerEnabled>false</assemblyAnalyzerEnabled>
         </configuration>
         <executions>
           <execution>
