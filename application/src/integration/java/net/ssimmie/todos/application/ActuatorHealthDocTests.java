@@ -22,7 +22,7 @@ import org.springframework.test.context.support.DependencyInjectionTestExecution
 import org.springframework.test.web.reactive.server.WebTestClient;
 
 @CassandraDataSet(value = "create-keyspace.cql")
-@EmbeddedCassandra(configuration = "test.yaml")
+@EmbeddedCassandra(configuration = "embedded-cassandra.yaml")
 @TestExecutionListeners({CassandraUnitDependencyInjectionTestExecutionListener.class,
     DependencyInjectionTestExecutionListener.class})
 @SpringBootTest(webEnvironment = RANDOM_PORT, properties = {

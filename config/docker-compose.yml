@@ -9,24 +9,27 @@ networks:
   backend-tier:
 
 services:
+  cassandra:
+    image: 'cassandra'
+    ports:
+      - "9042:9042"
+    networks:
+      - backend-tier
+
   todos:
-    image: "docker.pkg.github.com/ssimmie/artifact-repository/todos-application"
+    environment:
+      SPRING_DATA_CASSANDRA_CONTACT_POINTS: cassandra
+      SPRING_DATA_CASSANDRA_LOCAL_DATACENTER: datacenter1
+      SPRING_DATA_CASSANDRA_KEYSPACE_NAME: todos
+    image: "docker.pkg.github.com/ssimmie/artifact-repository/todos-application:latest"
+    entrypoint: wait-for-it cassandra:9042 -- java -jar /todos.jar
     ports:
       - 8181:8181
     networks:
       - web-tier
       - backend-tier
     depends_on:
-      - cassandra
-
-  cassandra:
-    image: cassandra:3
-    ports:
-      - "9160:9160"
-      - "9042:9042"
-    networks:
-      - web-tier
-      - backend-tier
+     - cassandra
 
   prometheus:
     image: "prom/prometheus"

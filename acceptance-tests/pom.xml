@@ -13,39 +13,6 @@
     <version>0.0.1-SNAPSHOT</version>
     <name>acceptance-tests</name>
     <description>Acceptance Tests for Todos Application</description>
-    <dependencies>
-        <dependency>
-            <groupId>net.ssimmie.todos</groupId>
-            <artifactId>application</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>io.cucumber</groupId>
-            <artifactId>cucumber-java</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>io.cucumber</groupId>
-            <artifactId>cucumber-junit-platform-engine</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <artifactId>jsoup</artifactId>
-            <groupId>org.jsoup</groupId>
-            <version>${jsoup.version}</version>
-            <scope>test</scope>
-        </dependency>
-    </dependencies>
-    <properties>
-        <jsoup.version>1.13.1</jsoup.version>
-        <docker-compose-maven-plugin.version>3.0.0</docker-compose-maven-plugin.version>
-    </properties>
     <build>
         <plugins>
             <plugin>
@@ -90,8 +57,8 @@
                 </executions>
                 <configuration>
                     <poll>
-                        <attempts>10</attempts>
-                        <sleep>1000</sleep>
+                        <attempts>20</attempts>
+                        <sleep>3000</sleep>
                     </poll>
                     <httpConnections>
                         <httpConnection>
@@ -103,4 +70,37 @@
             </plugin>
         </plugins>
     </build>
+    <dependencies>
+        <dependency>
+            <groupId>net.ssimmie.todos</groupId>
+            <artifactId>application</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-java</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-junit-platform-engine</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <artifactId>jsoup</artifactId>
+            <groupId>org.jsoup</groupId>
+            <version>${jsoup.version}</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+    <properties>
+        <docker-compose-maven-plugin.version>3.0.0</docker-compose-maven-plugin.version>
+        <jsoup.version>1.13.1</jsoup.version>
+    </properties>
 </project>

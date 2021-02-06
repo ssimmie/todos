@@ -30,7 +30,7 @@ class TodosApplicationTest {
   @Test
   public void shouldBeAbleToStartTheApplication() throws IOException {
     EmbeddedCassandraServerHelper.cleanEmbeddedCassandra();
-    startEmbeddedCassandra("test.yaml");
+    startEmbeddedCassandra("embedded-cassandra.yaml");
     final CqlSession session = EmbeddedCassandraServerHelper.getSession();
     final ResultSet resultSet =
         session.execute(
