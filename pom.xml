@@ -112,8 +112,6 @@
     <native-protocol.version>1.4.12</native-protocol.version>
     <await-maven-plugin.version>1.2</await-maven-plugin.version>
     <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
-    <asciidoctor-maven-plugin.version>1.6.0</asciidoctor-maven-plugin.version>
-    <build-helper-maven-plugin.version>3.1.0</build-helper-maven-plugin.version>
     <cluecumber-report-plugin.version>2.6.1</cluecumber-report-plugin.version>
     <jacoco-maven-plugin.version>0.8.5</jacoco-maven-plugin.version>
     <pitmp-maven-plugin.version>1.3.7</pitmp-maven-plugin.version>
@@ -193,11 +191,6 @@
           <artifactId>fmt-maven-plugin</artifactId>
           <groupId>com.coveo</groupId>
           <version>${fmt-maven-plugin.version}</version>
-        </plugin>
-        <plugin>
-          <groupId>org.asciidoctor</groupId>
-          <artifactId>asciidoctor-maven-plugin</artifactId>
-          <version>${asciidoctor-maven-plugin.version}</version>
         </plugin>
         <plugin>
           <artifactId>build-helper-maven-plugin</artifactId>

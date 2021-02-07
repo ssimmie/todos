@@ -3,16 +3,34 @@
   xmlns="http://maven.apache.org/POM/4.0.0"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <artifactId>domain</artifactId>
-  <description>Todos domain</description>
-  <groupId>net.ssimmie.todos</groupId>
-  <version>0.0.1-SNAPSHOT</version>
-  <name>domain</name>
   <parent>
     <groupId>net.ssimmie</groupId>
     <artifactId>todos</artifactId>
     <version>0.0.1-SNAPSHOT</version>
   </parent>
+  <artifactId>domain</artifactId>
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>com.coveo</groupId>
+        <artifactId>fmt-maven-plugin</artifactId>
+        <configuration>
+          <filesNamePattern>.*\.java</filesNamePattern>
+          <style>google</style>
+        </configuration>
+        <executions>
+          <execution>
+            <goals>
+              <goal>format</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+  <description>Todos domain</description>
+  <groupId>net.ssimmie.todos</groupId>
+  <name>domain</name>
   <dependencies>
     <dependency>
       <artifactId>junit-jupiter</artifactId>
@@ -30,23 +48,5 @@
       <scope>test</scope>
     </dependency>
   </dependencies>
-  <build>
-    <plugins>
-      <plugin>
-        <artifactId>fmt-maven-plugin</artifactId>
-        <configuration>
-          <filesNamePattern>.*\.java</filesNamePattern>
-          <style>google</style>
-        </configuration>
-        <executions>
-          <execution>
-            <goals>
-              <goal>format</goal>
-            </goals>
-          </execution>
-        </executions>
-        <groupId>com.coveo</groupId>
-      </plugin>
-    </plugins>
-  </build>
+  <version>0.0.1-SNAPSHOT</version>
 </project>

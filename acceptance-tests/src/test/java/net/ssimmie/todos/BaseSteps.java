@@ -7,7 +7,6 @@ import static org.springframework.http.HttpStatus.OK;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import java.net.MalformedURLException;
 import java.net.URI;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.http.ResponseEntity;
@@ -20,7 +19,7 @@ public class BaseSteps {
   private ResponseEntity<String> healthcheckResourceRepresentation;
 
   @Given("an api client")
-  public void an_api_client() throws MalformedURLException {
+  public void an_api_client() {
     restClient = new RestTemplateBuilder().rootUri(serverUri.toString()).build();
   }
 
