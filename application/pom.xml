@@ -14,7 +14,6 @@
     <blockhound-junit-platform.version>1.0.3.RELEASE</blockhound-junit-platform.version>
     <cassandra-unit-spring.version>4.3.1.0</cassandra-unit-spring.version>
     <dockerfile-maven-version>1.4.13</dockerfile-maven-version>
-    <spring-restdocs-asciidoctor.version>2.0.5.RELEASE</spring-restdocs-asciidoctor.version>
   </properties>
   <name>application</name>
   <description>Todos application</description>
@@ -72,11 +71,6 @@
       <scope>test</scope>
     </dependency>
     <dependency>
-      <groupId>org.springframework.restdocs</groupId>
-      <artifactId>spring-restdocs-webtestclient</artifactId>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
       <artifactId>cassandra-unit-spring</artifactId>
       <groupId>org.cassandraunit</groupId>
       <version>${cassandra-unit-spring.version}</version>
@@ -121,68 +115,6 @@
       <plugin>
         <artifactId>spring-boot-maven-plugin</artifactId>
         <groupId>org.springframework.boot</groupId>
-      </plugin>
-      <plugin>
-        <groupId>org.asciidoctor</groupId>
-        <artifactId>asciidoctor-maven-plugin</artifactId>
-        <executions>
-          <execution>
-            <id>generate-docs</id>
-            <phase>prepare-package</phase>
-            <goals>
-              <goal>process-asciidoc</goal>
-            </goals>
-            <configuration>
-              <backend>html</backend>
-              <doctype>book</doctype>
-            </configuration>
-          </execution>
-        </executions>
-        <dependencies>
-          <dependency>
-            <groupId>org.springframework.restdocs</groupId>
-            <artifactId>spring-restdocs-asciidoctor</artifactId>
-            <version>${spring-restdocs-asciidoctor.version}</version>
-          </dependency>
-        </dependencies>
-      </plugin>
-      <plugin>
-        <groupId>org.codehaus.mojo</groupId>
-        <artifactId>build-helper-maven-plugin</artifactId>
-        <executions>
-          <execution>
-            <id>add-test-source</id>
-            <phase>generate-test-sources</phase>
-            <goals>
-              <goal>add-test-source</goal>
-            </goals>
-            <configuration>
-              <sources>
-                <source>src/integration/java</source>
-              </sources>
-            </configuration>
-          </execution>
-        </executions>
-      </plugin>
-      <plugin>
-        <artifactId>maven-resources-plugin</artifactId>
-        <executions>
-          <execution>
-            <id>copy-resources</id>
-            <phase>prepare-package</phase>
-            <goals>
-              <goal>copy-resources</goal>
-            </goals>
-            <configuration>
-              <outputDirectory>${project.build.outputDirectory}/static/docs</outputDirectory>
-              <resources>
-                <resource>
-                  <directory>${project.build.directory}/generated-docs</directory>
-                </resource>
-              </resources>
-            </configuration>
-          </execution>
-        </executions>
       </plugin>
       <plugin>
         <groupId>com.spotify</groupId>

@@ -35,16 +35,9 @@
             <groupId>io.cucumber</groupId>
             <scope>test</scope>
         </dependency>
-        <dependency>
-            <artifactId>jsoup</artifactId>
-            <groupId>org.jsoup</groupId>
-            <scope>test</scope>
-            <version>${jsoup.version}</version>
-        </dependency>
     </dependencies>
     <properties>
         <docker-compose-maven-plugin.version>3.0.0</docker-compose-maven-plugin.version>
-        <jsoup.version>1.13.1</jsoup.version>
     </properties>
     <build>
         <plugins>
