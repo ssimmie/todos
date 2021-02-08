@@ -17,11 +17,9 @@ import reactor.core.publisher.Mono;
 @WebFluxTest(controllers = ChecklistsResource.class)
 public class ChecklistsResourceIT {
 
-  @Autowired
-  private WebTestClient webTestClient;
+  @Autowired private WebTestClient webTestClient;
 
-  @MockBean
-  private CreateChecklistUseCase createChecklistUseCase;
+  @MockBean private CreateChecklistUseCase createChecklistUseCase;
 
   @Test
   public void shouldListAllChecklists() {
