@@ -9,8 +9,10 @@ Playground for me to try out various libraries, tools, and techniques.
 
 ## Development Approach 
 
-- [x] Minimal developer pre-requisites; [Maven Wrapper](https://maven.apache.org/plugins/maven-wrapper-plugin/)
-- [x] Verify source format matches Google Style; [FMT](https://github.com/coveooss/fmt-maven-plugin)
+- [x] Minimal developer
+  pre-requisites; [Maven Wrapper](https://maven.apache.org/plugins/maven-wrapper-plugin/)
+- [x] Verify source format matches Google Style; [Spotless](https://github.com/diffplug/spotless)
+  or [FMT](https://github.com/coveooss/fmt-maven-plugin)
 - [x] Compilation without warning; [ErrorProne](https://errorprone.info/)
 - [x] Test Driven Development; unit testing with coverage backstop; [Surefire](http://maven.apache.org/surefire/maven-surefire-plugin/); [Jacoco](https://www.eclemma.org/jacoco/trunk/doc/maven.html); [JUnit 5](https://junit.org/junit5/); [Assertj](https://assertj.github.io/doc/); [EqualsVerifier](https://jqno.nl/equalsverifier/)
 - [x] Mutation testing; ensuring high-quality unit tests [PITest](https://pitest.org/) 

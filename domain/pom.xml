@@ -8,29 +8,34 @@
     <artifactId>todos</artifactId>
     <version>0.0.1-SNAPSHOT</version>
   </parent>
-  <artifactId>domain</artifactId>
   <build>
     <plugins>
       <plugin>
-        <groupId>com.coveo</groupId>
-        <artifactId>fmt-maven-plugin</artifactId>
+        <artifactId>spotless-maven-plugin</artifactId>
         <configuration>
-          <filesNamePattern>.*\.java</filesNamePattern>
-          <style>google</style>
+          <java>
+            <googleJavaFormat>
+              <style>GOOGLE</style>
+              <version>1.9</version>
+            </googleJavaFormat>
+          </java>
         </configuration>
         <executions>
           <execution>
             <goals>
-              <goal>format</goal>
+              <goal>apply</goal>
             </goals>
+            <phase>compile</phase>
           </execution>
         </executions>
+        <groupId>com.diffplug.spotless</groupId>
       </plugin>
     </plugins>
   </build>
+  <artifactId>domain</artifactId>
   <description>Todos domain</description>
-  <groupId>net.ssimmie.todos</groupId>
   <name>domain</name>
+  <groupId>net.ssimmie.todos</groupId>
   <dependencies>
     <dependency>
       <artifactId>junit-jupiter</artifactId>
