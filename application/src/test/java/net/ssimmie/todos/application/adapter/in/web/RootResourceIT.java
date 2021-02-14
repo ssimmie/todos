@@ -9,8 +9,7 @@ import org.springframework.test.web.reactive.server.WebTestClient;
 @WebFluxTest(controllers = RootResource.class)
 public class RootResourceIT {
 
-  @Autowired
-  private WebTestClient webTestClient;
+  @Autowired private WebTestClient webTestClient;
 
   @Test
   public void shouldProvideEntryPointToAvailableTopLevelResources() {

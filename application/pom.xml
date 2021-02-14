@@ -10,14 +10,14 @@
   </parent>
   <groupId>net.ssimmie.todos</groupId>
   <artifactId>application</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <name>application</name>
+  <description>Todos application</description>
   <properties>
     <blockhound-junit-platform.version>1.0.3.RELEASE</blockhound-junit-platform.version>
     <cassandra-unit-spring.version>4.3.1.0</cassandra-unit-spring.version>
     <dockerfile-maven-version>1.4.13</dockerfile-maven-version>
   </properties>
-  <name>application</name>
-  <description>Todos application</description>
-  <version>0.0.1-SNAPSHOT</version>
   <dependencies>
     <dependency>
       <artifactId>domain</artifactId>
@@ -98,23 +98,28 @@
   <build>
     <plugins>
       <plugin>
-        <artifactId>fmt-maven-plugin</artifactId>
+        <groupId>com.diffplug.spotless</groupId>
+        <artifactId>spotless-maven-plugin</artifactId>
         <configuration>
-          <filesNamePattern>.*\.java</filesNamePattern>
-          <style>google</style>
+          <java>
+            <googleJavaFormat>
+              <style>GOOGLE</style>
+              <version>1.9</version>
+            </googleJavaFormat>
+          </java>
         </configuration>
         <executions>
           <execution>
             <goals>
-              <goal>format</goal>
+              <goal>check</goal>
             </goals>
+            <phase>compile</phase>
           </execution>
         </executions>
-        <groupId>com.coveo</groupId>
       </plugin>
       <plugin>
-        <artifactId>spring-boot-maven-plugin</artifactId>
         <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-maven-plugin</artifactId>
       </plugin>
       <plugin>
         <groupId>com.spotify</groupId>

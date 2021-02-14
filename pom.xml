@@ -127,7 +127,7 @@
     <build-tools.version>20200324.ebee2af</build-tools.version>
     <maven-jxr-plugin.version>3.0.0</maven-jxr-plugin.version>
     <equalsverifier.version>3.5.1</equalsverifier.version>
-    <fmt-maven-plugin.version>2.10</fmt-maven-plugin.version>
+    <spotless-maven-plugin.version>2.7.0</spotless-maven-plugin.version>
   </properties>
   <dependencyManagement>
     <dependencies>
@@ -188,14 +188,9 @@
     <pluginManagement>
       <plugins>
         <plugin>
-          <artifactId>fmt-maven-plugin</artifactId>
-          <groupId>com.coveo</groupId>
-          <version>${fmt-maven-plugin.version}</version>
-        </plugin>
-        <plugin>
-          <artifactId>build-helper-maven-plugin</artifactId>
-          <groupId>org.codehaus.mojo</groupId>
-          <version>${build-helper-maven-plugin.version}</version>
+          <artifactId>spotless-maven-plugin</artifactId>
+          <groupId>com.diffplug.spotless</groupId>
+          <version>${spotless-maven-plugin.version}</version>
         </plugin>
         <plugin>
           <artifactId>await-maven-plugin</artifactId>

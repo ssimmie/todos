@@ -11,8 +11,7 @@ import org.springframework.test.web.reactive.server.WebTestClient;
 @WebFluxTest(controllers = TasksResource.class)
 public class TasksResourceIT {
 
-  @Autowired
-  private WebTestClient webTestClient;
+  @Autowired private WebTestClient webTestClient;
 
   @Test
   public void shouldListAllTasks() {

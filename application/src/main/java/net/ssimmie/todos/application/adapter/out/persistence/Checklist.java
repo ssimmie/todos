@@ -10,8 +10,7 @@ import org.springframework.data.cassandra.core.mapping.Table;
 @Table
 class Checklist {
 
-  @PrimaryKey
-  private final UUID id;
+  @PrimaryKey private final UUID id;
   private final String name;
 
   public Checklist(final UUID id, final String name) {
