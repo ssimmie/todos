@@ -32,6 +32,13 @@ public final class ChecklistId {
     return Objects.hash(value);
   }
 
+  @Override
+  public String toString() {
+    return "ChecklistId{" +
+        "value=" + value +
+        '}';
+  }
+
   public UUID getValue() {
     return value;
   }

@@ -29,6 +29,11 @@
       <groupId>nl.jqno.equalsverifier</groupId>
       <scope>test</scope>
     </dependency>
+    <dependency>
+      <groupId>com.jparams</groupId>
+      <artifactId>to-string-verifier</artifactId>
+      <scope>test</scope>
+    </dependency>
   </dependencies>
   <build>
     <plugins>

@@ -3,6 +3,7 @@ package net.ssimmie.todos.domain;
 import static net.ssimmie.todos.domain.ChecklistName.newChecklistName;
 import static org.assertj.core.api.Assertions.assertThat;
 
+import com.jparams.verifier.tostring.ToStringVerifier;
 import nl.jqno.equalsverifier.EqualsVerifier;
 import org.junit.jupiter.api.Test;
 
@@ -29,5 +30,11 @@ class ChecklistNameTest {
     final ChecklistName checklistName = newChecklistName(expectedName);
 
     assertThat(checklistName.getValue()).isEqualTo(expectedName);
+  }
+
+  @Test
+  public void shouldSupportToString() {
+    ToStringVerifier.forClass(ChecklistName.class)
+        .verify();
   }
 }

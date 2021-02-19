@@ -34,4 +34,11 @@ public final class ChecklistName {
   public int hashCode() {
     return Objects.hash(value);
   }
+
+  @Override
+  public String toString() {
+    return "ChecklistName{" +
+        "value='" + value + '\'' +
+        '}';
+  }
 }

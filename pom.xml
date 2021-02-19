@@ -128,6 +128,7 @@
     <maven-jxr-plugin.version>3.0.0</maven-jxr-plugin.version>
     <equalsverifier.version>3.5.1</equalsverifier.version>
     <spotless-maven-plugin.version>2.7.0</spotless-maven-plugin.version>
+    <to-string-verifier.version>1.4.8</to-string-verifier.version>
   </properties>
   <dependencyManagement>
     <dependencies>
@@ -171,6 +172,12 @@
         <groupId>io.cucumber</groupId>
         <scope>test</scope>
         <version>${cucumber.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.jparams</groupId>
+        <artifactId>to-string-verifier</artifactId>
+        <version>${to-string-verifier.version}</version>
+        <scope>test</scope>
       </dependency>
       <dependency>
         <artifactId>gremlin-shaded</artifactId>
