@@ -16,6 +16,7 @@ Playground for me to try out various libraries, tools, and techniques.
 - [x] Mutation testing; ensuring high-quality unit tests [PITest](https://pitest.org/) 
 - [ ] Consumer-Driven Contract testing; ensure independent paths to production
 - [x] Integration testing; [Failsafe](https://maven.apache.org/surefire/maven-failsafe-plugin/)
+- [x] Architecture decisions as tests; [ArchUnit](https://www.archunit.org/)
 - [ ] API documentation; dependable documentation extracted from proven integration tests; [Spring REST Docs](https://spring.io/projects/spring-restdocs). Removed previous version as integration tests had to be run with unit tests and caused issues with coverage.
 - [x] Static analysis; ensure source free from known defects; [PMD](https://pmd.github.io/), [Spotbugs](https://spotbugs.github.io/), [Checkstyle](https://checkstyle.sourceforge.io/)
 - [x] Software composition analysis; ensure dependencies free from vulnerabilities; [OWASP Dependency Check](https://github.com/jeremylong/DependencyCheck)
