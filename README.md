@@ -15,6 +15,7 @@ Playground for me to try out various libraries, tools, and techniques.
 - [x] Test Driven Development; unit testing with coverage backstop; [Surefire](http://maven.apache.org/surefire/maven-surefire-plugin/); [Jacoco](https://www.eclemma.org/jacoco/trunk/doc/maven.html); [JUnit 5](https://junit.org/junit5/); [Assertj](https://assertj.github.io/doc/); [EqualsVerifier](https://jqno.nl/equalsverifier/)
 - [x] Mutation testing; ensuring high-quality unit tests [PITest](https://pitest.org/) 
 - [ ] Consumer-Driven Contract testing; ensure independent paths to production
+- [x] Document your architecture with tests; [ArchUnit](https://www.archunit.org/)
 - [x] Integration testing; [Failsafe](https://maven.apache.org/surefire/maven-failsafe-plugin/)
 - [ ] API documentation; dependable documentation extracted from proven integration tests; [Spring REST Docs](https://spring.io/projects/spring-restdocs). Removed previous version as integration tests had to be run with unit tests and caused issues with coverage.
 - [x] Static analysis; ensure source free from known defects; [PMD](https://pmd.github.io/), [Spotbugs](https://spotbugs.github.io/), [Checkstyle](https://checkstyle.sourceforge.io/)
