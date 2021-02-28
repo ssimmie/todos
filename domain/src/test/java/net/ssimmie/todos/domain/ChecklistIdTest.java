@@ -4,6 +4,7 @@ import static java.util.UUID.randomUUID;
 import static net.ssimmie.todos.domain.ChecklistId.newChecklistId;
 import static org.assertj.core.api.Assertions.assertThat;
 
+import com.jparams.verifier.tostring.ToStringVerifier;
 import java.util.UUID;
 import nl.jqno.equalsverifier.EqualsVerifier;
 import org.junit.jupiter.api.Test;
@@ -33,5 +34,10 @@ class ChecklistIdTest {
     final ChecklistId checkListId = newChecklistId(expectedId);
 
     assertThat(checkListId.getValue()).isEqualTo(expectedId);
+  }
+
+  @Test
+  public void shouldSupportToString() {
+    ToStringVerifier.forClass(ChecklistId.class).verify();
   }
 }

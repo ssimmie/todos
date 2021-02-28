@@ -1,5 +1,6 @@
 package net.ssimmie.todos.application.adapter.in.web;
 
+import static net.ssimmie.todos.application.adapter.in.web.Checklist.toChecklistResourceRepresentation;
 import static net.ssimmie.todos.application.port.in.CreateChecklistCommand.newCreateChecklistCommand;
 import static org.springframework.hateoas.server.reactive.WebFluxLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.reactive.WebFluxLinkBuilder.methodOn;
@@ -31,7 +32,6 @@ public class ChecklistsResource {
 
   @GetMapping
   Mono<RepresentationModel<?>> get() {
-
     return linkTo(methodOn(ChecklistsResource.class).get())
         .withSelfRel()
         .toMono()
@@ -40,18 +40,20 @@ public class ChecklistsResource {
 
   @PostMapping
   Mono<ResponseEntity<EntityModel<Checklist>>> create(@RequestBody final Checklist checklist) {
-    return linkTo(methodOn(ChecklistsResource.class).get())
-        .withSelfRel()
-        .toMono()
-        .flatMap(link -> createChecklist(checklist, link))
+    return Mono.fromSupplier(() -> newCreateChecklistCommand(checklist.getName()))
+        .flatMap(createChecklistUseCase::createChecklist)
+        .flatMap(
+            c ->
+                linkTo(methodOn(ChecklistResource.class).get(c.getId().orElseThrow().getValue()))
+                    .withSelfRel()
+                    .toMono()
+                    .flatMap(toEntityModel(c)))
         .map(toCreated());
   }
 
-  private Mono<EntityModel<Checklist>> createChecklist(final Checklist checklist, final Link link) {
-    return createChecklistUseCase
-        .createChecklist(newCreateChecklistCommand(checklist.getName()))
-        .map(Checklist::toChecklistResourceRepresentation)
-        .map(c -> EntityModel.of(c, link));
+  private Function<Link, Mono<EntityModel<Checklist>>> toEntityModel(
+      final net.ssimmie.todos.domain.Checklist checklist) {
+    return link -> Mono.just(EntityModel.of(toChecklistResourceRepresentation(checklist), link));
   }
 
   private Function<EntityModel<Checklist>, ResponseEntity<EntityModel<Checklist>>> toCreated() {

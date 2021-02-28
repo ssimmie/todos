@@ -1,6 +1,7 @@
 package net.ssimmie.todos.application.adapter.in.web;
 
 import static net.ssimmie.todos.domain.Checklist.namedEmptyChecklist;
+import static org.hamcrest.Matchers.matchesPattern;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 import static org.springframework.hateoas.MediaTypes.HAL_JSON;
@@ -53,6 +54,6 @@ public class ChecklistsResourceIT {
         .jsonPath("$.name")
         .isEqualTo("derp")
         .jsonPath("$._links.self.href")
-        .isEqualTo("/checklists");
+        .value(matchesPattern("/checklists/(.+)"));
   }
 }

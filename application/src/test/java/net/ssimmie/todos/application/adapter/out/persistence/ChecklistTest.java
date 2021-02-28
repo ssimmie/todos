@@ -1,12 +1,12 @@
 package net.ssimmie.todos.application.adapter.out.persistence;
 
-import static java.util.UUID.fromString;
 import static java.util.UUID.randomUUID;
 import static net.ssimmie.todos.application.adapter.out.persistence.Checklist.checklistEntityFromDomain;
 import static net.ssimmie.todos.domain.Checklist.knownNamedEmptyChecklist;
 import static net.ssimmie.todos.domain.Checklist.namedEmptyChecklist;
 import static org.assertj.core.api.Assertions.assertThat;
 
+import com.jparams.verifier.tostring.ToStringVerifier;
 import org.junit.jupiter.api.Test;
 
 class ChecklistTest {
@@ -32,10 +32,7 @@ class ChecklistTest {
   }
 
   @Test
-  public void shouldIncludeAllFieldsInToString() {
-    final var expectedToString = "Checklist{id=e0466611-f67f-4918-bc18-11cf4f579bc4, name='test'}";
-    final var checklist = new Checklist(fromString("e0466611-f67f-4918-bc18-11cf4f579bc4"), "test");
-
-    assertThat(checklist.toString()).isEqualTo(expectedToString);
+  public void shouldIncludeToString() {
+    ToStringVerifier.forClass(Checklist.class).verify();
   }
 }

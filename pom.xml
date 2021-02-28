@@ -127,7 +127,8 @@
     <build-tools.version>20200324.ebee2af</build-tools.version>
     <maven-jxr-plugin.version>3.0.0</maven-jxr-plugin.version>
     <equalsverifier.version>3.5.1</equalsverifier.version>
-    <spotless-maven-plugin.version>2.7.0</spotless-maven-plugin.version>
+    <fmt-maven-plugin.version>2.10</fmt-maven-plugin.version>
+    <to-string-verifier.version>1.4.8</to-string-verifier.version>
   </properties>
   <dependencyManagement>
     <dependencies>
@@ -173,6 +174,12 @@
         <version>${cucumber.version}</version>
       </dependency>
       <dependency>
+        <groupId>com.jparams</groupId>
+        <artifactId>to-string-verifier</artifactId>
+        <version>${to-string-verifier.version}</version>
+        <scope>test</scope>
+      </dependency>
+      <dependency>
         <artifactId>gremlin-shaded</artifactId>
         <groupId>org.apache.tinkerpop</groupId>
         <version>${gremlin-shaded.version}</version>
@@ -188,9 +195,9 @@
     <pluginManagement>
       <plugins>
         <plugin>
-          <artifactId>spotless-maven-plugin</artifactId>
-          <groupId>com.diffplug.spotless</groupId>
-          <version>${spotless-maven-plugin.version}</version>
+          <artifactId>fmt-maven-plugin</artifactId>
+          <groupId>com.coveo</groupId>
+          <version>${fmt-maven-plugin.version}</version>
         </plugin>
         <plugin>
           <artifactId>await-maven-plugin</artifactId>

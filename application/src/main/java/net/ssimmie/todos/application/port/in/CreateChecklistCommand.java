@@ -31,4 +31,9 @@ public class CreateChecklistCommand {
   public String getChecklistName() {
     return checklistName;
   }
+
+  @Override
+  public String toString() {
+    return "CreateChecklistCommand{" + "checklistName='" + checklistName + '\'' + '}';
+  }
 }

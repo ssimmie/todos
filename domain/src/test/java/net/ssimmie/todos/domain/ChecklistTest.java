@@ -4,6 +4,7 @@ import static net.ssimmie.todos.domain.Checklist.knownNamedEmptyChecklist;
 import static net.ssimmie.todos.domain.Checklist.namedEmptyChecklist;
 import static org.assertj.core.api.Assertions.assertThat;
 
+import com.jparams.verifier.tostring.ToStringVerifier;
 import java.util.UUID;
 import org.junit.jupiter.api.Test;
 
@@ -39,5 +40,10 @@ class ChecklistTest {
 
     assertThat(jobs.getId()).map(ChecklistId::getValue).hasValue(expectedId);
     assertThat(jobs.getName().getValue()).isEqualTo(expectedName);
+  }
+
+  @Test
+  public void shouldSupportToString() {
+    ToStringVerifier.forClass(Checklist.class).verify();
   }
 }

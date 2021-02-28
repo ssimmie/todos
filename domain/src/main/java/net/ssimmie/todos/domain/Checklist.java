@@ -29,6 +29,11 @@ public class Checklist {
     return new Checklist(newChecklistId(randomUUID()), newChecklistName(name), emptyList());
   }
 
+  @Override
+  public String toString() {
+    return "Checklist{" + "id=" + id + ", name=" + name + ", todos=" + todos + '}';
+  }
+
   public Optional<ChecklistId> getId() {
     return Optional.ofNullable(id);
   }

@@ -49,7 +49,8 @@ public class ChecklistsResourceTest {
         .assertNext(
             r -> {
               assertThat(r.getStatusCode()).isEqualTo(CREATED);
-              assertThat(r.getHeaders().getLocation()).hasPath("/checklists");
+              assertThat(r.getHeaders().getLocation())
+                  .matches(uri -> uri.getPath().matches("/checklists/(.+)"));
 
               final Checklist actualChecklist = requireNonNull(r.getBody()).getContent();
               assertThat(requireNonNull(actualChecklist).getName()).isEqualTo(expectedChecklist);
