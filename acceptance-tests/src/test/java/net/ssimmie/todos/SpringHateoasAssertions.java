@@ -2,7 +2,9 @@ package net.ssimmie.todos;
 
 import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertLinesMatch;
 
+import java.util.List;
 import java.util.Optional;
 import org.junit.jupiter.api.Assertions;
 import org.springframework.hateoas.Link;
@@ -24,5 +26,10 @@ final class SpringHateoasAssertions<T> {
   void hasLink(final String rel, final String href) {
     Optional<Link> optionalLink = requireNonNull(representationModel).getLink(rel);
     optionalLink.ifPresentOrElse(link -> assertEquals(href, link.getHref()), Assertions::fail);
+  }
+
+  void hasLinkLike(final String rel, final String hrefRegex) {
+    Optional<Link> optionalLink = requireNonNull(representationModel).getLink(rel);
+    optionalLink.ifPresentOrElse(link -> assertLinesMatch(List.of(hrefRegex), List.of(link.getHref())), Assertions::fail);
   }
 }

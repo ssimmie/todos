@@ -38,7 +38,6 @@ class ChecklistIdTest {
 
   @Test
   public void shouldSupportToString() {
-    ToStringVerifier.forClass(ChecklistId.class)
-        .verify();
+    ToStringVerifier.forClass(ChecklistId.class).verify();
   }
 }

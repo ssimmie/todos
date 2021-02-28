@@ -4,6 +4,7 @@ import io.gatling.core.Predef._
 import io.gatling.core.structure.ScenarioBuilder
 import io.gatling.http.Predef._
 import io.gatling.http.protocol.HttpProtocolBuilder
+import net.ssimmie.todos.performance.benchmark.ChecklistResourceAction.getChecklist
 import net.ssimmie.todos.performance.benchmark.ChecklistsResourceAction.createChecklist
 import net.ssimmie.todos.performance.benchmark.HealthCheckAction.healthcheck
 import net.ssimmie.todos.performance.benchmark.RootResourceAction.queryRoot
@@ -18,11 +19,15 @@ class BenchmarkSimulation extends Simulation {
     .acceptHeader("application/json")
     .shareConnections
 
-  val load: ScenarioBuilder = scenario("Todos Core Journey")
-    .exec(healthcheck, queryRoot, createChecklist)
+  val healthCheckJourney: ScenarioBuilder = scenario("Todos Health Check")
+    .exec(healthcheck)
+
+  val coreJourney: ScenarioBuilder = scenario("Todos Core Journey")
+    .exec(queryRoot, createChecklist, getChecklist)
 
   setUp(
-    load.inject(constantUsersPerSec(30).during(1.minutes).randomized)
+    healthCheckJourney.inject(constantUsersPerSec(1).during(1.minutes)),
+    coreJourney.inject(constantUsersPerSec(30).during(1.minutes).randomized)
   ).protocols(
     httpProtocol
   ).assertions(

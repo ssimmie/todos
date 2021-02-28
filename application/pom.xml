@@ -81,6 +81,11 @@
       <artifactId>archunit-junit5</artifactId>
       <scope>test</scope>
     </dependency>
+    <dependency>
+      <groupId>com.jparams</groupId>
+      <artifactId>to-string-verifier</artifactId>
+      <scope>test</scope>
+    </dependency>
   </dependencies>
   <profiles>
     <profile>
@@ -98,22 +103,17 @@
   <build>
     <plugins>
       <plugin>
-        <groupId>com.diffplug.spotless</groupId>
-        <artifactId>spotless-maven-plugin</artifactId>
+        <groupId>com.coveo</groupId>
+        <artifactId>fmt-maven-plugin</artifactId>
         <configuration>
-          <java>
-            <googleJavaFormat>
-              <style>GOOGLE</style>
-              <version>1.9</version>
-            </googleJavaFormat>
-          </java>
+          <filesNamePattern>.*\.java</filesNamePattern>
+          <style>google</style>
         </configuration>
         <executions>
           <execution>
             <goals>
-              <goal>check</goal>
+              <goal>format</goal>
             </goals>
-            <phase>compile</phase>
           </execution>
         </executions>
       </plugin>

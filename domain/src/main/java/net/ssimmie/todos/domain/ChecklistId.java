@@ -34,9 +34,7 @@ public final class ChecklistId {
 
   @Override
   public String toString() {
-    return "ChecklistId{" +
-        "value=" + value +
-        '}';
+    return "ChecklistId{" + "value=" + value + '}';
   }
 
   public UUID getValue() {

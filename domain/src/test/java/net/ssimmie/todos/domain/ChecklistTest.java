@@ -44,7 +44,6 @@ class ChecklistTest {
 
   @Test
   public void shouldSupportToString() {
-    ToStringVerifier.forClass(Checklist.class)
-        .verify();
+    ToStringVerifier.forClass(Checklist.class).verify();
   }
 }

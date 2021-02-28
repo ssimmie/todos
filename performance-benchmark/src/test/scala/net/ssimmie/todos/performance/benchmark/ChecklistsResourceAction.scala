@@ -24,5 +24,6 @@ object ChecklistsResourceAction {
     .header(ContentType, ApplicationJson)
     .header(Accept, "application/hal+json")
     .check(status.is(201))
-    .check(currentLocation.is("http://localhost:8181/checklists")))
+    .check(header("Location").saveAs("checklistUrl"))
+    .check(jsonPath("$._links.self.href").is("${checklistUrl}")))
 }

@@ -31,11 +31,7 @@ public class Checklist {
 
   @Override
   public String toString() {
-    return "Checklist{" +
-        "id=" + id +
-        ", name=" + name +
-        ", todos=" + todos +
-        '}';
+    return "Checklist{" + "id=" + id + ", name=" + name + ", todos=" + todos + '}';
   }
 
   public Optional<ChecklistId> getId() {

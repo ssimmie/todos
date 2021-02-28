@@ -37,8 +37,6 @@ public final class ChecklistName {
 
   @Override
   public String toString() {
-    return "ChecklistName{" +
-        "value='" + value + '\'' +
-        '}';
+    return "ChecklistName{" + "value='" + value + '\'' + '}';
   }
 }
