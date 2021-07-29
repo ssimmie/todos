@@ -10,7 +10,7 @@ networks:
 
 services:
   cassandra:
-    image: 'cassandra'
+    image: 'cassandra:3.0.22'
     ports:
       - "9042:9042"
     networks:
