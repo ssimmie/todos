@@ -27,3 +27,4 @@ Playground for me to try out various libraries, tools, and techniques.
 - [x] Distribution management; [GitHub Packages](https://github.com/features/packages)
 - [ ] Technical documentation; lightweight architecture decision records; [ADR](https://adr.github.io/)
 - [x] Product documentation; [Github Pages](https://pages.github.com/); [Just The Docs](https://pmarsceill.github.io/just-the-docs/)
+- [ ] [Todos Platform](https://github.com/ssimmie/todos-platform); infra as code
