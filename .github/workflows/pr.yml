@@ -17,7 +17,9 @@ jobs:
       - name: setup jdk
         uses: actions/setup-java@v2.3.1
         with:
-          java-version: 11
+          distribution: 'temurin'
+          java-version: '11'
+          cache: 'maven'
           settings-path: ${{ github.workspace }}/.mvn/
 
       - name: cache .m2
