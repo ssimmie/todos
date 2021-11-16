@@ -115,7 +115,7 @@
     <cluecumber-report-plugin.version>2.7.1</cluecumber-report-plugin.version>
     <jacoco-maven-plugin.version>0.8.7</jacoco-maven-plugin.version>
     <pitmp-maven-plugin.version>1.3.7</pitmp-maven-plugin.version>
-    <pitest-junit5-plugin.version>0.12</pitest-junit5-plugin.version>
+    <pitest-junit5-plugin.version>0.15</pitest-junit5-plugin.version>
     <maven-surefire-plugin.version>2.22.2</maven-surefire-plugin.version>
     <cucumber.version>6.9.1</cucumber.version>
     <maven-failsafe-plugin.version>2.22.2</maven-failsafe-plugin.version>
