@@ -14,7 +14,7 @@
     <name>acceptance-tests</name>
     <description>Acceptance Tests for Todos Application</description>
     <properties>
-        <docker-compose-maven-plugin.version>3.0.0</docker-compose-maven-plugin.version>
+        <docker-compose-maven-plugin.version>4.0.0</docker-compose-maven-plugin.version>
     </properties>
     <dependencies>
         <dependency>
