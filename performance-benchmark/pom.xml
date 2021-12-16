@@ -17,7 +17,7 @@
         <gatling-charts-highcharts.version>3.7.2</gatling-charts-highcharts.version>
         <docker-compose-maven-plugin.version>4.0.0</docker-compose-maven-plugin.version>
         <gatling-maven-plugin.version>3.1.2</gatling-maven-plugin.version>
-        <scala-maven-plugin.version>4.5.4</scala-maven-plugin.version>
+        <scala-maven-plugin.version>4.5.6</scala-maven-plugin.version>
     </properties>
     <dependencies>
         <dependency>
