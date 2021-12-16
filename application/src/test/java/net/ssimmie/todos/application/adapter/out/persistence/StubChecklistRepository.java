@@ -99,6 +99,11 @@ final class StubChecklistRepository implements ReactiveChecklistRepository {
   }
 
   @Override
+  public Mono<Void> deleteAllById(Iterable<? extends UUID> uuids) {
+    return null;
+  }
+
+  @Override
   public Mono<Void> deleteAll(final Iterable<? extends Checklist> entities) {
     return null;
   }

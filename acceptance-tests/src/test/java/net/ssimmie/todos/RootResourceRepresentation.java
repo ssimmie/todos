@@ -1,19 +1,20 @@
 package net.ssimmie.todos;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.hateoas.Link;
 import org.springframework.hateoas.RepresentationModel;
 
-public class RootResourceRepresentation extends RepresentationModel<RootResourceRepresentation> {
+import java.util.Map;
+
+public class RootResourceRepresentation  extends RepresentationModel<RootResourceRepresentation>{
 
   public RootResourceRepresentation() {
     super();
   }
 
-  public RootResourceRepresentation(final Link initialLink) {
-    super(initialLink);
+  @JsonProperty("_links")
+  public void setLinks(final Map<String, Link> links) {
+    links.forEach((label, link) ->  add(link.withRel(label)) );
   }
 
-  public RootResourceRepresentation(final Iterable<Link> initialLinks) {
-    super(initialLinks);
-  }
 }
