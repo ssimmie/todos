@@ -107,7 +107,7 @@
     <java.version>11</java.version>
     <downloadSources>true</downloadSources>
     <downloadJavadocs>true</downloadJavadocs>
-    <archunit.version>0.15.0</archunit.version>
+    <archunit.version>0.22.0</archunit.version>
     <gremlin-shaded.version>3.5.1</gremlin-shaded.version>
     <native-protocol.version>1.5.0</native-protocol.version>
     <await-maven-plugin.version>1.2.1</await-maven-plugin.version>
