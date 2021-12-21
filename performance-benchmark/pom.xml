@@ -14,7 +14,7 @@
     <name>performance-benchmark</name>
     <description>Benchmark Performance Tests for Todos Application</description>
     <properties>
-        <gatling-charts-highcharts.version>3.7.2</gatling-charts-highcharts.version>
+        <gatling-charts-highcharts.version>3.7.3</gatling-charts-highcharts.version>
         <docker-compose-maven-plugin.version>4.0.0</docker-compose-maven-plugin.version>
         <gatling-maven-plugin.version>4.0.1</gatling-maven-plugin.version>
         <scala-maven-plugin.version>4.5.6</scala-maven-plugin.version>
