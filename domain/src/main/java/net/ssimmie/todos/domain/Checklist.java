@@ -31,8 +31,8 @@ public class Checklist {
   }
 
   public static Checklist namedChecklist(final String name, final Todo... todos) {
-    return new Checklist(newChecklistId(randomUUID()), newChecklistName(name),
-            Arrays.asList(todos));
+    return new Checklist(
+        newChecklistId(randomUUID()), newChecklistName(name), Arrays.asList(todos));
   }
 
   @Override
