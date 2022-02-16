@@ -5,6 +5,7 @@ import static java.util.UUID.randomUUID;
 import static net.ssimmie.todos.domain.ChecklistId.newChecklistId;
 import static net.ssimmie.todos.domain.ChecklistName.newChecklistName;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -27,6 +28,11 @@ public class Checklist {
 
   public static Checklist namedEmptyChecklist(final String name) {
     return new Checklist(newChecklistId(randomUUID()), newChecklistName(name), emptyList());
+  }
+
+  public static Checklist namedChecklist(final String name, final Todo... todos) {
+    return new Checklist(
+        newChecklistId(randomUUID()), newChecklistName(name), Arrays.asList(todos));
   }
 
   @Override
