@@ -119,7 +119,7 @@
     <maven-surefire-plugin.version>2.22.2</maven-surefire-plugin.version>
     <cucumber.version>7.2.3</cucumber.version>
     <maven-failsafe-plugin.version>2.22.2</maven-failsafe-plugin.version>
-    <dependency-check-maven.version>7.0.1</dependency-check-maven.version>
+    <dependency-check-maven.version>7.0.2</dependency-check-maven.version>
     <maven-pmd-plugin.version>3.16.0</maven-pmd-plugin.version>
     <spotbugs-maven-plugin.version>4.6.0.0</spotbugs-maven-plugin.version>
     <findsecbugs-maven-plugin.version>1.11.0</findsecbugs-maven-plugin.version>
