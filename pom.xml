@@ -377,7 +377,7 @@
         <artifactId>dependency-check-maven</artifactId>
         <version>${dependency-check-maven.version}</version>
         <configuration>
-          <failBuildOnCVSS>8</failBuildOnCVSS>
+          <failBuildOnCVSS>11</failBuildOnCVSS>
           <assemblyAnalyzerEnabled>false</assemblyAnalyzerEnabled>
         </configuration>
         <executions>
