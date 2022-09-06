@@ -129,7 +129,6 @@
     <equalsverifier.version>3.10.1</equalsverifier.version>
     <fmt-maven-plugin.version>2.13</fmt-maven-plugin.version>
     <to-string-verifier.version>1.4.8</to-string-verifier.version>
-    <log4j2.version>2.16.0</log4j2.version>
   </properties>
   <dependencyManagement>
     <dependencies>
@@ -189,13 +188,6 @@
         <artifactId>native-protocol</artifactId>
         <groupId>com.datastax.oss</groupId>
         <version>${native-protocol.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.apache.logging.log4j</groupId>
-        <artifactId>log4j-bom</artifactId>
-        <version>2.18.0</version>
-        <scope>import</scope>
-        <type>pom</type>
       </dependency>
     </dependencies>
   </dependencyManagement>
