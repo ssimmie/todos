@@ -123,7 +123,7 @@
     <maven-pmd-plugin.version>3.19.0</maven-pmd-plugin.version>
     <spotbugs-maven-plugin.version>4.7.1.1</spotbugs-maven-plugin.version>
     <findsecbugs-maven-plugin.version>1.12.0</findsecbugs-maven-plugin.version>
-    <maven-checkstyle-plugin.version>3.1.2</maven-checkstyle-plugin.version>
+    <maven-checkstyle-plugin.version>3.2.0</maven-checkstyle-plugin.version>
     <build-tools.version>20200324.ebee2af</build-tools.version>
     <maven-jxr-plugin.version>3.3.0</maven-jxr-plugin.version>
     <equalsverifier.version>3.10.1</equalsverifier.version>
