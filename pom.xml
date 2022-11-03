@@ -126,7 +126,7 @@
     <maven-checkstyle-plugin.version>3.2.0</maven-checkstyle-plugin.version>
     <build-tools.version>20220906.d911c0d</build-tools.version>
     <maven-jxr-plugin.version>3.3.0</maven-jxr-plugin.version>
-    <equalsverifier.version>3.10.1</equalsverifier.version>
+    <equalsverifier.version>3.11</equalsverifier.version>
     <fmt-maven-plugin.version>2.13</fmt-maven-plugin.version>
     <to-string-verifier.version>1.4.8</to-string-verifier.version>
   </properties>
