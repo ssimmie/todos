@@ -118,7 +118,7 @@
     <pitest-junit5-plugin.version>0.16</pitest-junit5-plugin.version>
     <maven-surefire-plugin.version>2.22.2</maven-surefire-plugin.version>
     <cucumber.version>7.11.1</cucumber.version>
-    <maven-failsafe-plugin.version>2.22.2</maven-failsafe-plugin.version>
+    <maven-failsafe-plugin.version>3.0.0</maven-failsafe-plugin.version>
     <dependency-check-maven.version>8.1.2</dependency-check-maven.version>
     <maven-pmd-plugin.version>3.20.0</maven-pmd-plugin.version>
     <spotbugs-maven-plugin.version>4.7.3.2</spotbugs-maven-plugin.version>
