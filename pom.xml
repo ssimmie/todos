@@ -121,7 +121,7 @@
     <maven-failsafe-plugin.version>3.0.0</maven-failsafe-plugin.version>
     <dependency-check-maven.version>8.2.1</dependency-check-maven.version>
     <maven-pmd-plugin.version>3.20.0</maven-pmd-plugin.version>
-    <spotbugs-maven-plugin.version>4.7.3.2</spotbugs-maven-plugin.version>
+    <spotbugs-maven-plugin.version>4.7.3.3</spotbugs-maven-plugin.version>
     <findsecbugs-maven-plugin.version>1.12.0</findsecbugs-maven-plugin.version>
     <maven-checkstyle-plugin.version>3.2.1</maven-checkstyle-plugin.version>
     <build-tools.version>20220906.d911c0d</build-tools.version>
