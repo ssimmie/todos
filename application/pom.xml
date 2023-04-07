@@ -14,7 +14,7 @@
   <name>application</name>
   <description>Todos application</description>
   <properties>
-    <blockhound-junit-platform.version>1.0.7.RELEASE</blockhound-junit-platform.version>
+    <blockhound-junit-platform.version>1.0.8.RELEASE</blockhound-junit-platform.version>
     <cassandra-unit-spring.version>4.3.1.0</cassandra-unit-spring.version>
     <dockerfile-maven-version>1.4.13</dockerfile-maven-version>
   </properties>
