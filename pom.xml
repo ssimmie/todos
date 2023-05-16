@@ -120,7 +120,7 @@
     <cucumber.version>7.12.0</cucumber.version>
     <maven-failsafe-plugin.version>3.1.0</maven-failsafe-plugin.version>
     <dependency-check-maven.version>8.2.1</dependency-check-maven.version>
-    <maven-pmd-plugin.version>3.20.0</maven-pmd-plugin.version>
+    <maven-pmd-plugin.version>3.21.0</maven-pmd-plugin.version>
     <spotbugs-maven-plugin.version>4.7.3.4</spotbugs-maven-plugin.version>
     <findsecbugs-maven-plugin.version>1.12.0</findsecbugs-maven-plugin.version>
     <maven-checkstyle-plugin.version>3.2.2</maven-checkstyle-plugin.version>
