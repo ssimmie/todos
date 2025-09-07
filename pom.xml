@@ -96,6 +96,7 @@
     </developer>
   </developers>
   <modules>
+    <module>build-tools</module>
     <module>domain</module>
     <module>application</module>
     <module>acceptance-tests</module>
@@ -119,12 +120,11 @@
     <maven-surefire-plugin.version>2.22.2</maven-surefire-plugin.version>
     <cucumber.version>7.12.0</cucumber.version>
     <maven-failsafe-plugin.version>3.1.0</maven-failsafe-plugin.version>
-    <dependency-check-maven.version>8.2.1</dependency-check-maven.version>
+    <dependency-check-maven.version>12.1.0</dependency-check-maven.version>
     <maven-pmd-plugin.version>3.21.0</maven-pmd-plugin.version>
     <spotbugs-maven-plugin.version>4.7.3.4</spotbugs-maven-plugin.version>
     <findsecbugs-maven-plugin.version>1.12.0</findsecbugs-maven-plugin.version>
     <maven-checkstyle-plugin.version>3.2.2</maven-checkstyle-plugin.version>
-    <build-tools.version>20220906.d911c0d</build-tools.version>
     <maven-jxr-plugin.version>3.3.0</maven-jxr-plugin.version>
     <equalsverifier.version>3.14.1</equalsverifier.version>
     <fmt-maven-plugin.version>2.13</fmt-maven-plugin.version>
@@ -135,7 +135,7 @@
       <dependency>
         <artifactId>build-tools</artifactId>
         <groupId>net.ssimmie</groupId>
-        <version>${build-tools.version}</version>
+        <version>${project.version}</version>
       </dependency>
       <dependency>
         <artifactId>equalsverifier</artifactId>
@@ -417,7 +417,7 @@
           <dependency>
             <groupId>net.ssimmie</groupId>
             <artifactId>build-tools</artifactId>
-            <version>${build-tools.version}</version>
+            <version>${project.version}</version>
           </dependency>
         </dependencies>
         <configuration>
