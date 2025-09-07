@@ -1,9 +1,9 @@
 package net.ssimmie.todos.application.port.in;
 
-import javax.validation.ConstraintViolationException;
-import javax.validation.Validation;
-import javax.validation.Validator;
-import javax.validation.constraints.NotBlank;
+import jakarta.validation.ConstraintViolationException;
+import jakarta.validation.Validation;
+import jakarta.validation.Validator;
+import jakarta.validation.constraints.NotBlank;
 
 public class CreateChecklistCommand {
 

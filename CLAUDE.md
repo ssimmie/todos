@@ -1,10 +1,10 @@
 # Development Notes
 
-## Project Stability Assessment (2025-09-07)
+## Project Stability Assessment (2025-09-07) - UPDATED AFTER SPRING BOOT UPGRADE
 
-### ✅ **STABLE BASE - READY FOR DEPENDENCY UPGRADES**
+### ✅ **UPGRADED AND STABLE - SPRING BOOT 3.2.12 + JAVA 17**
 
-The project has been assessed and is in a stable state, suitable for dependency upgrades.
+The project has been successfully upgraded to Spring Boot 3.2.12 with Java 17, resolving the ProcessorMetrics container issues.
 
 ### Build Status by Module
 
@@ -94,7 +94,9 @@ mvn test
 ## Project Structure
 
 - **build-tools/**: Local module containing checkstyle configuration (eliminates external dependency)
-- Updated ErrorProne to version 2.31.0 (latest compatible with Java 11)
+- Spring Boot upgraded from 2.7.5 to 3.2.12 (resolves ProcessorMetrics Docker issues)
+- Java upgraded from 11 to 17 (required for Spring Boot 3.x)
+- ErrorProne updated to version 2.36.0 (Java 17 compatible, available via profile)
 - Upgraded OWASP dependency check to version 12.1.0
 
 ## Quick Build Commands
@@ -109,6 +111,9 @@ mvn clean compile test -pl application
 
 # Full build (slower due to dependency check)
 mvn clean install
+
+# Enable ErrorProne static analysis (optional - Java 17 required)
+mvn clean compile -Derrorprone=true
 ```
 
 ## **UPDATED: Complete Stability Assessment**
