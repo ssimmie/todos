@@ -1,0 +1,22 @@
+{
+  "resources": {
+    "includes": [
+      {
+        "pattern": "\\Qapplication.properties\\E"
+      },
+      {
+        "pattern": "\\Qapplication.yml\\E"
+      },
+      {
+        "pattern": "\\Qapplication-*.yml\\E"
+      },
+      {
+        "pattern": "\\Qapplication-*.properties\\E"
+      },
+      {
+        "pattern": "\\Qcom/datastax/oss/driver/internal/core/config/.*\\E"
+      }
+    ]
+  },
+  "bundles": []
+}

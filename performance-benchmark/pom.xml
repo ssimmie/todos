@@ -18,6 +18,7 @@
         <docker-compose-maven-plugin.version>4.0.0</docker-compose-maven-plugin.version>
         <gatling-maven-plugin.version>4.3.4</gatling-maven-plugin.version>
         <scala-maven-plugin.version>4.8.1</scala-maven-plugin.version>
+        <docker.compose.file>docker-compose.yml</docker.compose.file>
     </properties>
     <dependencies>
         <dependency>
@@ -47,7 +48,7 @@
                             <goal>up</goal>
                         </goals>
                         <configuration>
-                            <composeFile>${project.basedir}/../config/docker-compose.yml</composeFile>
+                            <composeFile>${project.basedir}/../config/${docker.compose.file}</composeFile>
                             <detachedMode>true</detachedMode>
                         </configuration>
                     </execution>
@@ -58,7 +59,7 @@
                             <goal>down</goal>
                         </goals>
                         <configuration>
-                            <composeFile>${project.basedir}/../config/docker-compose.yml</composeFile>
+                            <composeFile>${project.basedir}/../config/${docker.compose.file}</composeFile>
                             <removeVolumes>true</removeVolumes>
                         </configuration>
                     </execution>
