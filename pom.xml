@@ -460,7 +460,7 @@
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-checkstyle-plugin</artifactId>
         <configuration>
-          <configLocation>todos/checkstyle.xml</configLocation>
+          <configLocation>ssimmie/checkstyle.xml</configLocation>
         </configuration>
         <reportSets>
           <reportSet>
