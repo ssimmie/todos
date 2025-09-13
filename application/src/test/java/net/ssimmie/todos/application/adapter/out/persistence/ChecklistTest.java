@@ -5,8 +5,12 @@ import static net.ssimmie.todos.application.adapter.out.persistence.Checklist.ch
 import static net.ssimmie.todos.domain.Checklist.knownNamedEmptyChecklist;
 import static net.ssimmie.todos.domain.Checklist.namedEmptyChecklist;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 import com.jparams.verifier.tostring.ToStringVerifier;
+import java.util.Optional;
+import net.ssimmie.todos.domain.ChecklistName;
 import org.junit.jupiter.api.Test;
 
 class ChecklistTest {
@@ -28,6 +32,20 @@ class ChecklistTest {
         checklistEntityFromDomain(knownNamedEmptyChecklist(expectedId, expectedName));
 
     assertThat(checklist.getId()).isEqualTo(expectedId);
+    assertThat(checklist.getName()).isEqualTo(expectedName);
+  }
+
+  @Test
+  public void shouldCreateEntityFromDomainTypeWithoutId() {
+    final var expectedName = "test";
+    final net.ssimmie.todos.domain.Checklist mockChecklist =
+        mock(net.ssimmie.todos.domain.Checklist.class);
+    when(mockChecklist.getId()).thenReturn(Optional.empty());
+    when(mockChecklist.getName()).thenReturn(ChecklistName.newChecklistName(expectedName));
+
+    final var checklist = checklistEntityFromDomain(mockChecklist);
+
+    assertThat(checklist.getId()).isNotNull();
     assertThat(checklist.getName()).isEqualTo(expectedName);
   }
 

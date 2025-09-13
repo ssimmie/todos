@@ -39,6 +39,10 @@ public class TasksResource {
   }
 
   private Function<EntityModel<Task>, ResponseEntity<EntityModel<Task>>> toCreatedEntity() {
-    return e -> created(e.getLink("self").orElseThrow().toUri()).body(e);
+    return this::toCreatedResponse;
+  }
+
+  private ResponseEntity<EntityModel<Task>> toCreatedResponse(EntityModel<Task> e) {
+    return created(e.getLink("self").orElseThrow().toUri()).body(e);
   }
 }

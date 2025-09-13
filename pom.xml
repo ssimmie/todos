@@ -6,7 +6,7 @@
   <parent>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-parent</artifactId>
-    <version>2.7.5</version>
+    <version>3.5.5</version>
     <relativePath/>
   </parent>
   <groupId>net.ssimmie</groupId>
@@ -96,6 +96,7 @@
     </developer>
   </developers>
   <modules>
+    <module>build-tools</module>
     <module>domain</module>
     <module>application</module>
     <module>acceptance-tests</module>
@@ -104,30 +105,29 @@
   <properties>
     <github.user>ssimmie</github.user>
     <github.repo>todos</github.repo>
-    <java.version>11</java.version>
+    <java.version>17</java.version>
     <downloadSources>true</downloadSources>
     <downloadJavadocs>true</downloadJavadocs>
-    <archunit.version>1.0.1</archunit.version>
+    <archunit.version>1.4.1</archunit.version>
     <gremlin-shaded.version>3.6.4</gremlin-shaded.version>
     <native-protocol.version>1.5.1</native-protocol.version>
     <await-maven-plugin.version>1.2.2</await-maven-plugin.version>
-    <maven-compiler-plugin.version>3.11.0</maven-compiler-plugin.version>
+    <maven-compiler-plugin.version>3.14.0</maven-compiler-plugin.version>
     <cluecumber-report-plugin.version>2.9.4</cluecumber-report-plugin.version>
-    <jacoco-maven-plugin.version>0.8.10</jacoco-maven-plugin.version>
-    <pitmp-maven-plugin.version>1.3.7</pitmp-maven-plugin.version>
-    <pitest-junit5-plugin.version>0.16</pitest-junit5-plugin.version>
-    <maven-surefire-plugin.version>2.22.2</maven-surefire-plugin.version>
-    <cucumber.version>7.12.0</cucumber.version>
-    <maven-failsafe-plugin.version>3.1.0</maven-failsafe-plugin.version>
-    <dependency-check-maven.version>8.2.1</dependency-check-maven.version>
+    <jacoco-maven-plugin.version>0.8.13</jacoco-maven-plugin.version>
+    <pitest-maven-plugin.version>1.19.1</pitest-maven-plugin.version>
+    <pitest-junit5-plugin.version>1.2.2</pitest-junit5-plugin.version>
+    <maven-surefire-plugin.version>3.5.3</maven-surefire-plugin.version>
+    <cucumber.version>7.23.0</cucumber.version>
+    <maven-failsafe-plugin.version>3.5.3</maven-failsafe-plugin.version>
+    <dependency-check-maven.version>12.1.0</dependency-check-maven.version>
     <maven-pmd-plugin.version>3.21.0</maven-pmd-plugin.version>
-    <spotbugs-maven-plugin.version>4.7.3.4</spotbugs-maven-plugin.version>
+    <spotbugs-maven-plugin.version>4.9.3.0</spotbugs-maven-plugin.version>
     <findsecbugs-maven-plugin.version>1.12.0</findsecbugs-maven-plugin.version>
-    <maven-checkstyle-plugin.version>3.2.2</maven-checkstyle-plugin.version>
-    <build-tools.version>20220906.d911c0d</build-tools.version>
-    <maven-jxr-plugin.version>3.3.0</maven-jxr-plugin.version>
-    <equalsverifier.version>3.14.1</equalsverifier.version>
-    <fmt-maven-plugin.version>2.13</fmt-maven-plugin.version>
+    <maven-checkstyle-plugin.version>3.3.1</maven-checkstyle-plugin.version>
+    <maven-jxr-plugin.version>3.5.0</maven-jxr-plugin.version>
+    <equalsverifier.version>4.0.6</equalsverifier.version>
+    <fmt-maven-plugin.version>2.25</fmt-maven-plugin.version>
     <to-string-verifier.version>1.4.8</to-string-verifier.version>
   </properties>
   <dependencyManagement>
@@ -135,7 +135,7 @@
       <dependency>
         <artifactId>build-tools</artifactId>
         <groupId>net.ssimmie</groupId>
-        <version>${build-tools.version}</version>
+        <version>${project.version}</version>
       </dependency>
       <dependency>
         <artifactId>equalsverifier</artifactId>
@@ -196,7 +196,7 @@
       <plugins>
         <plugin>
           <artifactId>fmt-maven-plugin</artifactId>
-          <groupId>com.coveo</groupId>
+          <groupId>com.spotify.fmt</groupId>
           <version>${fmt-maven-plugin.version}</version>
         </plugin>
         <plugin>
@@ -231,16 +231,7 @@
               <compilerArgument>-Xlint:all</compilerArgument>
               <compilerArgs>
                  <arg>-Xlint:all</arg>
-                 <arg>-XDcompilePolicy=simple</arg>
-                 <arg>-Xplugin:ErrorProne</arg>
               </compilerArgs>
-              <annotationProcessorPaths>
-                <path>
-                  <groupId>com.google.errorprone</groupId>
-                  <artifactId>error_prone_core</artifactId>
-                  <version>2.18.0</version>
-                </path>
-              </annotationProcessorPaths>
           </configuration>
       </plugin>
       <plugin>
@@ -265,6 +256,11 @@
         <groupId>org.jacoco</groupId>
         <artifactId>jacoco-maven-plugin</artifactId>
         <version>${jacoco-maven-plugin.version}</version>
+        <configuration>
+          <excludes>
+            <exclude>**/*Application.class</exclude>
+          </excludes>
+        </configuration>
         <executions>
           <execution>
             <id>default-prepare-agent</id>
@@ -301,14 +297,10 @@
         </executions>
       </plugin>
       <plugin>
-        <groupId>eu.stamp-project</groupId>
-        <artifactId>pitmp-maven-plugin</artifactId>
-        <version>${pitmp-maven-plugin.version}</version>
+        <groupId>org.pitest</groupId>
+        <artifactId>pitest-maven</artifactId>
+        <version>${pitest-maven-plugin.version}</version>
         <configuration>
-          <targetModules>
-            <targetModule>domain</targetModule>
-            <targetModule>application</targetModule>
-          </targetModules>
           <skip>false</skip>
           <failWhenNoMutations>false</failWhenNoMutations>
         </configuration>
@@ -322,7 +314,7 @@
         <executions>
           <execution>
             <goals>
-              <goal>run</goal>
+              <goal>mutationCoverage</goal>
             </goals>
           </execution>
         </executions>
@@ -417,7 +409,7 @@
           <dependency>
             <groupId>net.ssimmie</groupId>
             <artifactId>build-tools</artifactId>
-            <version>${build-tools.version}</version>
+            <version>${project.version}</version>
           </dependency>
         </dependencies>
         <configuration>
@@ -480,4 +472,47 @@
       </plugin>
     </plugins>
   </reporting>
+  <profiles>
+    <profile>
+      <id>errorprone</id>
+      <activation>
+        <property>
+          <name>errorprone</name>
+        </property>
+      </activation>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-compiler-plugin</artifactId>
+            <configuration>
+              <compilerArgument>-Xlint:all</compilerArgument>
+              <compilerArgs>
+                <arg>-Xlint:all</arg>
+                <arg>-XDcompilePolicy=simple</arg>
+                <arg>-Xplugin:ErrorProne</arg>
+                <arg>--add-exports=jdk.compiler/com.sun.tools.javac.api=ALL-UNNAMED</arg>
+                <arg>--add-exports=jdk.compiler/com.sun.tools.javac.code=ALL-UNNAMED</arg>
+                <arg>--add-exports=jdk.compiler/com.sun.tools.javac.comp=ALL-UNNAMED</arg>
+                <arg>--add-exports=jdk.compiler/com.sun.tools.javac.file=ALL-UNNAMED</arg>
+                <arg>--add-exports=jdk.compiler/com.sun.tools.javac.main=ALL-UNNAMED</arg>
+                <arg>--add-exports=jdk.compiler/com.sun.tools.javac.model=ALL-UNNAMED</arg>
+                <arg>--add-exports=jdk.compiler/com.sun.tools.javac.parser=ALL-UNNAMED</arg>
+                <arg>--add-exports=jdk.compiler/com.sun.tools.javac.processing=ALL-UNNAMED</arg>
+                <arg>--add-exports=jdk.compiler/com.sun.tools.javac.tree=ALL-UNNAMED</arg>
+                <arg>--add-exports=jdk.compiler/com.sun.tools.javac.util=ALL-UNNAMED</arg>
+              </compilerArgs>
+              <annotationProcessorPaths>
+                <path>
+                  <groupId>com.google.errorprone</groupId>
+                  <artifactId>error_prone_core</artifactId>
+                  <version>2.36.0</version>
+                </path>
+              </annotationProcessorPaths>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
 </project>

@@ -15,7 +15,6 @@
   <description>Todos application</description>
   <properties>
     <blockhound-junit-platform.version>1.0.8.RELEASE</blockhound-junit-platform.version>
-    <cassandra-unit-spring.version>4.3.1.0</cassandra-unit-spring.version>
     <dockerfile-maven-version>1.4.13</dockerfile-maven-version>
   </properties>
   <dependencies>
@@ -71,9 +70,18 @@
       <scope>test</scope>
     </dependency>
     <dependency>
-      <artifactId>cassandra-unit-spring</artifactId>
-      <groupId>org.cassandraunit</groupId>
-      <version>${cassandra-unit-spring.version}</version>
+      <groupId>org.testcontainers</groupId>
+      <artifactId>testcontainers</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.testcontainers</groupId>
+      <artifactId>cassandra</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.testcontainers</groupId>
+      <artifactId>junit-jupiter</artifactId>
       <scope>test</scope>
     </dependency>
     <dependency>
@@ -103,7 +111,7 @@
   <build>
     <plugins>
       <plugin>
-        <groupId>com.coveo</groupId>
+        <groupId>com.spotify.fmt</groupId>
         <artifactId>fmt-maven-plugin</artifactId>
         <configuration>
           <filesNamePattern>.*\.java</filesNamePattern>
