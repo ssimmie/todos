@@ -15,27 +15,21 @@ services:
       - "9042:9042"
     networks:
       - backend-tier
-    healthcheck:
-      test: ["CMD", "cqlsh", "-e", "describe keyspaces"]
-      interval: 30s
-      timeout: 10s
-      retries: 5
 
   todos:
     environment:
       SPRING_DATA_CASSANDRA_CONTACT_POINTS: cassandra
       SPRING_DATA_CASSANDRA_LOCAL_DATACENTER: datacenter1
       SPRING_DATA_CASSANDRA_KEYSPACE_NAME: todos
-    image: "todos-application:native"
+    image: "docker.pkg.github.com/ssimmie/artifact-repository/todos-application:latest"
+    entrypoint: wait-for-it cassandra:9042 -- java -jar /todos.jar
     ports:
       - 8181:8181
     networks:
       - web-tier
       - backend-tier
     depends_on:
-      cassandra:
-        condition: service_healthy
-    restart: on-failure
+     - cassandra
 
   prometheus:
     image: "prom/prometheus"

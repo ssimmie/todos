@@ -152,7 +152,8 @@
       <plugin>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-maven-plugin</artifactId>
-        <!-- Native image build execution - temporarily disabled due to initialization issue
+        <!-- Native image build execution - disabled due to class initialization issue
+             Use manual build: ./mvnw -pl application spring-boot:build-image -Dspring-boot.build-image.imageName=todos-application:native -Dspring-boot.build-image.env.BP_NATIVE_IMAGE=true -DskipTests
         <executions>
           <execution>
             <id>build-native-image</id>
