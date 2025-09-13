@@ -6,22 +6,23 @@
     <parent>
         <groupId>net.ssimmie</groupId>
         <artifactId>todos</artifactId>
-        <version>0.0.1-SNAPSHOT</version>
+        <version>0.1.0-SNAPSHOT</version>
     </parent>
     <groupId>net.ssimmie.todos</groupId>
     <artifactId>acceptance-tests</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.1.0-SNAPSHOT</version>
     <name>acceptance-tests</name>
     <description>Acceptance Tests for Todos Application</description>
     <properties>
         <docker-compose-maven-plugin.version>4.0.0</docker-compose-maven-plugin.version>
+        <docker.compose.file>docker-compose.yml</docker.compose.file>
     </properties>
     <dependencies>
         <dependency>
             <artifactId>application</artifactId>
             <groupId>net.ssimmie.todos</groupId>
             <scope>provided</scope>
-            <version>0.0.1-SNAPSHOT</version>
+            <version>0.1.0-SNAPSHOT</version>
         </dependency>
         <dependency>
             <artifactId>junit-jupiter</artifactId>
@@ -53,7 +54,7 @@
                             <goal>up</goal>
                         </goals>
                         <configuration>
-                            <composeFile>${project.basedir}/../config/docker-compose.yml</composeFile>
+                            <composeFile>${project.basedir}/../config/${docker.compose.file}</composeFile>
                             <detachedMode>true</detachedMode>
                         </configuration>
                     </execution>
@@ -64,7 +65,7 @@
                             <goal>down</goal>
                         </goals>
                         <configuration>
-                            <composeFile>${project.basedir}/../config/docker-compose.yml</composeFile>
+                            <composeFile>${project.basedir}/../config/${docker.compose.file}</composeFile>
                             <removeVolumes>true</removeVolumes>
                         </configuration>
                     </execution>

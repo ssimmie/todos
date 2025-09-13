@@ -1,0 +1,17 @@
+[
+  {
+    "name": "com.datastax.oss.driver.internal.core.session.DefaultSession",
+    "allDeclaredConstructors": true,
+    "allDeclaredMethods": true
+  },
+  {
+    "name": "com.datastax.oss.driver.internal.core.cql.DefaultPrepareRequest",
+    "allDeclaredConstructors": true,
+    "allDeclaredMethods": true
+  },
+  {
+    "name": "java.util.UUID",
+    "allDeclaredConstructors": true,
+    "allDeclaredMethods": true
+  }
+]

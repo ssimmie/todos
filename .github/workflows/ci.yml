@@ -14,6 +14,17 @@ jobs:
       - name: install libhyperic-sigar
         run: sudo apt-get install libhyperic-sigar-java
 
+      - name: setup docker compose compatibility
+        run: |
+          # Create docker-compose symlink for compatibility with maven plugin
+          sudo ln -sf /usr/bin/docker /usr/local/bin/docker-compose
+          # Create a wrapper script that translates docker-compose commands to docker compose
+          sudo tee /usr/local/bin/docker-compose > /dev/null <<'EOF'
+          #!/bin/bash
+          exec docker compose "$@"
+          EOF
+          sudo chmod +x /usr/local/bin/docker-compose
+
       - name: fetch head
         uses: actions/checkout@v4
 
@@ -35,7 +46,7 @@ jobs:
             ${{ runner.os }}-maven-
 
       - name: maven deploy
-        run: ./mvnw -B -U clean deploy -s $GITHUB_WORKSPACE/.mvn/settings.xml -Ddockerfile.username=ssimmie -Ddockerfile.password=${{secrets.serverpass}}
+        run: ./mvnw -B clean deploy -s $GITHUB_WORKSPACE/.mvn/settings.xml -Ddockerfile.username=ssimmie -Ddockerfile.password=${{secrets.serverpass}}
         env:
           GITHUB_TOKEN: ${{secrets.serverpass}}
 
