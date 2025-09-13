@@ -9,6 +9,7 @@
     <version>0.1.0-SNAPSHOT</version>
   </parent>
   <artifactId>build-tools</artifactId>
+  <groupId>net.ssimmie.todos</groupId>
   <packaging>jar</packaging>
   <name>build-tools</name>
   <description>Common build tool configurations. Includes custom rules for Checkstyle.</description>

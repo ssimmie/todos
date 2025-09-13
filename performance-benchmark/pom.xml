@@ -17,7 +17,6 @@
         <gatling-charts-highcharts.version>3.9.5</gatling-charts-highcharts.version>
         <docker-compose-maven-plugin.version>4.0.0</docker-compose-maven-plugin.version>
         <gatling-maven-plugin.version>4.3.4</gatling-maven-plugin.version>
-        <scala-maven-plugin.version>4.8.1</scala-maven-plugin.version>
         <docker.compose.file>docker-compose.yml</docker.compose.file>
     </properties>
     <dependencies>
@@ -34,7 +33,6 @@
         </dependency>
     </dependencies>
     <build>
-        <testSourceDirectory>src/test/scala</testSourceDirectory>
         <plugins>
             <plugin>
                 <groupId>com.dkanejs.maven.plugins</groupId>
@@ -88,31 +86,6 @@
                         </httpConnection>
                     </httpConnections>
                 </configuration>
-            </plugin>
-            <plugin>
-                <groupId>net.alchim31.maven</groupId>
-                <artifactId>scala-maven-plugin</artifactId>
-                <version>${scala-maven-plugin.version}</version>
-                <configuration>
-                    <jvmArgs>
-                        <jvmArg>-Xss100M</jvmArg>
-                    </jvmArgs>
-                    <args>
-                        <arg>-target:jvm-1.8</arg>
-                        <arg>-deprecation</arg>
-                        <arg>-feature</arg>
-                        <arg>-unchecked</arg>
-                        <arg>-language:implicitConversions</arg>
-                        <arg>-language:postfixOps</arg>
-                    </args>
-                </configuration>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>testCompile</goal>
-                        </goals>
-                    </execution>
-                </executions>
             </plugin>
             <plugin>
                 <groupId>io.gatling</groupId>

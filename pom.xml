@@ -134,7 +134,7 @@
     <dependencies>
       <dependency>
         <artifactId>build-tools</artifactId>
-        <groupId>net.ssimmie</groupId>
+        <groupId>net.ssimmie.todos</groupId>
         <version>${project.version}</version>
       </dependency>
       <dependency>
@@ -407,7 +407,7 @@
         <version>${maven-checkstyle-plugin.version}</version>
         <dependencies>
           <dependency>
-            <groupId>net.ssimmie</groupId>
+            <groupId>net.ssimmie.todos</groupId>
             <artifactId>build-tools</artifactId>
             <version>${project.version}</version>
           </dependency>
