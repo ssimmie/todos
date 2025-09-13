@@ -31,7 +31,7 @@ jobs:
             ${{ runner.os }}-maven-
 
       - name: maven build
-        run: ./mvnw -B -U verify -s $GITHUB_WORKSPACE/.mvn/settings.xml
+        run: ./mvnw -B verify -s $GITHUB_WORKSPACE/.mvn/settings.xml
         env:
           GITHUB_TOKEN: ${{secrets.serverpass}}
 
