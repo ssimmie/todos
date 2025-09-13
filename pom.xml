@@ -11,7 +11,7 @@
   </parent>
   <groupId>net.ssimmie</groupId>
   <artifactId>todos</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>0.1.0-SNAPSHOT</version>
   <packaging>pom</packaging>
   <description>Todos product</description>
   <url>https://github.com/${github.user}/${github.repo}</url>
