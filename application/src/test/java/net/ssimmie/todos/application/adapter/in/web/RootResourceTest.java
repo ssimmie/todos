@@ -24,8 +24,6 @@ public class RootResourceTest {
 
   @Test
   public void shouldReturnChecklistsLink() {
-    final RootResource rootResource = new RootResource();
-
     final Mono<RepresentationModel<?>> rootResourceRepresentationMono = new RootResource().get();
 
     StepVerifier.create(rootResourceRepresentationMono)
@@ -39,8 +37,6 @@ public class RootResourceTest {
 
   @Test
   public void shouldReturnTasksLink() {
-    final RootResource rootResource = new RootResource();
-
     final Mono<RepresentationModel<?>> rootResourceRepresentationMono = new RootResource().get();
 
     StepVerifier.create(rootResourceRepresentationMono)

@@ -57,6 +57,10 @@ public class ChecklistsResource {
   }
 
   private Function<EntityModel<Checklist>, ResponseEntity<EntityModel<Checklist>>> toCreated() {
-    return e -> ResponseEntity.created(e.getLink("self").orElseThrow().toUri()).body(e);
+    return this::toCreatedResponse;
+  }
+
+  private ResponseEntity<EntityModel<Checklist>> toCreatedResponse(EntityModel<Checklist> e) {
+    return ResponseEntity.created(e.getLink("self").orElseThrow().toUri()).body(e);
   }
 }
