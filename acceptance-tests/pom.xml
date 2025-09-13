@@ -6,11 +6,11 @@
     <parent>
         <groupId>net.ssimmie</groupId>
         <artifactId>todos</artifactId>
-        <version>0.0.1-SNAPSHOT</version>
+        <version>0.1.0-SNAPSHOT</version>
     </parent>
     <groupId>net.ssimmie.todos</groupId>
     <artifactId>acceptance-tests</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.1.0-SNAPSHOT</version>
     <name>acceptance-tests</name>
     <description>Acceptance Tests for Todos Application</description>
     <properties>
@@ -22,7 +22,7 @@
             <artifactId>application</artifactId>
             <groupId>net.ssimmie.todos</groupId>
             <scope>provided</scope>
-            <version>0.0.1-SNAPSHOT</version>
+            <version>0.1.0-SNAPSHOT</version>
         </dependency>
         <dependency>
             <artifactId>junit-jupiter</artifactId>
