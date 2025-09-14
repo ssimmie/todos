@@ -360,9 +360,6 @@
           <!-- Cache and error handling -->
           <nvdValidForHours>12</nvdValidForHours>
           <autoUpdate>true</autoUpdate>
-          <cveValidForHours>12</cveValidForHours>
-          <!-- Skip on error to prevent build failure from API issues -->
-          <skipOnError>true</skipOnError>
         </configuration>
         <executions>
           <execution>
