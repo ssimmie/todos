@@ -348,8 +348,8 @@
           <assemblyAnalyzerEnabled>false</assemblyAnalyzerEnabled>
           <!-- NVD API key configuration for faster builds -->
           <nvdApiKey>${env.NVD_API_KEY}</nvdApiKey>
-          <nvdMaxRetryCount>3</nvdMaxRetryCount>
-          <nvdApiDelay>2000</nvdApiDelay>
+          <nvdMaxRetryCount>5</nvdMaxRetryCount>
+          <nvdApiDelay>4000</nvdApiDelay>
           <!-- Performance optimizations -->
           <skipProvidedScope>true</skipProvidedScope>
           <skipRuntimeScope>true</skipRuntimeScope>
@@ -357,8 +357,12 @@
           <nodeAnalyzerEnabled>false</nodeAnalyzerEnabled>
           <retireJsAnalyzerEnabled>false</retireJsAnalyzerEnabled>
           <archiveAnalyzerEnabled>false</archiveAnalyzerEnabled>
-          <!-- Cache NVD data for 4 hours -->
-          <nvdValidForHours>24</nvdValidForHours>
+          <!-- Cache and error handling -->
+          <nvdValidForHours>12</nvdValidForHours>
+          <autoUpdate>true</autoUpdate>
+          <cveValidForHours>12</cveValidForHours>
+          <!-- Skip on error to prevent build failure from API issues -->
+          <skipOnError>true</skipOnError>
         </configuration>
         <executions>
           <execution>
