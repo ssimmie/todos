@@ -39,8 +39,15 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-maven-
 
+      - name: clean owasp data directory
+        run: |
+          echo "Cleaning any potentially corrupted OWASP data directories..."
+          rm -rf ~/.m2/repository/org/owasp/dependency-check-data/
+          rm -rf ./target/dependency-check-data/
+          mkdir -p ./target/dependency-check-data/
+
       - name: maven build
-        run: ./mvnw -B verify -s $GITHUB_WORKSPACE/.mvn/settings.xml -Dowasp.dependency.check.skip=true
+        run: ./mvnw -B verify -s $GITHUB_WORKSPACE/.mvn/settings.xml
         env:
           GITHUB_TOKEN: ${{secrets.serverpass}}
           NVD_API_KEY: ${{secrets.NVD_API_KEY}}

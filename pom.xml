@@ -338,6 +338,11 @@
           <!-- Cache and error handling -->
           <nvdValidForHours>12</nvdValidForHours>
           <autoUpdate>true</autoUpdate>
+          <!-- Explicit data directory to avoid corruption -->
+          <dataDirectory>${project.build.directory}/dependency-check-data</dataDirectory>
+          <!-- Connection timeout settings -->
+          <connectionTimeout>120000</connectionTimeout>
+          <readTimeout>120000</readTimeout>
         </configuration>
         <executions>
           <execution>
