@@ -34,30 +34,8 @@
     <connection>scm:git:git@github.com:${github.user}/${github.repo}.git</connection>
     <developerConnection>scm:git:git@github.com:${github.user}/${github.repo}.git</developerConnection>
   </scm>
-  <repositories>
-    <repository>
-      <id>central</id>
-      <name>Maven Central</name>
-      <url>https://repo1.maven.org/maven2</url>
-      <releases>
-        <enabled>true</enabled>
-      </releases>
-      <snapshots>
-        <enabled>false</enabled>
-      </snapshots>
-    </repository>
-    <repository>
-      <id>github</id>
-      <name>GitHub Apache Maven Packages</name>
-      <url>https://maven.pkg.github.com/ssimmie/artifact-repository</url>
-      <releases>
-        <enabled>true</enabled>
-      </releases>
-      <snapshots>
-        <enabled>true</enabled>
-      </snapshots>
-    </repository>
-  </repositories>
+  <!-- Remove GitHub repository that was causing 401 authentication issues -->
+  <!-- Maven Central is used by default, no need to explicitly declare -->
   <pluginRepositories>
     <pluginRepository>
         <id>central</id>
