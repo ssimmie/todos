@@ -46,3 +46,4 @@ jobs:
         run: ./mvnw -B -U verify -s $GITHUB_WORKSPACE/.mvn/settings.xml
         env:
           GITHUB_TOKEN: ${{secrets.serverpass}}
+          NVD_API_KEY: ${{secrets.NVD_API_KEY}}
