@@ -346,6 +346,19 @@
         <configuration>
           <failBuildOnCVSS>11</failBuildOnCVSS>
           <assemblyAnalyzerEnabled>false</assemblyAnalyzerEnabled>
+          <!-- NVD API key configuration for faster builds -->
+          <nvdApiKey>${env.NVD_API_KEY}</nvdApiKey>
+          <nvdMaxRetryCount>3</nvdMaxRetryCount>
+          <nvdApiDelay>2000</nvdApiDelay>
+          <!-- Performance optimizations -->
+          <skipProvidedScope>true</skipProvidedScope>
+          <skipRuntimeScope>true</skipRuntimeScope>
+          <skipTestScope>true</skipTestScope>
+          <nodeAnalyzerEnabled>false</nodeAnalyzerEnabled>
+          <retireJsAnalyzerEnabled>false</retireJsAnalyzerEnabled>
+          <archiveAnalyzerEnabled>false</archiveAnalyzerEnabled>
+          <!-- Cache NVD data for 4 hours -->
+          <cveValidForHours>4</cveValidForHours>
         </configuration>
         <executions>
           <execution>
