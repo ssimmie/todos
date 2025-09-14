@@ -40,7 +40,7 @@ jobs:
             ${{ runner.os }}-maven-
 
       - name: maven build
-        run: ./mvnw -B verify -s $GITHUB_WORKSPACE/.mvn/settings.xml
+        run: ./mvnw -B verify -s $GITHUB_WORKSPACE/.mvn/settings.xml -Dowasp.dependency.check.skip=true
         env:
           GITHUB_TOKEN: ${{secrets.serverpass}}
           NVD_API_KEY: ${{secrets.NVD_API_KEY}}

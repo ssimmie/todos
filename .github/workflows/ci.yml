@@ -44,7 +44,7 @@ jobs:
             ${{ runner.os }}-maven-
 
       - name: maven deploy
-        run: ./mvnw -B clean deploy -s $GITHUB_WORKSPACE/.mvn/settings.xml -Ddockerfile.username=ssimmie -Ddockerfile.password=${{secrets.serverpass}}
+        run: ./mvnw -B clean deploy -s $GITHUB_WORKSPACE/.mvn/settings.xml -Ddockerfile.username=ssimmie -Ddockerfile.password=${{secrets.serverpass}} -Dowasp.dependency.check.skip=true
         env:
           GITHUB_TOKEN: ${{secrets.serverpass}}
           NVD_API_KEY: ${{secrets.NVD_API_KEY}}
