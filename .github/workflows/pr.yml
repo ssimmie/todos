@@ -13,8 +13,6 @@ jobs:
 
       - name: setup docker compose compatibility
         run: |
-          # Create docker-compose symlink for compatibility with maven plugin
-          sudo ln -sf /usr/bin/docker /usr/local/bin/docker-compose
           # Create a wrapper script that translates docker-compose commands to docker compose
           sudo tee /usr/local/bin/docker-compose > /dev/null <<'EOF'
           #!/bin/bash
