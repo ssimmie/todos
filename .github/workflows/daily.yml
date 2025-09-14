@@ -42,7 +42,19 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-maven-
 
+      - name: validate nvd api key
+        run: |
+          if [ -z "${{secrets.NVD_API_KEY}}" ]; then
+            echo "⚠️  NVD_API_KEY secret is not configured"
+            echo "OWASP dependency check will be skipped to prevent build failure"
+            echo "SKIP_OWASP=true" >> $GITHUB_ENV
+          else
+            echo "✅ NVD_API_KEY is configured"
+            echo "SKIP_OWASP=false" >> $GITHUB_ENV
+          fi
+
       - name: clean owasp data directory
+        if: env.SKIP_OWASP == 'false'
         run: |
           echo "Cleaning any potentially corrupted OWASP data directories..."
           rm -rf ~/.m2/repository/org/owasp/dependency-check-data/
@@ -50,7 +62,14 @@ jobs:
           mkdir -p ./target/dependency-check-data/
 
       - name: maven build
-        run: ./mvnw -B -U verify -s $GITHUB_WORKSPACE/.mvn/settings.xml
+        run: |
+          if [ "$SKIP_OWASP" = "true" ]; then
+            echo "Running Maven build with OWASP dependency check skipped"
+            ./mvnw -B -U verify -s $GITHUB_WORKSPACE/.mvn/settings.xml -Dowasp.dependency.check.skip=true
+          else
+            echo "Running Maven build with OWASP dependency check enabled"
+            ./mvnw -B -U verify -s $GITHUB_WORKSPACE/.mvn/settings.xml
+          fi
         env:
           GITHUB_TOKEN: ${{secrets.serverpass}}
           NVD_API_KEY: ${{secrets.NVD_API_KEY}}
