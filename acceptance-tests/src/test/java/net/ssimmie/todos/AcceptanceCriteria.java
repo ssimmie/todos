@@ -1,8 +1,6 @@
 package net.ssimmie.todos;
 
-import org.junit.platform.suite.api.SelectClasspathResource;
-import org.junit.platform.suite.api.Suite;
+import io.cucumber.junit.platform.engine.Cucumber;
 
-@Suite
-@SelectClasspathResource("features")
+@Cucumber
 public class AcceptanceCriteria {}
