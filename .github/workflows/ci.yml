@@ -66,14 +66,24 @@ jobs:
         run: |
           if [ "$SKIP_OWASP" = "true" ]; then
             echo "Running Maven deploy with OWASP dependency check skipped"
-            ./mvnw -B clean deploy -s $GITHUB_WORKSPACE/.mvn/settings.xml -Ddockerfile.username=ssimmie -Ddockerfile.password=${{secrets.serverpass}} -Dowasp.dependency.check.skip=true
+            ./mvnw -B clean deploy -s $GITHUB_WORKSPACE/.mvn/settings.xml -Ddockerfile.username=ssimmie -Ddockerfile.password=${{secrets.serverpass}} -Dowasp.dependency.check.skip=true -pl '!acceptance-tests'
           else
             echo "Running Maven deploy with OWASP dependency check enabled"
-            ./mvnw -B clean deploy -s $GITHUB_WORKSPACE/.mvn/settings.xml -Ddockerfile.username=ssimmie -Ddockerfile.password=${{secrets.serverpass}}
+            ./mvnw -B clean deploy -s $GITHUB_WORKSPACE/.mvn/settings.xml -Ddockerfile.username=ssimmie -Ddockerfile.password=${{secrets.serverpass}} -pl '!acceptance-tests'
           fi
         env:
           GITHUB_TOKEN: ${{secrets.serverpass}}
           NVD_API_KEY: ${{secrets.NVD_API_KEY}}
+
+      - name: build native image
+        run: |
+          echo "Building native Docker image for acceptance tests"
+          ./mvnw -B -pl application spring-boot:build-image -Dspring-boot.build-image.imageName=todos-application:native -Dspring-boot.build-image.env.BP_NATIVE_IMAGE=true -DskipTests
+
+      - name: run acceptance tests
+        run: |
+          echo "Running acceptance tests with native Docker image"
+          ./mvnw -B -pl acceptance-tests verify
 
       - uses: actions/upload-artifact@v4
         with:

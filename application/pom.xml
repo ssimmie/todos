@@ -152,9 +152,13 @@
       <plugin>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-maven-plugin</artifactId>
-        <!-- Native image build execution - disabled due to class initialization issue
-             Use manual build: ./mvnw -pl application spring-boot:build-image -Dspring-boot.build-image.imageName=todos-application:native -Dspring-boot.build-image.env.BP_NATIVE_IMAGE=true -DskipTests
         <executions>
+          <execution>
+            <id>process-aot</id>
+            <goals>
+              <goal>process-aot</goal>
+            </goals>
+          </execution>
           <execution>
             <id>build-native-image</id>
             <phase>package</phase>
@@ -163,13 +167,9 @@
             </goals>
             <configuration>
               <imageName>todos-application:native</imageName>
-              <env>
-                <BP_NATIVE_IMAGE>true</BP_NATIVE_IMAGE>
-              </env>
             </configuration>
           </execution>
         </executions>
-        -->
         <configuration>
           <image>
             <builder>paketobuildpacks/builder-jammy-base:latest</builder>
