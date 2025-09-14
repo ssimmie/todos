@@ -358,7 +358,7 @@
           <retireJsAnalyzerEnabled>false</retireJsAnalyzerEnabled>
           <archiveAnalyzerEnabled>false</archiveAnalyzerEnabled>
           <!-- Cache NVD data for 4 hours -->
-          <cveValidForHours>4</cveValidForHours>
+          <nvdValidForHours>24</nvdValidForHours>
         </configuration>
         <executions>
           <execution>
