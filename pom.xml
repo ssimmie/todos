@@ -373,7 +373,6 @@
         <artifactId>maven-pmd-plugin</artifactId>
         <version>${maven-pmd-plugin.version}</version>
         <configuration>
-          <inputEncoding>utf-8</inputEncoding>
         </configuration>
         <executions>
           <execution>
