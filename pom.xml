@@ -86,7 +86,7 @@
     <downloadSources>true</downloadSources>
     <downloadJavadocs>true</downloadJavadocs>
     <archunit.version>1.4.1</archunit.version>
-    <gremlin-shaded.version>3.6.4</gremlin-shaded.version>
+    <gremlin-shaded.version>3.7.4</gremlin-shaded.version>
     <native-protocol.version>1.5.1</native-protocol.version>
     <await-maven-plugin.version>1.2.2</await-maven-plugin.version>
     <maven-compiler-plugin.version>3.14.0</maven-compiler-plugin.version>
