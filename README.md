@@ -19,7 +19,7 @@ Playground for me to try out various libraries, tools, and techniques.
 - [x] Integration testing; [Failsafe](https://maven.apache.org/surefire/maven-failsafe-plugin/)
 - [ ] API documentation; dependable documentation extracted from proven integration tests; [Spring REST Docs](https://spring.io/projects/spring-restdocs). Removed previous version as integration tests had to be run with unit tests and caused issues with coverage.
 - [x] Static analysis; ensure source free from known defects; [PMD](https://pmd.github.io/), [Spotbugs](https://spotbugs.github.io/), [Checkstyle](https://checkstyle.sourceforge.io/)
-- [x] Software composition analysis; ensure dependencies free from vulnerabilities; [OWASP Dependency Check](https://github.com/jeremylong/DependencyCheck)
+- [x] Security analysis; ensure source free from security vulnerabilities; [FindSecBugs](https://github.com/find-sec-bugs/find-sec-bugs) (via SpotBugs)
 - [x] Acceptance testing; ensure system matches desired behaviours; [CucumberJVM](https://cucumber.io/) [Docker Compose Plugin](https://github.com/syncdk/docker-compose-maven-plugin) [Await Plugin](https://github.com/slem1/await-maven-plugin) 
 - [x] Performance Benchmark testing; ensure local test matches representative performance goals; [Gatling](https://gatling.io/open-source/) or [Locust](https://locust.io/) or [K6](https://k6.io/open-source)
 - [ ] Resilience testing; ensure fault tolerance; circuit-breakers

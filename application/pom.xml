@@ -160,7 +160,7 @@
             </goals>
           </execution>
           <execution>
-            <id>build-native-image</id>
+            <id>build-jar-image</id>
             <phase>package</phase>
             <goals>
               <goal>build-image</goal>
@@ -174,7 +174,7 @@
           <image>
             <builder>paketobuildpacks/builder-jammy-base:latest</builder>
             <env>
-              <BP_NATIVE_IMAGE>true</BP_NATIVE_IMAGE>
+              <BP_JVM_VERSION>17</BP_JVM_VERSION>
             </env>
           </image>
         </configuration>

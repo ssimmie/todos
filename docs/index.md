@@ -103,8 +103,8 @@ With Spring Native compilation:
 # Full build with all tests and quality checks
 ./mvnw clean install
 
-# Quick build (skip dependency check)
-./mvnw clean install -Dowasp.dependency.check.skip=true
+# Quick build
+./mvnw clean install
 
 # Native image build
 ./mvnw -pl application spring-boot:build-image \
@@ -132,7 +132,7 @@ The project includes comprehensive quality checks:
 - **PMD** - Code quality and best practices
 - **JaCoCo** - Test coverage measurement
 - **PIT** - Mutation testing for test effectiveness
-- **OWASP** - Dependency vulnerability scanning
+- **FindSecBugs** - Security vulnerability scanning
 
 ## 🌐 API Overview
 

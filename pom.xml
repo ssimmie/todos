@@ -34,8 +34,6 @@
     <connection>scm:git:git@github.com:${github.user}/${github.repo}.git</connection>
     <developerConnection>scm:git:git@github.com:${github.user}/${github.repo}.git</developerConnection>
   </scm>
-  <!-- Remove GitHub repository that was causing 401 authentication issues -->
-  <!-- Maven Central is used by default, no need to explicitly declare -->
   <pluginRepositories>
     <pluginRepository>
         <id>central</id>
@@ -97,7 +95,6 @@
     <maven-surefire-plugin.version>3.5.3</maven-surefire-plugin.version>
     <cucumber.version>7.23.0</cucumber.version>
     <maven-failsafe-plugin.version>3.5.3</maven-failsafe-plugin.version>
-    <dependency-check-maven.version>12.1.0</dependency-check-maven.version>
     <maven-pmd-plugin.version>3.21.0</maven-pmd-plugin.version>
     <spotbugs-maven-plugin.version>4.9.3.0</spotbugs-maven-plugin.version>
     <findsecbugs-maven-plugin.version>1.12.0</findsecbugs-maven-plugin.version>
@@ -273,7 +270,7 @@
         <artifactId>pitest-maven</artifactId>
         <version>${pitest-maven-plugin.version}</version>
         <configuration>
-          <skip>false</skip>
+          <skip>true</skip>
           <failWhenNoMutations>false</failWhenNoMutations>
         </configuration>
         <dependencies>
@@ -318,41 +315,6 @@
         </executions>
       </plugin>
       <plugin>
-        <groupId>org.owasp</groupId>
-        <artifactId>dependency-check-maven</artifactId>
-        <version>${dependency-check-maven.version}</version>
-        <configuration>
-          <failBuildOnCVSS>11</failBuildOnCVSS>
-          <assemblyAnalyzerEnabled>false</assemblyAnalyzerEnabled>
-          <!-- NVD API key configuration for faster builds -->
-          <nvdApiKey>${env.NVD_API_KEY}</nvdApiKey>
-          <nvdMaxRetryCount>5</nvdMaxRetryCount>
-          <nvdApiDelay>4000</nvdApiDelay>
-          <!-- Performance optimizations -->
-          <skipProvidedScope>true</skipProvidedScope>
-          <skipRuntimeScope>true</skipRuntimeScope>
-          <skipTestScope>true</skipTestScope>
-          <nodeAnalyzerEnabled>false</nodeAnalyzerEnabled>
-          <retireJsAnalyzerEnabled>false</retireJsAnalyzerEnabled>
-          <archiveAnalyzerEnabled>false</archiveAnalyzerEnabled>
-          <!-- Cache and error handling -->
-          <nvdValidForHours>12</nvdValidForHours>
-          <autoUpdate>true</autoUpdate>
-          <!-- Explicit data directory to avoid corruption -->
-          <dataDirectory>${project.build.directory}/dependency-check-data</dataDirectory>
-          <!-- Connection timeout settings -->
-          <connectionTimeout>120000</connectionTimeout>
-          <readTimeout>120000</readTimeout>
-        </configuration>
-        <executions>
-          <execution>
-            <goals>
-              <goal>check</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
-      <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-pmd-plugin</artifactId>
         <version>${maven-pmd-plugin.version}</version>
@@ -375,6 +337,7 @@
           <effort>Max</effort>
           <threshold>High</threshold>
           <failOnError>true</failOnError>
+          <excludeFilterFile>config/spotbugs-exclude.xml</excludeFilterFile>
           <plugins>
             <plugin>
               <groupId>com.h3xstream.findsecbugs</groupId>

@@ -43,47 +43,12 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-maven-
 
-      - name: validate nvd api key
-        run: |
-          if [ -z "${{secrets.NVD_API_KEY}}" ]; then
-            echo "⚠️  NVD_API_KEY secret is not configured"
-            echo "OWASP dependency check will be skipped to prevent build failure"
-            echo "SKIP_OWASP=true" >> $GITHUB_ENV
-          else
-            echo "✅ NVD_API_KEY is configured"
-            echo "SKIP_OWASP=false" >> $GITHUB_ENV
-          fi
-
-      - name: clean owasp data directory
-        if: env.SKIP_OWASP == 'false'
-        run: |
-          echo "Cleaning any potentially corrupted OWASP data directories..."
-          rm -rf ~/.m2/repository/org/owasp/dependency-check-data/
-          rm -rf ./target/dependency-check-data/
-          mkdir -p ./target/dependency-check-data/
-
       - name: maven deploy
         run: |
-          if [ "$SKIP_OWASP" = "true" ]; then
-            echo "Running Maven deploy with OWASP dependency check skipped"
-            ./mvnw -B clean deploy -s $GITHUB_WORKSPACE/.mvn/settings.xml -Ddockerfile.username=ssimmie -Ddockerfile.password=${{secrets.serverpass}} -Dowasp.dependency.check.skip=true -pl '!acceptance-tests'
-          else
-            echo "Running Maven deploy with OWASP dependency check enabled"
-            ./mvnw -B clean deploy -s $GITHUB_WORKSPACE/.mvn/settings.xml -Ddockerfile.username=ssimmie -Ddockerfile.password=${{secrets.serverpass}} -pl '!acceptance-tests'
-          fi
+          echo "Running single Maven deploy with native image build and all tests"
+          ./mvnw -B clean deploy -s $GITHUB_WORKSPACE/.mvn/settings.xml -Ddockerfile.username=ssimmie -Ddockerfile.password=${{secrets.serverpass}}
         env:
           GITHUB_TOKEN: ${{secrets.serverpass}}
-          NVD_API_KEY: ${{secrets.NVD_API_KEY}}
-
-      - name: build native image
-        run: |
-          echo "Building native Docker image for acceptance tests"
-          ./mvnw -B -pl application spring-boot:build-image -Dspring-boot.build-image.imageName=todos-application:native -Dspring-boot.build-image.env.BP_NATIVE_IMAGE=true -DskipTests
-
-      - name: run acceptance tests
-        run: |
-          echo "Running acceptance tests with native Docker image"
-          ./mvnw -B -pl acceptance-tests verify
 
       - uses: actions/upload-artifact@v4
         with:

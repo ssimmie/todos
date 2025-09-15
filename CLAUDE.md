@@ -55,10 +55,9 @@ The project has been successfully upgraded to Spring Boot 3.2.12 with Java 17, r
 ### Dependencies Health Check
 
 #### **OWASP Dependency Check**
-- **Version**: 12.1.0 (latest)
-- **Status**: ⚠️ Requires NVD API key for reasonable performance
-- **Impact**: Very slow first run (10+ minutes), but functional
-- **Recommendation**: Consider getting NVD API key for faster builds
+- **Status**: ❌ REMOVED - Plugin completely removed due to poor performance
+- **Reason**: Builds were too slow (10+ minutes even with NVD API key)
+- **Alternative**: Security scanning handled by other tools (SpotBugs with FindSecBugs, PMD)
 
 #### **External Dependencies**
 - No unresolved external dependencies after checkstyle configuration simplification
@@ -91,19 +90,16 @@ mvn test
 - Spring Boot upgraded from 2.7.5 to 3.2.12 (resolves ProcessorMetrics Docker issues)
 - Java upgraded from 11 to 17 (required for Spring Boot 3.x)
 - ErrorProne updated to version 2.36.0 (Java 17 compatible, available via profile)
-- Upgraded OWASP dependency check to version 12.1.0
+- OWASP dependency check completely removed (too slow for development)
 
 ## Quick Build Commands
 
 ```bash
-# Skip OWASP dependency check for faster builds
-mvn clean install -Dowasp.dependency.check.skip=true
-
 # Test individual modules
 mvn clean compile test -pl domain
 mvn clean compile test -pl application
 
-# Full build (slower due to dependency check)
+# Full build (fast - no OWASP dependency check)
 mvn clean install
 
 # Enable ErrorProne static analysis (optional - Java 17 required)

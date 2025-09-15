@@ -255,7 +255,7 @@ open performance-benchmark/target/gatling/*/index.html
 - **PIT**: Mutation testing for test quality assessment
 
 **Security Scanning**:
-- **OWASP Dependency Check**: Known vulnerability scanning
+- **FindSecBugs**: Security vulnerability pattern detection
 - **Dependency validation**: Automated dependency updates
 
 ## Continuous Integration
@@ -267,7 +267,7 @@ open performance-benchmark/target/gatling/*/index.html
 - Integration Tests: ./mvnw verify
 - Performance Tests: ./mvnw -pl performance-benchmark verify
 - Quality Gates: All quality checks must pass
-- Security Scan: OWASP dependency check
+- Security Scan: FindSecBugs vulnerability detection
 - Docker Build: Native image compilation
 ```
 
