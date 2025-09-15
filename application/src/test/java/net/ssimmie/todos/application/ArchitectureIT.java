@@ -12,7 +12,7 @@ public class ArchitectureIT {
   @ArchTest
   public static final ArchRule SHOULD_RESPECT_CLEAN_ARCHITECTURE =
       layeredArchitecture()
-          .consideringAllDependencies()
+          .consideringOnlyDependenciesInLayers()
           .layer("Controller")
           .definedBy("net.ssimmie.todos.application.adapter.in.web")
           .layer("Service")

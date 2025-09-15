@@ -270,8 +270,10 @@
         <artifactId>pitest-maven</artifactId>
         <version>${pitest-maven-plugin.version}</version>
         <configuration>
-          <skip>true</skip>
           <failWhenNoMutations>false</failWhenNoMutations>
+          <excludedClasses>
+            <param>*$$SpringCGLIB$$*</param>
+          </excludedClasses>
         </configuration>
         <dependencies>
           <dependency>
