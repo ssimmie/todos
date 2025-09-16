@@ -99,7 +99,7 @@
     <spotbugs-maven-plugin.version>4.9.3.0</spotbugs-maven-plugin.version>
     <findsecbugs-maven-plugin.version>1.12.0</findsecbugs-maven-plugin.version>
     <maven-checkstyle-plugin.version>3.3.1</maven-checkstyle-plugin.version>
-    <maven-jxr-plugin.version>3.5.0</maven-jxr-plugin.version>
+    <maven-jxr-plugin.version>3.6.0</maven-jxr-plugin.version>
     <equalsverifier.version>4.0.6</equalsverifier.version>
     <fmt-maven-plugin.version>2.25</fmt-maven-plugin.version>
     <to-string-verifier.version>1.4.8</to-string-verifier.version>
