@@ -76,6 +76,7 @@
     <module>application</module>
     <module>acceptance-tests</module>
     <module>performance-benchmark</module>
+    <module>infrastructure</module>
   </modules>
   <properties>
     <github.user>ssimmie</github.user>

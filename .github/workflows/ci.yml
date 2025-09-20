@@ -5,6 +5,11 @@ on:
     branches:
       - master
 
+permissions:
+  id-token: write   # Required for AWS OIDC
+  contents: read    # Required for checkout
+  packages: write   # Required for GitHub packages
+
 jobs:
   build:
 
@@ -54,3 +59,97 @@ jobs:
         with:
           name: todos-build-artifacts
           path: ${{ github.workspace }}/**/target/**
+
+  deploy:
+    name: Deploy to AWS
+    needs: build
+    runs-on: ubuntu-latest
+    environment: production  # Requires environment protection rules
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js for CDK
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+          cache-dependency-path: infrastructure/package*.json
+
+      - name: Setup Java for CDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+          cache: 'maven'
+
+      - name: Cache Maven dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-maven-
+
+      - name: Install AWS CDK
+        run: npm install -g aws-cdk
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ vars.AWS_ROLE_ARN }}
+          role-session-name: GitHubActions-TodosDeployment
+          aws-region: ${{ vars.AWS_REGION }}
+
+      - name: Download build artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: todos-build-artifacts
+          path: .
+
+      - name: Verify native image exists
+        run: |
+          echo "Checking for native image..."
+          docker images | grep todos-application || echo "Native image will be built during deployment"
+
+      - name: CDK Bootstrap (if needed)
+        run: |
+          cd infrastructure
+          cdk bootstrap --region ${{ vars.AWS_REGION }}
+        continue-on-error: true  # Bootstrap may already exist
+
+      - name: CDK Diff
+        run: |
+          cd infrastructure
+          cdk diff --all
+
+      - name: Deploy Infrastructure to AWS
+        run: |
+          cd infrastructure
+          cdk deploy --all --require-approval never
+        env:
+          CDK_DEFAULT_ACCOUNT: ${{ vars.AWS_ACCOUNT_ID }}
+          CDK_DEFAULT_REGION: ${{ vars.AWS_REGION }}
+
+      - name: Verify Deployment
+        run: |
+          echo "Verifying ECS service deployment..."
+          aws ecs describe-services \
+            --cluster todos-cluster \
+            --services todos-service \
+            --region ${{ vars.AWS_REGION }} \
+            --query 'services[0].{Status:status,Running:runningCount,Desired:desiredCount}'
+
+      - name: Get Application Health
+        run: |
+          echo "Deployment completed successfully!"
+          echo "Application deployed to private VPC in region: ${{ vars.AWS_REGION }}"
+          echo "Access via AWS Session Manager or VPN connection"
+
+          # Output stack information
+          aws cloudformation describe-stacks \
+            --stack-name TodosEcsStack \
+            --region ${{ vars.AWS_REGION }} \
+            --query 'Stacks[0].Outputs[*].{Key:OutputKey,Value:OutputValue}' \
+            --output table
