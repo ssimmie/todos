@@ -8,7 +8,6 @@ import software.amazon.awscdk.services.cassandra.CfnTable;
 import software.constructs.Construct;
 
 import java.util.List;
-import java.util.Map;
 
 /**
  * Amazon Keyspaces (Cassandra) infrastructure stack.

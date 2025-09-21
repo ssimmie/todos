@@ -71,4 +71,20 @@ class TodosInfrastructureAppTest {
         assertThat(env.getAccount()).isNull();
         assertThat(env.getRegion()).isNull();
     }
+
+    @Test
+    void main_shouldExecuteWithoutErrors() {
+        // Test that main method can be called without throwing exceptions
+        // This tests the application entry point
+        System.setProperty("cdk.account", "123456789012");
+        System.setProperty("cdk.region", "eu-west-2");
+
+        try {
+            TodosInfrastructureApp.main(new String[]{});
+        } finally {
+            // Clean up system properties
+            System.clearProperty("cdk.account");
+            System.clearProperty("cdk.region");
+        }
+    }
 }
