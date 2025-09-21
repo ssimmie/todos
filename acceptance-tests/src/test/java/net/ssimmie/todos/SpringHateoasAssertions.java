@@ -30,6 +30,7 @@ final class SpringHateoasAssertions<T> {
 
   void hasLinkLike(final String rel, final String hrefRegex) {
     Optional<Link> optionalLink = requireNonNull(representationModel).getLink(rel);
-    optionalLink.ifPresentOrElse(link -> assertLinesMatch(List.of(hrefRegex), List.of(link.getHref())), Assertions::fail);
+    optionalLink.ifPresentOrElse(
+        link -> assertLinesMatch(List.of(hrefRegex), List.of(link.getHref())), Assertions::fail);
   }
 }

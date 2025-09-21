@@ -14,7 +14,6 @@
   <name>application</name>
   <description>Todos application</description>
   <properties>
-    <blockhound-junit-platform.version>1.0.8.RELEASE</blockhound-junit-platform.version>
     <dockerfile-maven-version>1.4.13</dockerfile-maven-version>
   </properties>
   <dependencies>
@@ -95,25 +94,6 @@
       <scope>test</scope>
     </dependency>
   </dependencies>
-  <profiles>
-    <profile>
-      <id>blockhound</id>
-      <dependencies>
-        <dependency>
-          <groupId>io.projectreactor.tools</groupId>
-          <artifactId>blockhound-junit-platform</artifactId>
-          <version>${blockhound-junit-platform.version}</version>
-          <scope>test</scope>
-        </dependency>
-      </dependencies>
-    </profile>
-    <profile>
-      <id>jvm</id>
-      <properties>
-        <native.build.skip>true</native.build.skip>
-      </properties>
-    </profile>
-  </profiles>
   <build>
     <plugins>
       <plugin>

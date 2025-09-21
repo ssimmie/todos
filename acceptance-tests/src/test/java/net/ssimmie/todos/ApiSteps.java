@@ -63,8 +63,8 @@ public class ApiSteps {
     final List<String> locationValues = this.newChecklist.getHeaders().get(LOCATION);
     assertEquals(requireNonNull(locationValues).size(), 1);
     assertLinesMatch(List.of(EXPECTED_CHECKLIST_ID_REGEX), locationValues);
-    this.existingChecklist = restClient
-        .getForEntity(locationValues.get(0), ChecklistResourceRepresentation.class);
+    this.existingChecklist =
+        restClient.getForEntity(locationValues.get(0), ChecklistResourceRepresentation.class);
   }
 
   @Then("the services available resources should be returned")
