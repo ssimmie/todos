@@ -108,40 +108,6 @@ jobs:
           name: todos-build-artifacts
           path: .
 
-      - name: Build native image
-        run: |
-          echo "Building native image for deployment..."
-          ./mvnw -pl application spring-boot:build-image -Dspring-boot.build-image.imageName=todos-application:native
-
-      - name: Login to Amazon ECR
-        id: login-ecr
-        uses: aws-actions/amazon-ecr-login@v2
-
-      - name: Tag and push image to ECR
-        run: |
-          # Get ECR repository URI from deployed infrastructure
-          ECR_REPOSITORY=$(aws cloudformation describe-stacks \
-            --stack-name TodosEcsStack \
-            --region ${{ vars.AWS_REGION }} \
-            --query 'Stacks[0].Outputs[?OutputKey==`EcrRepositoryUri`].OutputValue' \
-            --output text 2>/dev/null || echo "")
-
-          if [ -z "$ECR_REPOSITORY" ]; then
-            echo "ECR repository not found, will be created during infrastructure deployment"
-            # Use expected ECR URI format for new repository
-            ECR_REPOSITORY="${{ vars.AWS_ACCOUNT_ID }}.dkr.ecr.${{ vars.AWS_REGION }}.amazonaws.com/todos-application"
-          fi
-
-          echo "ECR Repository: $ECR_REPOSITORY"
-
-          # Tag the local image with ECR repository URI
-          docker tag todos-application:native $ECR_REPOSITORY:latest
-
-          # Push the image to ECR
-          docker push $ECR_REPOSITORY:latest
-
-          echo "Image pushed to ECR: $ECR_REPOSITORY:latest"
-
       - name: CDK Bootstrap (if needed)
         run: |
           cd infrastructure
@@ -160,6 +126,36 @@ jobs:
         env:
           CDK_DEFAULT_ACCOUNT: ${{ vars.AWS_ACCOUNT_ID }}
           CDK_DEFAULT_REGION: ${{ vars.AWS_REGION }}
+
+      - name: Build native image
+        run: |
+          echo "Building native image for deployment..."
+          ./mvnw -pl application spring-boot:build-image \
+            -Dspring-boot.build-image.imageName=todos-application:native \
+            -Dspring-boot.build-image.env.BP_NATIVE_IMAGE=true
+
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v2
+
+      - name: Tag and push image to ECR
+        run: |
+          # Get ECR repository URI from deployed infrastructure
+          ECR_REPOSITORY=$(aws cloudformation describe-stacks \
+            --stack-name TodosEcsStack \
+            --region ${{ vars.AWS_REGION }} \
+            --query 'Stacks[0].Outputs[?OutputKey==`EcrRepositoryUri`].OutputValue' \
+            --output text)
+
+          echo "ECR Repository: $ECR_REPOSITORY"
+
+          # Tag the local image with ECR repository URI
+          docker tag todos-application:native $ECR_REPOSITORY:latest
+
+          # Push the image to ECR
+          docker push $ECR_REPOSITORY:latest
+
+          echo "Image pushed to ECR: $ECR_REPOSITORY:latest"
 
       - name: Verify Deployment
         run: |
