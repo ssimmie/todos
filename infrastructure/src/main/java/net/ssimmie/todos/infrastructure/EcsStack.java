@@ -6,17 +6,16 @@ import software.amazon.awscdk.Stack;
 import software.amazon.awscdk.StackProps;
 import software.amazon.awscdk.services.ec2.ISecurityGroup;
 import software.amazon.awscdk.services.ec2.IVpc;
+import software.amazon.awscdk.services.ecr.Repository;
 import software.amazon.awscdk.services.ecs.Cluster;
 import software.amazon.awscdk.services.ecs.ContainerImage;
 import software.amazon.awscdk.services.ecs.FargateService;
 import software.amazon.awscdk.services.ecs.FargateTaskDefinition;
 import software.amazon.awscdk.services.ecs.LogDrivers;
-import software.amazon.awscdk.services.ecs.Secret;
 import software.amazon.awscdk.services.iam.Effect;
 import software.amazon.awscdk.services.iam.PolicyStatement;
 import software.amazon.awscdk.services.logs.LogGroup;
 import software.amazon.awscdk.services.logs.RetentionDays;
-import software.amazon.awscdk.services.secretsmanager.SecretStringGenerator;
 import software.constructs.Construct;
 
 import java.util.List;
@@ -29,19 +28,36 @@ import java.util.Map;
 public class EcsStack extends Stack {
 
     private final FargateService service;
+    private final Repository ecrRepository;
 
     public EcsStack(final Construct scope, final String id, final StackProps props,
                    final IVpc vpc, final ISecurityGroup securityGroup, final String keyspaceName) {
         super(scope, id, props);
 
+        this.ecrRepository = createEcrRepository();
         Cluster cluster = createCluster(vpc);
         FargateTaskDefinition taskDefinition = createTaskDefinition(keyspaceName);
         this.service = createService(cluster, taskDefinition, securityGroup);
 
-        // Output service ARN for reference
+        // Output service ARN and ECR repository URI for reference
         CfnOutput.Builder.create(this, "ServiceArn")
                 .value(service.getServiceArn())
                 .description("ECS Service ARN for Todos application")
+                .build();
+
+        CfnOutput.Builder.create(this, "EcrRepositoryUri")
+                .value(ecrRepository.getRepositoryUri())
+                .description("ECR Repository URI for Todos application image")
+                .build();
+    }
+
+    /**
+     * Creates ECR repository for the Todos application image.
+     */
+    private Repository createEcrRepository() {
+        return Repository.Builder.create(this, "TodosEcrRepository")
+                .repositoryName("todos-application")
+                .imageScanOnPush(true)
                 .build();
     }
 
@@ -86,7 +102,7 @@ public class EcsStack extends Stack {
 
         // Add container with secure environment variables
         taskDefinition.addContainer("TodosContainer", software.amazon.awscdk.services.ecs.ContainerDefinitionOptions.builder()
-                .image(ContainerImage.fromRegistry("todos-application:native"))
+                .image(ContainerImage.fromRegistry(ecrRepository.getRepositoryUri() + ":latest"))
                 .environment(Map.of(
                         "SPRING_PROFILES_ACTIVE", "aws",
                         "SPRING_DATA_CASSANDRA_KEYSPACE_NAME", keyspaceName,
@@ -127,5 +143,9 @@ public class EcsStack extends Stack {
 
     public FargateService getService() {
         return service;
+    }
+
+    public Repository getEcrRepository() {
+        return ecrRepository;
     }
 }
