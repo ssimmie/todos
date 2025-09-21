@@ -15,7 +15,7 @@ class EcsStackTest {
         StackProps stackProps = StackProps.builder()
                 .env(Environment.builder()
                         .account("123456789012")
-                        .region("us-east-1")
+                        .region("eu-west-2")
                         .build())
                 .build();
 
@@ -38,7 +38,7 @@ class EcsStackTest {
         StackProps stackProps = StackProps.builder()
                 .env(Environment.builder()
                         .account("123456789012")
-                        .region("us-east-1")
+                        .region("eu-west-2")
                         .build())
                 .build();
 
@@ -58,7 +58,7 @@ class EcsStackTest {
         StackProps stackProps = StackProps.builder()
                 .env(Environment.builder()
                         .account("123456789012")
-                        .region("us-east-1")
+                        .region("eu-west-2")
                         .build())
                 .build();
 

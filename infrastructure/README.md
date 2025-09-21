@@ -31,7 +31,7 @@ This module creates the complete AWS infrastructure needed to run the Todos appl
 
 ```bash
 export CDK_DEFAULT_ACCOUNT=$(aws sts get-caller-identity --query Account --output text)
-export CDK_DEFAULT_REGION=us-east-1  # or your preferred region
+export CDK_DEFAULT_REGION=eu-west-2  # London region
 ```
 
 ### 2. Bootstrap CDK (first time only)

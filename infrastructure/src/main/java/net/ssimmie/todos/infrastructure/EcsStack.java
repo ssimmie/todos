@@ -90,8 +90,8 @@ public class EcsStack extends Stack {
                 .environment(Map.of(
                         "SPRING_PROFILES_ACTIVE", "aws",
                         "SPRING_DATA_CASSANDRA_KEYSPACE_NAME", keyspaceName,
-                        "SPRING_DATA_CASSANDRA_LOCAL_DATACENTER", "us-east-1",
-                        "SPRING_DATA_CASSANDRA_CONTACT_POINTS", "cassandra.us-east-1.amazonaws.com",
+                        "SPRING_DATA_CASSANDRA_LOCAL_DATACENTER", this.getRegion(),
+                        "SPRING_DATA_CASSANDRA_CONTACT_POINTS", "cassandra." + this.getRegion() + ".amazonaws.com",
                         "SPRING_DATA_CASSANDRA_PORT", "9142",
                         "SPRING_DATA_CASSANDRA_SSL", "true"
                 ))

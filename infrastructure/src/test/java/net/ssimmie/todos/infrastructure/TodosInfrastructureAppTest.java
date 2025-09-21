@@ -38,12 +38,12 @@ class TodosInfrastructureAppTest {
         // Test that Environment.builder() can handle null values gracefully
         Environment env = Environment.builder()
                 .account(null)
-                .region("us-east-1")
+                .region("eu-west-2")
                 .build();
 
         assertThat(env).isNotNull();
         assertThat(env.getAccount()).isNull();
-        assertThat(env.getRegion()).isEqualTo("us-east-1");
+        assertThat(env.getRegion()).isEqualTo("eu-west-2");
     }
 
     @Test
