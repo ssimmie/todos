@@ -10,7 +10,7 @@ public class ChecklistResourceAction {
   public static ChainBuilder getChecklist() {
     return exec(
         http("Retrieve existing checklist")
-            .get("${checklistUrl}")
+            .get("#{checklistUrl}")
             .header("Content-Type", "application/json")
             .header("Accept", "application/hal+json")
             .check(status().is(200))

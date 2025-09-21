@@ -11,7 +11,7 @@ public class ChecklistsResourceAction {
   public static ChainBuilder createChecklist() {
     return exec(
         http("Create new checklist")
-            .post("${checklistsUrl}")
+            .post("#{checklistsUrl}")
             .body(
                 StringBody(
                     String.format(
