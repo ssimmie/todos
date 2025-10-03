@@ -90,7 +90,7 @@
     <cluecumber-report-plugin.version>2.9.4</cluecumber-report-plugin.version>
     <jacoco-maven-plugin.version>0.8.13</jacoco-maven-plugin.version>
     <pitest-maven-plugin.version>1.19.1</pitest-maven-plugin.version>
-    <pitest-junit5-plugin.version>1.2.2</pitest-junit5-plugin.version>
+    <pitest-junit5-plugin.version>1.2.3</pitest-junit5-plugin.version>
     <maven-surefire-plugin.version>3.5.4</maven-surefire-plugin.version>
     <cucumber.version>7.23.0</cucumber.version>
     <maven-failsafe-plugin.version>3.5.4</maven-failsafe-plugin.version>
