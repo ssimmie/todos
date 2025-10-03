@@ -74,8 +74,6 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '18'
-          cache: 'npm'
-          cache-dependency-path: infrastructure/package*.json
 
       - name: Setup Java for CDK
         uses: actions/setup-java@v4
