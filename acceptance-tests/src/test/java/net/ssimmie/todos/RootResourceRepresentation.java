@@ -1,12 +1,11 @@
 package net.ssimmie.todos;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.Map;
 import org.springframework.hateoas.Link;
 import org.springframework.hateoas.RepresentationModel;
 
-import java.util.Map;
-
-public class RootResourceRepresentation  extends RepresentationModel<RootResourceRepresentation>{
+public class RootResourceRepresentation extends RepresentationModel<RootResourceRepresentation> {
 
   public RootResourceRepresentation() {
     super();
@@ -14,7 +13,6 @@ public class RootResourceRepresentation  extends RepresentationModel<RootResourc
 
   @JsonProperty("_links")
   public void setLinks(final Map<String, Link> links) {
-    links.forEach((label, link) ->  add(link.withRel(label)) );
+    links.forEach((label, link) -> add(link.withRel(label)));
   }
-
 }

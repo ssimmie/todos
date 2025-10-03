@@ -76,6 +76,7 @@
     <module>application</module>
     <module>acceptance-tests</module>
     <module>performance-benchmark</module>
+    <module>infrastructure</module>
   </modules>
   <properties>
     <github.user>ssimmie</github.user>
@@ -84,8 +85,6 @@
     <downloadSources>true</downloadSources>
     <downloadJavadocs>true</downloadJavadocs>
     <archunit.version>1.4.1</archunit.version>
-    <gremlin-shaded.version>3.6.4</gremlin-shaded.version>
-    <native-protocol.version>1.5.1</native-protocol.version>
     <await-maven-plugin.version>1.2.2</await-maven-plugin.version>
     <maven-compiler-plugin.version>3.14.0</maven-compiler-plugin.version>
     <cluecumber-report-plugin.version>2.9.4</cluecumber-report-plugin.version>
@@ -99,7 +98,7 @@
     <spotbugs-maven-plugin.version>4.9.6.0</spotbugs-maven-plugin.version>
     <findsecbugs-maven-plugin.version>1.12.0</findsecbugs-maven-plugin.version>
     <maven-checkstyle-plugin.version>3.3.1</maven-checkstyle-plugin.version>
-    <maven-jxr-plugin.version>3.5.0</maven-jxr-plugin.version>
+    <maven-jxr-plugin.version>3.6.0</maven-jxr-plugin.version>
     <equalsverifier.version>4.0.6</equalsverifier.version>
     <fmt-maven-plugin.version>2.29</fmt-maven-plugin.version>
     <to-string-verifier.version>1.4.8</to-string-verifier.version>
@@ -147,16 +146,6 @@
         <artifactId>to-string-verifier</artifactId>
         <version>${to-string-verifier.version}</version>
         <scope>test</scope>
-      </dependency>
-      <dependency>
-        <artifactId>gremlin-shaded</artifactId>
-        <groupId>org.apache.tinkerpop</groupId>
-        <version>${gremlin-shaded.version}</version>
-      </dependency>
-      <dependency>
-        <artifactId>native-protocol</artifactId>
-        <groupId>com.datastax.oss</groupId>
-        <version>${native-protocol.version}</version>
       </dependency>
     </dependencies>
   </dependencyManagement>
@@ -420,47 +409,4 @@
       </plugin>
     </plugins>
   </reporting>
-  <profiles>
-    <profile>
-      <id>errorprone</id>
-      <activation>
-        <property>
-          <name>errorprone</name>
-        </property>
-      </activation>
-      <build>
-        <plugins>
-          <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-compiler-plugin</artifactId>
-            <configuration>
-              <compilerArgument>-Xlint:all</compilerArgument>
-              <compilerArgs>
-                <arg>-Xlint:all</arg>
-                <arg>-XDcompilePolicy=simple</arg>
-                <arg>-Xplugin:ErrorProne</arg>
-                <arg>--add-exports=jdk.compiler/com.sun.tools.javac.api=ALL-UNNAMED</arg>
-                <arg>--add-exports=jdk.compiler/com.sun.tools.javac.code=ALL-UNNAMED</arg>
-                <arg>--add-exports=jdk.compiler/com.sun.tools.javac.comp=ALL-UNNAMED</arg>
-                <arg>--add-exports=jdk.compiler/com.sun.tools.javac.file=ALL-UNNAMED</arg>
-                <arg>--add-exports=jdk.compiler/com.sun.tools.javac.main=ALL-UNNAMED</arg>
-                <arg>--add-exports=jdk.compiler/com.sun.tools.javac.model=ALL-UNNAMED</arg>
-                <arg>--add-exports=jdk.compiler/com.sun.tools.javac.parser=ALL-UNNAMED</arg>
-                <arg>--add-exports=jdk.compiler/com.sun.tools.javac.processing=ALL-UNNAMED</arg>
-                <arg>--add-exports=jdk.compiler/com.sun.tools.javac.tree=ALL-UNNAMED</arg>
-                <arg>--add-exports=jdk.compiler/com.sun.tools.javac.util=ALL-UNNAMED</arg>
-              </compilerArgs>
-              <annotationProcessorPaths>
-                <path>
-                  <groupId>com.google.errorprone</groupId>
-                  <artifactId>error_prone_core</artifactId>
-                  <version>2.36.0</version>
-                </path>
-              </annotationProcessorPaths>
-            </configuration>
-          </plugin>
-        </plugins>
-      </build>
-    </profile>
-  </profiles>
 </project>
