@@ -28,7 +28,8 @@ class EcsStackTest {
             stackProps,
             networkStack.getVpc(),
             networkStack.getPrivateSecurityGroup(),
-            "test-keyspace");
+            "test-keyspace",
+            true);
 
     assertThat(ecsStack).isNotNull();
     assertThat(ecsStack.getService()).isNotNull();
@@ -51,7 +52,8 @@ class EcsStackTest {
             stackProps,
             networkStack.getVpc(),
             networkStack.getPrivateSecurityGroup(),
-            "test-keyspace");
+            "test-keyspace",
+            true);
 
     assertThat(ecsStack.getService()).isNotNull();
     assertThat(ecsStack.getService()).isSameAs(ecsStack.getService());
@@ -74,7 +76,8 @@ class EcsStackTest {
             stackProps,
             networkStack.getVpc(),
             networkStack.getPrivateSecurityGroup(),
-            "keyspace1");
+            "keyspace1",
+            true);
 
     EcsStack stack2 =
         new EcsStack(
@@ -83,7 +86,8 @@ class EcsStackTest {
             stackProps,
             networkStack.getVpc(),
             networkStack.getPrivateSecurityGroup(),
-            "keyspace2");
+            "keyspace2",
+            true);
 
     assertThat(stack1.getService()).isNotNull();
     assertThat(stack2.getService()).isNotNull();
@@ -106,7 +110,8 @@ class EcsStackTest {
             stackProps,
             networkStack.getVpc(),
             networkStack.getPrivateSecurityGroup(),
-            "test-keyspace");
+            "test-keyspace",
+            true);
 
     assertThat(ecsStack.getEcrRepository()).isNotNull();
     assertThat(ecsStack.getEcrRepository()).isSameAs(ecsStack.getEcrRepository());
@@ -129,7 +134,8 @@ class EcsStackTest {
             stackProps,
             networkStack.getVpc(),
             networkStack.getPrivateSecurityGroup(),
-            "keyspace1");
+            "keyspace1",
+            true);
 
     EcsStack stack2 =
         new EcsStack(
@@ -138,10 +144,59 @@ class EcsStackTest {
             stackProps,
             networkStack.getVpc(),
             networkStack.getPrivateSecurityGroup(),
-            "keyspace2");
+            "keyspace2",
+            true);
 
     assertThat(stack1.getEcrRepository()).isNotNull();
     assertThat(stack2.getEcrRepository()).isNotNull();
     assertThat(stack1.getEcrRepository()).isNotSameAs(stack2.getEcrRepository());
+  }
+
+  @Test
+  void constructor_shouldNotCreateServiceWhenFlagIsFalse() {
+    App app = new App();
+    StackProps stackProps =
+        StackProps.builder()
+            .env(Environment.builder().account("123456789012").region("eu-west-2").build())
+            .build();
+
+    NetworkStack networkStack = new NetworkStack(app, "TestNetwork6", stackProps);
+    EcsStack ecsStack =
+        new EcsStack(
+            app,
+            "TestEcsStack6",
+            stackProps,
+            networkStack.getVpc(),
+            networkStack.getPrivateSecurityGroup(),
+            "test-keyspace",
+            false);
+
+    assertThat(ecsStack).isNotNull();
+    assertThat(ecsStack.getService()).isNull();
+    assertThat(ecsStack.getEcrRepository()).isNotNull();
+  }
+
+  @Test
+  void constructor_shouldCreateServiceWhenFlagIsTrue() {
+    App app = new App();
+    StackProps stackProps =
+        StackProps.builder()
+            .env(Environment.builder().account("123456789012").region("eu-west-2").build())
+            .build();
+
+    NetworkStack networkStack = new NetworkStack(app, "TestNetwork7", stackProps);
+    EcsStack ecsStack =
+        new EcsStack(
+            app,
+            "TestEcsStack7",
+            stackProps,
+            networkStack.getVpc(),
+            networkStack.getPrivateSecurityGroup(),
+            "test-keyspace",
+            true);
+
+    assertThat(ecsStack).isNotNull();
+    assertThat(ecsStack.getService()).isNotNull();
+    assertThat(ecsStack.getEcrRepository()).isNotNull();
   }
 }
