@@ -25,13 +25,19 @@ public final class TodosInfrastructureApp {
     Environment env = createEnvironment();
     StackProps stackProps = StackProps.builder().env(env).build();
 
+    // Read context to determine if ECS service should be created
+    // Default to false for initial deployment (allows ECR image push first)
+    Object contextValue = app.getNode().tryGetContext("createEcsService");
+    boolean createEcsService =
+        contextValue != null && Boolean.parseBoolean(contextValue.toString());
+
     // Create network infrastructure (VPC, subnets, security groups) - private only
     NetworkStack networkStack = new NetworkStack(app, "TodosNetworkStack", stackProps);
 
     // Create Keyspaces database
     KeyspacesStack keyspacesStack = new KeyspacesStack(app, "TodosKeyspacesStack", stackProps);
 
-    // Create ECS service for application (private subnets only)
+    // Create ECS stack (ECR + optional service based on context parameter)
     EcsStack ecsStack =
         new EcsStack(
             app,
@@ -39,7 +45,8 @@ public final class TodosInfrastructureApp {
             stackProps,
             networkStack.getVpc(),
             networkStack.getPrivateSecurityGroup(),
-            keyspacesStack.getKeyspaceName());
+            keyspacesStack.getKeyspaceName(),
+            createEcsService);
 
     ecsStack.addDependency(networkStack);
     ecsStack.addDependency(keyspacesStack);

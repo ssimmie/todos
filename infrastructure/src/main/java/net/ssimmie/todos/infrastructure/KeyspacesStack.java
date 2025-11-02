@@ -30,8 +30,12 @@ public class KeyspacesStack extends Stack {
     CfnKeyspace keyspace = createKeyspace();
     this.keyspaceName = keyspace.getKeyspaceName();
 
-    createChecklistTable(keyspace);
-    createTodoTable(keyspace);
+    CfnTable checklistTable = createChecklistTable(keyspace);
+    CfnTable todoTable = createTodoTable(keyspace);
+
+    // Explicitly declare CloudFormation dependencies to ensure keyspace is created first
+    checklistTable.addDependency(keyspace);
+    todoTable.addDependency(keyspace);
 
     // Output keyspace name for application configuration
     CfnOutput.Builder.create(this, "KeyspaceName")
@@ -46,8 +50,8 @@ public class KeyspacesStack extends Stack {
   }
 
   /** Creates checklist table matching the domain model. */
-  private void createChecklistTable(final CfnKeyspace keyspace) {
-    CfnTable.Builder.create(this, "ChecklistTable")
+  private CfnTable createChecklistTable(final CfnKeyspace keyspace) {
+    return CfnTable.Builder.create(this, "ChecklistTable")
         .keyspaceName(keyspace.getKeyspaceName())
         .tableName("checklist")
         .partitionKeyColumns(
@@ -69,8 +73,8 @@ public class KeyspacesStack extends Stack {
   }
 
   /** Creates todo table matching the domain model. */
-  private void createTodoTable(final CfnKeyspace keyspace) {
-    CfnTable.Builder.create(this, "TodoTable")
+  private CfnTable createTodoTable(final CfnKeyspace keyspace) {
+    return CfnTable.Builder.create(this, "TodoTable")
         .keyspaceName(keyspace.getKeyspaceName())
         .tableName("todo")
         .partitionKeyColumns(

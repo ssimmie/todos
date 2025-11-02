@@ -24,6 +24,7 @@ class NetworkStackTest {
     assertThat(networkStack).isNotNull();
     assertThat(networkStack.getVpc()).isNotNull();
     assertThat(networkStack.getPrivateSecurityGroup()).isNotNull();
+    assertThat(networkStack.getVpcEndpointSecurityGroup()).isNotNull();
   }
 
   @Test
@@ -54,6 +55,23 @@ class NetworkStackTest {
     NetworkStack networkStack = new NetworkStack(app, "TestNetworkStack3", stackProps);
     SecurityGroup sg1 = networkStack.getPrivateSecurityGroup();
     SecurityGroup sg2 = networkStack.getPrivateSecurityGroup();
+
+    assertThat(sg1).isNotNull();
+    assertThat(sg2).isNotNull();
+    assertThat(sg1).isSameAs(sg2);
+  }
+
+  @Test
+  void getVpcEndpointSecurityGroup_shouldReturnConsistentInstance() {
+    App app = new App();
+    StackProps stackProps =
+        StackProps.builder()
+            .env(Environment.builder().account("123456789012").region("eu-west-2").build())
+            .build();
+
+    NetworkStack networkStack = new NetworkStack(app, "TestNetworkStack4", stackProps);
+    SecurityGroup sg1 = networkStack.getVpcEndpointSecurityGroup();
+    SecurityGroup sg2 = networkStack.getVpcEndpointSecurityGroup();
 
     assertThat(sg1).isNotNull();
     assertThat(sg2).isNotNull();

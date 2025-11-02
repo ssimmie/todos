@@ -22,15 +22,18 @@ import software.constructs.Construct;
 
 /**
  * ECS Fargate stack for running the Todos application. Deploys the native image container in
- * private subnets with secure configuration.
+ * private subnets with secure configuration. ECS service creation is optional to allow image push
+ * before service deployment.
  */
 public class EcsStack extends Stack {
 
   private final FargateService service;
   private final Repository ecrRepository;
+  private final Cluster cluster;
+  private final FargateTaskDefinition taskDefinition;
 
   /**
-   * Creates a new EcsStack with Fargate service for the Todos application.
+   * Creates a new EcsStack with optional Fargate service for the Todos application.
    *
    * @param scope the parent construct
    * @param id the construct ID
@@ -38,6 +41,8 @@ public class EcsStack extends Stack {
    * @param vpc the VPC to deploy into
    * @param securityGroup the security group for the service
    * @param keyspaceName the Keyspaces database name
+   * @param createService whether to create the ECS service (false for initial deploy before image
+   *     push)
    */
   public EcsStack(
       final Construct scope,
@@ -45,23 +50,42 @@ public class EcsStack extends Stack {
       final StackProps props,
       final IVpc vpc,
       final ISecurityGroup securityGroup,
-      final String keyspaceName) {
+      final String keyspaceName,
+      final boolean createService) {
     super(scope, id, props);
 
     this.ecrRepository = createEcrRepository();
-    Cluster cluster = createCluster(vpc);
-    FargateTaskDefinition taskDefinition = createTaskDefinition(keyspaceName);
-    this.service = createService(cluster, taskDefinition, securityGroup);
+    this.cluster = createCluster(vpc);
+    this.taskDefinition = createTaskDefinition(keyspaceName);
 
-    // Output service ARN and ECR repository URI for reference
-    CfnOutput.Builder.create(this, "ServiceArn")
-        .value(service.getServiceArn())
-        .description("ECS Service ARN for Todos application")
-        .build();
+    // Only create service if requested (allows ECR push before service creation)
+    if (createService) {
+      this.service = createService(cluster, taskDefinition, securityGroup);
 
+      // Output service ARN when service is created
+      CfnOutput.Builder.create(this, "ServiceArn")
+          .value(service.getServiceArn())
+          .description("ECS Service ARN for Todos application")
+          .build();
+    } else {
+      this.service = null;
+      // Output instructions for next deployment step
+      CfnOutput.Builder.create(this, "NextSteps")
+          .value("Push Docker image to ECR, then redeploy with -c createEcsService=true")
+          .description("Instructions for completing deployment")
+          .build();
+    }
+
+    // Always output ECR repository URI
     CfnOutput.Builder.create(this, "EcrRepositoryUri")
         .value(ecrRepository.getRepositoryUri())
         .description("ECR Repository URI for Todos application image")
+        .build();
+
+    // Output cluster name for reference
+    CfnOutput.Builder.create(this, "ClusterName")
+        .value(cluster.getClusterName())
+        .description("ECS Cluster name")
         .build();
   }
 
