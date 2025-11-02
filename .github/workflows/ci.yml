@@ -101,7 +101,7 @@ jobs:
           aws-region: ${{ vars.AWS_REGION }}
 
       - name: Download build artifacts
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v6
         with:
           name: todos-build-artifacts
           path: .
