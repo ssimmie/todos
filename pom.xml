@@ -86,7 +86,7 @@
     <downloadJavadocs>true</downloadJavadocs>
     <archunit.version>1.4.1</archunit.version>
     <await-maven-plugin.version>1.2.2</await-maven-plugin.version>
-    <maven-compiler-plugin.version>3.14.0</maven-compiler-plugin.version>
+    <maven-compiler-plugin.version>3.14.1</maven-compiler-plugin.version>
     <cluecumber-report-plugin.version>2.9.4</cluecumber-report-plugin.version>
     <jacoco-maven-plugin.version>0.8.13</jacoco-maven-plugin.version>
     <pitest-maven-plugin.version>1.19.1</pitest-maven-plugin.version>
