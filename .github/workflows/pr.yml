@@ -21,7 +21,7 @@ jobs:
           sudo chmod +x /usr/local/bin/docker-compose
 
       - name: fetch head
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: setup jdk
         uses: actions/setup-java@v4
