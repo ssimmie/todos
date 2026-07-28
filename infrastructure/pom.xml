@@ -14,7 +14,7 @@
     <name>infrastructure</name>
     <description>AWS CDK Infrastructure for Todos application</description>
     <properties>
-        <aws-cdk.version>2.162.1</aws-cdk.version>
+        <aws-cdk.version>2.253.0</aws-cdk.version>
         <constructs.version>10.4.2</constructs.version>
         <exec-maven-plugin.version>3.1.0</exec-maven-plugin.version>
     </properties>
